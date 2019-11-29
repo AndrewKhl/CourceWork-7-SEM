@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHotel"
         local:CloseDialog.DialogResult="{Binding Path=IsDialogClose}"
-        mc:Ignorable="d"
-        Title="LoginDialog" Height="200" Width="300">
-    <Grid>
+        mc:Ignorable="d" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Login Dialog" Height="200" Width="300">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -15,16 +16,22 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Login"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Login:" Style="{StaticResource CommonTextBlockStyle}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
+                 Text="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Password"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Password:" Style="{StaticResource CommonTextBlockStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
+                 Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Login" Command="{Binding Path=LoginCommand}"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Login" Command="{Binding Path=LoginCommand}"
+                Style="{StaticResource CommonButtonStyle}"/>
+
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Sign up?" Background="Transparent" BorderThickness="0"
+                Style="{StaticResource CommonButtonStyle}"/>
     </Grid>
 </Window>

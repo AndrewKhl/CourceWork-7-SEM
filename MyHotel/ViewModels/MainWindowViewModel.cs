@@ -43,7 +43,6 @@ namespace MyHotel
             {
                 DataContext = loginViewModel,
                 Owner = _mainWindow,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
             };
 
             loginDialog.ShowDialog();

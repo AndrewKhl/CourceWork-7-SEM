@@ -11,6 +11,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Login" Command="{Binding Path=LoginCommand}"/>
+        <ToolBar>
+            <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource CommonButtonStyle}"
+                    HorizontalAlignment="Left"/>
+        </ToolBar>
     </Grid>
 </Window>
