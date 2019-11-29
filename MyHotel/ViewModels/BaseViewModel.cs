@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHotel.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,27 +8,38 @@ using System.Threading.Tasks;
 
 namespace MyHotel
 {
-    public class BaseViewModel : PropertyChangedBase
+    public class BaseViewModel : ObservableModel
     {
+        private bool _isDialogClose;
+
+        public virtual DisplayMessageDelegate MessagePresenter { get; set; }
+
         protected string ViewModelName = nameof(BaseViewModel);
 
-        protected readonly ErrorManager ErrorCounter;
+        protected CoreManager CoreManager;
 
-        public BaseViewModel(string viewModelName)
+        //protected readonly ErrorManager ErrorCounter;
+        public virtual bool IsDialogClose
         {
-            ViewModelName = viewModelName;
-
-            ErrorCounter = new ErrorManager(viewModelName);
+            get { return _isDialogClose; }
+            set
+            {
+                _isDialogClose = value;
+                NotifyPropertyChanged(() => IsDialogClose);
+            }
         }
-    }
 
-    public class PropertyChangedBase : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string prop = "")
+        public BaseViewModel(CoreManager coreManager)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            CoreManager = coreManager;
+            //ViewModelName = viewModelName;
+
+            //ErrorCounter = new ErrorManager(viewModelName);
+        }
+
+        public virtual void SetClose()
+        {
+            IsDialogClose = true;
         }
     }
 }

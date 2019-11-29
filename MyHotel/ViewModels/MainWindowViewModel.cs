@@ -5,21 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MyHotel
 {
-    public class MainWindowViewModel : BaseViewModel, IDisposable
+    public class MainWindowViewModel : IDisposable
     {
         private readonly Window _mainWindow = Application.Current.MainWindow;
         private readonly CoreManager _coreManager;
+        public ICommand LoginCommand { get; set; }
 
-        public MainWindowViewModel() : base(nameof(MainWindowViewModel))
+        public MainWindowViewModel()
         {
             _mainWindow.Closed += CloseWindow;
 
             _coreManager = new CoreManager();
 
-            var user = _coreManager.DataBase.GetUser("admin@gmail.com", "123456");
+            //var user = _coreManager.DataBase.GetUser("admin@gmail.com", "123456");
+
+            LoginCommand = new DelegateCommand(LoginCommandDelegate);
         }
 
         public void Dispose()
@@ -30,6 +34,19 @@ namespace MyHotel
         private void CloseWindow(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void LoginCommandDelegate(object o)
+        {
+            var loginViewModel = new LoginViewModel(_coreManager);
+            var loginDialog = new LoginDialog()
+            {
+                DataContext = loginViewModel,
+                Owner = _mainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            };
+
+            loginDialog.ShowDialog();
         }
     }
 }
