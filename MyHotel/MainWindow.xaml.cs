@@ -22,6 +22,7 @@ namespace MyHotel
     {
         public MainWindow()
         {
+            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
     }
