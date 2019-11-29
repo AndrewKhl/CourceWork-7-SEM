@@ -8,16 +8,16 @@ namespace MyHotel.Core
 {
     public class CoreManager : IDisposable
     {
-        private readonly DataBaseManager _dbContext;
+        public DataBaseManager DataBase { get; }
 
         public CoreManager()
         {
-            _dbContext = new DataBaseManager();
+            DataBase = new DataBaseManager();
         }
 
         public void Dispose()
         {
-            _dbContext.CloseConnection();
+            DataBase.CloseConnection();
         }
     }
 }

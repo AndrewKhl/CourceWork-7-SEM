@@ -1,5 +1,6 @@
 ﻿using MyHotel.Commons;
 using System.Data.Entity;
+using System.Linq;
 
 namespace MyHotel.Core
 {
@@ -16,11 +17,15 @@ namespace MyHotel.Core
 
         public DbSet<Staff> Staffs { get; set; }
 
-        public void CloseConnection()
-        {
-            _md5.Dispose();
-            Dispose();
-        }
+        public DbSet<Guest> Guests { get; set;}
+
+
+
+        public Person GetUser(string email, string password) => TryFindStaff(email, password) ?? TryFindGuests(email, password);
+
+        private Person TryFindStaff(string email, string password) => Staffs.AsEnumerable().Where(u => u.Email == email && _md5.VerifyMd5Hash(password, u.Password)).FirstOrDefault();
+
+        private Person TryFindGuests(string email, string password) => Guests.AsEnumerable().Where(u => u.Email == email && _md5.VerifyMd5Hash(password, u.Password)).FirstOrDefault();
 
         private void InitialCommit()
         {
@@ -32,7 +37,13 @@ namespace MyHotel.Core
                 IsAdmin = true,
             });
 
-            SaveChanges();
+            SaveChangesAsync();
+        }
+
+        public void CloseConnection()
+        {
+            _md5.Dispose();
+            Dispose();
         }
     }
 }

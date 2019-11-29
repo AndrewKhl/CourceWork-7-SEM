@@ -68,6 +68,7 @@
     <Compile Include="Commons\MD5Helper.cs" />
     <Compile Include="Core\Managers\CoreManager.cs" />
     <Compile Include="Core\Managers\DataBaseManager.cs" />
+    <Compile Include="Core\Models\Persons\Guest.cs" />
     <Compile Include="Core\Models\Persons\Person.cs" />
     <Compile Include="Core\Models\Persons\Staff.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
