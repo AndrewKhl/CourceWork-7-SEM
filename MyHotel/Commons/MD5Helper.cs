@@ -16,9 +16,9 @@ namespace MyHotel.Commons
             _hash = MD5.Create();
         }
 
-        public string GetMd5Hash(string input)
+        public string Shifr(string str)
         {
-            byte[] data = _hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            byte[] data = _hash.ComputeHash(Encoding.UTF8.GetBytes(str));
 
             StringBuilder sBuilder = new StringBuilder();
 
@@ -30,13 +30,13 @@ namespace MyHotel.Commons
             return sBuilder.ToString();
         }
 
-        public bool VerifyMd5Hash(string input, string hash)
+        public bool VerifyString(string str, string coded)
         {
-            string hashOfInput = GetMd5Hash(input);
+            string hashOfInput = Shifr(str);
 
             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 
-            return comparer.Compare(hashOfInput, hash) == 0;
+            return comparer.Compare(hashOfInput, coded) == 0;
         }
 
         public void Dispose()

@@ -12,16 +12,8 @@ namespace MyHotel.Core
 
         string OrdersStr { get; set; }
 
-        List<string> Reservations => GetIdList(ReservationsStr);
+        List<string> Reservations => StringHelper.GetIdList(ReservationsStr);
 
-        List<string> Orders => GetIdList(OrdersStr);
-
-
-        public void AddReservation(int id)
-        {
-            ReservationsStr += string.IsNullOrEmpty(ReservationsStr) ? $"{id}" : $",{id}";
-        }
-
-        private List<string> GetIdList(string str) => str?.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(u => u.Trim()).ToList();
+        List<string> Orders => StringHelper.GetIdList(OrdersStr);
     }
 }

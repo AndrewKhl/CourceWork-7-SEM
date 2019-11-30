@@ -42,7 +42,7 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var user = CoreManager.DataBase.GetUser(Login, Password);
+            var user = CoreManager.UserManager.TryGetUser(Login, Password);
             if (user != null)
             {
                 SetClose();

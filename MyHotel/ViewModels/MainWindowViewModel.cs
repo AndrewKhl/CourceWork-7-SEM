@@ -13,6 +13,7 @@ namespace MyHotel
     {
         private readonly Window _mainWindow = Application.Current.MainWindow;
         private readonly CoreManager _coreManager;
+
         public ICommand LoginCommand { get; set; }
 
         public MainWindowViewModel()
@@ -21,8 +22,6 @@ namespace MyHotel
 
             _coreManager = new CoreManager();
 
-            //var user = _coreManager.DataBase.GetUser("admin@gmail.com", "123456");
-
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
         }
 
@@ -30,7 +29,7 @@ namespace MyHotel
         {
             _coreManager.Dispose();
         }
-        
+
         private void CloseWindow(object sender, EventArgs e)
         {
             Dispose();

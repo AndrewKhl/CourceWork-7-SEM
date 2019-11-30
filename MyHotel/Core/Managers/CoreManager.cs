@@ -8,16 +8,44 @@ namespace MyHotel.Core
 {
     public class CoreManager : IDisposable
     {
-        public DataBaseManager DataBase { get; }
+        private readonly List<IModelManager> _managers;
 
         public CoreManager()
         {
-            DataBase = new DataBaseManager();
+            UserManager = new UserManager();
+            RoomManager = new RoomManager();
+
+            _managers = new List<IModelManager>()
+            {
+                UserManager,
+                RoomManager
+            };
+
+            //InitialDataBase();
+        }
+
+        public UserManager UserManager { get; }
+
+        public RoomManager RoomManager { get; }
+
+
+        private void InitialDataBase()
+        {
+            foreach (var m in _managers)
+                m.InitialCommit();
         }
 
         public void Dispose()
         {
-            DataBase.CloseConnection();
+            foreach (var m in _managers)
+                m.CloseConnection();
         }
+    }
+
+    public interface IModelManager : IDisposable
+    {
+        void InitialCommit();
+
+        void CloseConnection();
     }
 }

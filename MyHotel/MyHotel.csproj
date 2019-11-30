@@ -66,11 +66,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commons\MD5Helper.cs" />
+    <Compile Include="Commons\StringHelper.cs" />
     <Compile Include="Core\Managers\CoreManager.cs" />
-    <Compile Include="Core\Managers\DataBaseManager.cs" />
+    <Compile Include="Core\Managers\RoomManager.cs" />
+    <Compile Include="Core\Managers\UserManager.cs" />
     <Compile Include="Core\Models\Persons\Guest.cs" />
     <Compile Include="Core\Models\Persons\Person.cs" />
     <Compile Include="Core\Models\Persons\Staff.cs" />
+    <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
+    <Compile Include="Core\Models\Rooms\Room.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Infrastructure\CloseDialog.cs" />
     <Compile Include="ViewModels\Infrastructure\ErrorManager.cs" />
