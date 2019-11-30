@@ -7,7 +7,7 @@
         local:CloseDialog.DialogResult="{Binding Path=IsDialogClose}"
         mc:Ignorable="d" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Login Dialog" Height="215" Width="300">
+        Title="Login" Height="215" Width="300">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -90,7 +90,7 @@
             </TextBox.Style>
         </TextBox>
 
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="IndianRed"
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="Red"
                  HorizontalAlignment="Center" Text="{Binding Path=ErrorText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Login" Command="{Binding Path=LoginCommand}"

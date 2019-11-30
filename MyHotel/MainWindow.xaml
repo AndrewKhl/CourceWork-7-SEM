@@ -7,14 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <ToolBar>
-            <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource CommonButtonStyle}"
-                    HorizontalAlignment="Left" Visibility="{Binding Path=UserIsNull, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBlock Text="{Binding Path=HelloText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </ToolBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource BorderToolBarStyle}">
+                <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}"
+                        HorizontalAlignment="Right"/>
+            </Border> 
+        </Grid>
+
+        <local:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{Binding UserAuth, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

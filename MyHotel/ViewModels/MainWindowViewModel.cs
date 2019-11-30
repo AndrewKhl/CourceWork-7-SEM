@@ -16,11 +16,10 @@ namespace MyHotel
 
         public ICommand LoginCommand { get; set; }
 
-        public Person User { get; set; }
+        public UserViewModel CurrentUser { get; set; }
 
-        public bool UserIsNull => User == null;
 
-        public string HelloText { get; set; }
+        public GuestMainControlViewModel GuestControlViewModel { get; set; }
 
         public MainWindowViewModel()
         {
@@ -28,7 +27,12 @@ namespace MyHotel
 
             _coreManager = new CoreManager();
 
+            GuestControlViewModel = new GuestMainControlViewModel(_coreManager, CurrentUser);
+
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
+
+            //NotifyPropertyChanged(() => UserIsNotNull);
+            //NotifyPropertyChanged(() => UserIsNull);
         }
 
         public void Dispose()
@@ -43,7 +47,7 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(this, _coreManager);
+            var loginViewModel = new LoginViewModel(_coreManager, CurrentUser);
             var loginDialog = new LoginDialog()
             {
                 DataContext = loginViewModel,
@@ -52,12 +56,13 @@ namespace MyHotel
 
             loginDialog.ShowDialog();
 
-            if (User != null)
-            {
-                HelloText = $"Hello, {User.Name}!";
-                NotifyPropertyChanged(() => UserIsNull);
-                NotifyPropertyChanged(() => HelloText);
-            }
+            if (CurrentUser != null)// && !User.IsAdmin)
+                ShowGuestMainControl();
+        }
+
+        private void ShowGuestMainControl()
+        {
+            NotifyPropertyChanged(() => GuestControlViewModel);
         }
     }
 }

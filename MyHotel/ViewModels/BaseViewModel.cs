@@ -11,12 +11,29 @@ namespace MyHotel
     public class BaseViewModel : ValidationObservableModel
     {
         private bool _isDialogClose;
+        private UserViewModel _currentUser;
 
         public virtual DisplayMessageDelegate MessagePresenter { get; set; }
 
         protected string ViewModelName = nameof(BaseViewModel);
 
         protected CoreManager CoreManager;
+
+        public bool UserAuth => CurrentUser != null;
+
+        public bool IsAdmin => CurrentUser == null ? false : CurrentUser.IsAdmin;
+        
+        public UserViewModel CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                NotifyPropertyChanged(() => CurrentUser);
+                NotifyPropertyChanged(() => UserAuth);
+                NotifyPropertyChanged(() => IsAdmin);
+            }
+        }
 
         public virtual bool IsDialogClose
         {
@@ -28,9 +45,10 @@ namespace MyHotel
             }
         }
 
-        public BaseViewModel(CoreManager coreManager)
+        public BaseViewModel(CoreManager coreManager, UserViewModel currentUser)
         {
             CoreManager = coreManager;
+            CurrentUser = currentUser;
         }
 
         public virtual void SetClose()

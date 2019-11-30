@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:MyHotel">
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible"/>
     <local:ValidationConverter x:Key="validationConverter"/>
 
     <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
@@ -46,6 +47,20 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="4"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="TransparentButton" TargetType="Button" BasedOn="{StaticResource CommonButtonStyle}">
+        <Style.Setters>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="BorderToolBarStyle" TargetType="Border">
+        <Style.Setters>
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="MinHeight" Value="30"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>
