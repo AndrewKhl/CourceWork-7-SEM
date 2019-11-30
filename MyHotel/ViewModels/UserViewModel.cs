@@ -8,6 +8,7 @@ namespace MyHotel
 {
     public class UserViewModel : ValidationObservableModel
     {
+        private Person _model;
         private string _name;
         private bool _isAdmin;
 
@@ -31,10 +32,16 @@ namespace MyHotel
             }
         }
 
+        public bool UserAuth => _model != null;
 
-        Person _model;
-        public UserViewModel(Person user)
+        public UserViewModel()
         {
+
+        }
+
+        public void AttachModel(Person user)
+        {
+            _model = user;
             Name = user.Name;
             IsAdmin = user.IsAdmin;
 
@@ -45,6 +52,7 @@ namespace MyHotel
         {
             NotifyPropertyChanged(() => Name);
             NotifyPropertyChanged(() => IsAdmin);
+            NotifyPropertyChanged(() => UserAuth);
         }
     }
 }

@@ -16,23 +16,20 @@ namespace MyHotel
 
         public ICommand LoginCommand { get; set; }
 
-        public UserViewModel CurrentUser { get; set; }
+        public UserViewModel CurrentUser { get; set; } = new UserViewModel();
 
 
         public GuestMainControlViewModel GuestControlViewModel { get; set; }
 
         public MainWindowViewModel()
         {
-            _mainWindow.Closed += CloseWindow;
-
             _coreManager = new CoreManager();
 
             GuestControlViewModel = new GuestMainControlViewModel(_coreManager, CurrentUser);
 
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
 
-            //NotifyPropertyChanged(() => UserIsNotNull);
-            //NotifyPropertyChanged(() => UserIsNull);
+            _mainWindow.Closed += CloseWindow;
         }
 
         public void Dispose()

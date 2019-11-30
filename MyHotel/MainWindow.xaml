@@ -18,6 +18,6 @@
             </Border> 
         </Grid>
 
-        <local:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{Binding UserAuth, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <local:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{Binding CurrentUser.UserAuth, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

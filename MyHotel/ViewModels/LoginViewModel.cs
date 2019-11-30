@@ -87,7 +87,7 @@ namespace MyHotel
                 return;
             }
 
-            CurrentUser = new UserViewModel(user);
+            CurrentUser.AttachModel(user);
             SetClose();
         }
 

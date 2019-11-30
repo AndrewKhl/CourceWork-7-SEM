@@ -14,7 +14,7 @@
 
         <Border Grid.Row="0" Style="{StaticResource BorderToolBarStyle}">
             <Menu Background="Transparent" HorizontalAlignment="Right">
-                <MenuItem Header="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
+                <MenuItem Header="{Binding CurrentUser.Name, UpdateSourceTrigger=PropertyChanged}">
                     <MenuItem Header="Your profile"/>
                     <MenuItem Header="Your orders"/>
                     <MenuItem Header="Your services"/>
