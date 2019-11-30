@@ -76,6 +76,7 @@
     <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
     <Compile Include="Core\Models\Rooms\Room.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Converters\ValidationConverter.cs" />
     <Compile Include="ViewModels\Infrastructure\CloseDialog.cs" />
     <Compile Include="ViewModels\Infrastructure\ErrorManager.cs" />
     <Compile Include="ViewModels\Infrastructure\ObservableModel.cs" />
@@ -130,11 +131,18 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\password.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\eye_black.png" />
+    <Resource Include="Resources\eye_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Attributes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

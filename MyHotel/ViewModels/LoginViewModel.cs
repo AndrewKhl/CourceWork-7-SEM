@@ -1,6 +1,7 @@
 ﻿using MyHotel.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,15 @@ namespace MyHotel
     {
         private string _login;
         private string _password;
+        private bool _isPasswordShown;
+        private string _errorText;
+        private MainWindowViewModel _mainWindowViewModel;
 
         public ICommand LoginCommand { get; set; }
 
+        public ICommand ShowPasswordCommand { get; set; }
+
+        [Required(ErrorMessage = "Field 'Login' is required")]
         public string Login
         {
             get => _login;
@@ -22,9 +29,12 @@ namespace MyHotel
             {
                 _login = value;
                 NotifyPropertyChanged(() => Login);
+
+                ErrorText = null;
             }
         }
 
+        [Required(ErrorMessage = "Field 'PPassword' is required")]
         public string Password
         {
             get => _password;
@@ -32,12 +42,43 @@ namespace MyHotel
             {
                 _password = value;
                 NotifyPropertyChanged(() => Password);
+
+                ErrorText = null;
             }
         }
 
-        public LoginViewModel(CoreManager coreManager) : base(coreManager)
+        public bool IsPasswordShown
         {
-            LoginCommand = new DelegateCommand(LoginCommandDelegate);
+            get => _isPasswordShown;
+            set
+            {
+                _isPasswordShown = value;
+                NotifyPropertyChanged(() => IsPasswordShown);
+            }
+        }
+
+        public string ErrorText
+        {
+            get => _errorText;
+            set
+            {
+                _errorText = value;
+                NotifyPropertyChanged(() => ErrorText);
+            }
+        }
+
+        public LoginViewModel(MainWindowViewModel mainWindowViewModel, CoreManager coreManager) 
+            : base(coreManager)
+        {
+            _mainWindowViewModel = mainWindowViewModel;
+
+            LoginCommand = new DelegateCommand(LoginCommandDelegate, CanLoginCommandDelegate);
+            ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
+        }
+
+        private bool CanLoginCommandDelegate(object o)
+        {
+            return !IsError;
         }
 
         private void LoginCommandDelegate(object o)
@@ -45,11 +86,17 @@ namespace MyHotel
             var user = CoreManager.UserManager.TryGetUser(Login, Password);
             if (user != null)
             {
-                SetClose();
+                ErrorText = $"Incorrect login or password";
                 return;
             }
 
-            
+            _mainWindowViewModel.User = user;
+            SetClose();
+        }
+
+        private void ShowPasswordCommandDelegate(object o)
+        {
+            IsPasswordShown = !IsPasswordShown;
         }
     }
 }

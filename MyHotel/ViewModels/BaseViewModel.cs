@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyHotel
 {
-    public class BaseViewModel : ObservableModel
+    public class BaseViewModel : ValidationObservableModel
     {
         private bool _isDialogClose;
 
@@ -18,7 +18,6 @@ namespace MyHotel
 
         protected CoreManager CoreManager;
 
-        //protected readonly ErrorManager ErrorCounter;
         public virtual bool IsDialogClose
         {
             get { return _isDialogClose; }
@@ -32,9 +31,6 @@ namespace MyHotel
         public BaseViewModel(CoreManager coreManager)
         {
             CoreManager = coreManager;
-            //ViewModelName = viewModelName;
-
-            //ErrorCounter = new ErrorManager(viewModelName);
         }
 
         public virtual void SetClose()

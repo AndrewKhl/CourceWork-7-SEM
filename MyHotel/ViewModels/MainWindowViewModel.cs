@@ -9,12 +9,18 @@ using System.Windows.Input;
 
 namespace MyHotel
 {
-    public class MainWindowViewModel : IDisposable
+    public class MainWindowViewModel : ObservableModel, IDisposable
     {
         private readonly Window _mainWindow = Application.Current.MainWindow;
         private readonly CoreManager _coreManager;
 
         public ICommand LoginCommand { get; set; }
+
+        public Person User { get; set; }
+
+        public bool UserIsNull => User == null;
+
+        public string HelloText { get; set; }
 
         public MainWindowViewModel()
         {
@@ -37,7 +43,7 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(_coreManager);
+            var loginViewModel = new LoginViewModel(this, _coreManager);
             var loginDialog = new LoginDialog()
             {
                 DataContext = loginViewModel,
@@ -45,6 +51,13 @@ namespace MyHotel
             };
 
             loginDialog.ShowDialog();
+
+            if (User != null)
+            {
+                HelloText = $"Hello, {User.Name}!";
+                NotifyPropertyChanged(() => UserIsNull);
+                NotifyPropertyChanged(() => HelloText);
+            }
         }
     }
 }

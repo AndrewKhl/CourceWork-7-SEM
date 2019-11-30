@@ -13,7 +13,8 @@
         </Grid.RowDefinitions>
         <ToolBar>
             <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource CommonButtonStyle}"
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left" Visibility="{Binding Path=UserIsNull, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBlock Text="{Binding Path=HelloText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </ToolBar>
     </Grid>
 </Window>
