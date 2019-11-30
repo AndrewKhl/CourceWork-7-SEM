@@ -12,10 +12,6 @@ namespace MyHotel.Core
 
         public int Cost { get; set; }
 
-        public string CreateTime { get; set; }
-
-        public string StartTime { get; set; }
-
         public string Description { get; set; }
     }
 }

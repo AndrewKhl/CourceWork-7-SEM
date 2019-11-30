@@ -84,7 +84,7 @@ namespace MyHotel
         private void LoginCommandDelegate(object o)
         {
             var user = CoreManager.UserManager.TryGetUser(Login, Password);
-            if (user != null)
+            if (user == null)
             {
                 ErrorText = $"Incorrect login or password";
                 return;

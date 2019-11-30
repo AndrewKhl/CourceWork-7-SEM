@@ -16,16 +16,6 @@ namespace MyHotel.Core
 
         public DbSet<LivingRoom> LivingRooms { get; set; }
 
-        public void AddService(int roomId)
-        {
-            LivingRoom room = TryFindRoom(roomId);
-
-            if (room == null)
-                return;
-
-
-        }
-
         public Room TryFindRoom(int id) => LivingRooms.Where(u => u.Id == id).FirstOrDefault();
 
         public void InitialCommit()
