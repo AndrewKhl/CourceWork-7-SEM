@@ -19,5 +19,17 @@ namespace MyHotel.Core
         public string PhotoStr { get; set; }
 
         public List<string> Photo { get; set; }
+
+        public void AddService(int id)
+        {
+            if (Services == null)
+                Services = StringHelper.GetIdList(ServicesStr) ?? new List<string>();
+
+            if (!Services.Contains(id.ToString()))
+            {
+                Services.Add(id.ToString());
+                ServicesStr = StringHelper.AddIdItem(ServicesStr, id);
+            }
+        }
     }
 }
