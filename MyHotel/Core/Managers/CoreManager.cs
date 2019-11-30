@@ -14,11 +14,14 @@ namespace MyHotel.Core
         {
             UserManager = new UserManager();
             RoomManager = new RoomManager();
+            OrderManager = new OrderManager();
+
 
             _managers = new List<IModelManager>()
             {
                 UserManager,
-                RoomManager
+                RoomManager,
+                OrderManager
             };
 
             //InitialDataBase();
@@ -27,6 +30,8 @@ namespace MyHotel.Core
         public UserManager UserManager { get; }
 
         public RoomManager RoomManager { get; }
+
+        public OrderManager OrderManager { get; }
 
 
         private void InitialDataBase()
