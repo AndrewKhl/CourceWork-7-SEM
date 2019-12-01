@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:MyHotel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -13,8 +14,14 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Style="{StaticResource BorderToolBarStyle}">
-            <Menu Background="Transparent" HorizontalAlignment="Right">
-                <MenuItem Header="{Binding CurrentUser.Name, UpdateSourceTrigger=PropertyChanged}">
+            <Menu Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal" MaxHeight="30"> 
+                            <fa:ImageAwesome Icon="UserOutline" Margin="2"/>
+                            <fa:ImageAwesome Icon="SortDown" MaxHeight="7"/>
+                        </StackPanel>
+                    </MenuItem.Header>
                     <MenuItem Header="Your profile"/>
                     <MenuItem Header="Your orders"/>
                     <MenuItem Header="Your services"/>
