@@ -70,7 +70,7 @@
                                                     <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontSize" Value="14"/>
-                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/#password"/>
+                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#password"/>
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -85,12 +85,12 @@
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_black.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_black.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_gray.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_gray.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -135,7 +135,7 @@
                                                     <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontSize" Value="14"/>
-                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/#password"/>
+                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#password"/>
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -150,12 +150,12 @@
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_black.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_black.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_gray.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_gray.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                     </Style.Triggers>

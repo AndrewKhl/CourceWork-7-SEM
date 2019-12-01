@@ -1,6 +1,7 @@
 ﻿using MyHotel.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace MyHotel
 {
     public class BaseViewModel : ValidationObservableModel
     {
-        private readonly IShellViewModel _shell;
+        protected readonly IShellViewModel _shell;
 
         private bool _isDialogClose;
 
@@ -24,8 +25,6 @@ namespace MyHotel
         public UserViewModel CurrentUser => _shell.CurrentUser;
 
         public CoreManager CoreManager => _shell.CoreManager;
-
-        public IShellViewModel ShellViewModel => _shell;
 
 
         public virtual DisplayMessageDelegate MessagePresenter { get; set; }

@@ -101,7 +101,7 @@ namespace MyHotel
 
         private void RegistartionCommandDelegate(object o)
         {
-            var registrationViewModel = new RegistrationViewModel(ShellViewModel);
+            var registrationViewModel = new RegistrationViewModel(_shell);
             var registrationDialog = new RegistrationDialog()
             {
                 DataContext = registrationViewModel,

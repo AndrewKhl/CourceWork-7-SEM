@@ -23,11 +23,11 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Login:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+                 Text="{local:BindingProp Path=Login, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Password:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Height="24"
-                 Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}">
+                 Text="{local:BindingProp Password, Mode=TwoWay}">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
                     <Setter Property="Template">
@@ -54,7 +54,7 @@
                                                     <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontSize" Value="14"/>
-                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/#password"/>
+                                                            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#password"/>
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -69,12 +69,12 @@
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_black.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_black.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                                             <DataTrigger.Setters>
-                                                                <Setter Property="Source" Value="/Resources/eye_gray.png"/>
+                                                                <Setter Property="Source" Value="/Resources/Icons/eye_gray.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
                                                     </Style.Triggers>

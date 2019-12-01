@@ -12,8 +12,9 @@ namespace MyHotel
 {
     public class MainWindowViewModel : ObservableModel, IShellViewModel
     {
-        private readonly Window _mainWindow = Application.Current.MainWindow;
+        private readonly List<BaseViewModel> _controlViewModels; 
 
+        private readonly Window _mainWindow = Application.Current.MainWindow;
 
         public CoreManager CoreManager { get; set; }
 
@@ -38,6 +39,13 @@ namespace MyHotel
                 .Select(r => new LivingRoomViewModel(r)).ToList());
 
             GuestControlViewModel = new GuestMainControlViewModel(this);
+            RoomsControlViewModel = new RoomsControlViewModel(this);
+
+            _controlViewModels = new List<BaseViewModel>()
+            {
+                GuestControlViewModel,
+                RoomsControlViewModel,
+            };
 
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
 

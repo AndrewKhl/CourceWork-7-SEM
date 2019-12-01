@@ -13,6 +13,10 @@ namespace MyHotel
         private int _floor;
         private int _cost;
 
+        public string NumberStr => $"Room №{_model.Id}";
+
+        public string CostStr => $"Cost: {Cost}$";
+
         public int Floor
         {
             get => _floor;
@@ -30,6 +34,7 @@ namespace MyHotel
             {
                 _cost = value;
                 NotifyPropertyChanged(() => Cost);
+                NotifyPropertyChanged(() => CostStr);
             }
         }
 

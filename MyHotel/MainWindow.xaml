@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MyHotel"
+        xmlns:v="clr-namespace:MyHotel.Views"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="700" Width="1200">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -16,9 +18,13 @@
             <Border Style="{StaticResource BorderToolBarStyle}">
                 <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}"
                         HorizontalAlignment="Right"/>
-            </Border> 
+            </Border>
+
+            <v:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}"/>
         </Grid>
 
-        <l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <!--<l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+        
+        
     </Grid>
 </Window>
