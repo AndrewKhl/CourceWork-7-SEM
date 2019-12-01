@@ -63,4 +63,15 @@
             <Setter Property="MinHeight" Value="30"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="CommonDatePickerStyle" TargetType="DatePicker">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="Margin" Value="4,0"/>
+        </Style.Setters>
+    </Style>
 </ResourceDictionary>

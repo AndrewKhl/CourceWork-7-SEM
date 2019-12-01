@@ -25,6 +25,8 @@ namespace MyHotel
 
         public CoreManager CoreManager => _shell.CoreManager;
 
+        public IShellViewModel ShellViewModel => _shell;
+
 
         public virtual DisplayMessageDelegate MessagePresenter { get; set; }
 

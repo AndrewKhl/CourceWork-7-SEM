@@ -94,6 +94,7 @@
     <Compile Include="Infrastructure\ViewCommands.cs" />
     <Compile Include="ViewModels\BasicViewModels\LivingRoomViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RoomsViewModel.cs" />
     <Compile Include="ViewModels\BasicViewModels\UserViewModel.cs" />
@@ -103,6 +104,9 @@
     <Compile Include="Views\Interfaces\IMessagePresenter.cs" />
     <Compile Include="Views\LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistrationDialog.xaml.cs">
+      <DependentUpon>RegistrationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
@@ -128,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegistrationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

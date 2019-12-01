@@ -97,6 +97,6 @@
                 Style="{StaticResource CommonButtonStyle}"/>
 
         <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Sign up?" Background="Transparent" BorderThickness="0"
-                Style="{StaticResource CommonButtonStyle}"/>
+                Style="{StaticResource CommonButtonStyle}" Command="{Binding Path=RegistrationCommand}"/>
     </Grid>
 </Window>

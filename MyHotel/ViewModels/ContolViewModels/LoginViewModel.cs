@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MyHotel
@@ -17,6 +18,8 @@ namespace MyHotel
         private string _errorText;
 
         public ICommand LoginCommand { get; set; }
+
+        public ICommand RegistrationCommand { get; set; }
 
         public ICommand ShowPasswordCommand { get; set; }
 
@@ -69,6 +72,7 @@ namespace MyHotel
         public LoginViewModel(IShellViewModel shell) : base(shell)
         {
             LoginCommand = new DelegateCommand(LoginCommandDelegate, CanLoginCommandDelegate);
+            RegistrationCommand = new DelegateCommand(RegistartionCommandDelegate);
             ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
         }
 
@@ -93,6 +97,21 @@ namespace MyHotel
         private void ShowPasswordCommandDelegate(object o)
         {
             IsPasswordShown = !IsPasswordShown;
+        }
+
+        private void RegistartionCommandDelegate(object o)
+        {
+            var registrationViewModel = new RegistrationViewModel(ShellViewModel);
+            var registrationDialog = new RegistrationDialog()
+            {
+                DataContext = registrationViewModel,
+                Owner = Application.Current.MainWindow
+            };
+
+            registrationDialog.ShowDialog();
+
+            if (CurrentUser != null)
+                SetClose();
         }
     }
 }

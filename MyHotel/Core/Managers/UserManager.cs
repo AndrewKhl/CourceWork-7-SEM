@@ -53,17 +53,19 @@ namespace MyHotel.Core
 
         public DbSet<Guest> Guests { get; set; }
 
-        public bool AddGuest(Guest newGuest)
+        public Guest AddGuest(Guest newGuest)
         {
             var user = TryGetUser(newGuest.Email);
 
             if (user != null)
-                return false;
+                return null;
+
+            newGuest.Password = _md5.Shifr(newGuest.Password);
 
             Guests.Add(newGuest);
             SaveChangesAsync();
 
-            return true;
+            return newGuest;
         }
 
         private Person TryFindGuests(string email, string password) => Guests.AsEnumerable().Where(u => u.Email == email && _md5.VerifyString(password, u.Password)).FirstOrDefault();
