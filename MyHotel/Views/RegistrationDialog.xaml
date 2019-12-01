@@ -144,7 +144,8 @@
                                         </TextBox.Style>
                                     </TextBox>
                                     <Button Grid.Column="1" BorderThickness="0,1,1,1" VerticalAlignment="Stretch"
-                                            Background="Transparent" Command="{l:BindingProp Path=ShowPasswordCommand}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                                            Background="Transparent" Command="{l:BindingProp Path=ShowConfirmPasswordCommand}" 
+                                            BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
                                         <Image Width="18">
                                             <Image.Style>
                                                 <Style TargetType="Image">

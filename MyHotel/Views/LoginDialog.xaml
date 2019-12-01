@@ -21,7 +21,7 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Login:" Style="{StaticResource CommonTextBlockStyle}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Email:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
                  Text="{local:BindingProp Path=Login, Mode=TwoWay}"/>
 

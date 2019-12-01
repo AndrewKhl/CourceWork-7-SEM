@@ -83,6 +83,7 @@
     <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
     <Compile Include="Core\Models\Rooms\Room.cs" />
     <Compile Include="Core\Models\Service.cs" />
+    <Compile Include="Infrastructure\Attributes\CustomEmailAddressAttribute.cs" />
     <Compile Include="Infrastructure\Bindings\BindingProp.cs" />
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />

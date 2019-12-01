@@ -22,6 +22,8 @@ namespace MyHotel
 
         public ICommand RegistrationCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand ShowPasswordCommand { get; set; }
+        public ICommand ShowConfirmPasswordCommand { get; set; }
 
         [Required(ErrorMessage = "Field 'Name' is required")]
         public string Name
@@ -54,7 +56,7 @@ namespace MyHotel
             }
         }
 
-        [Required(ErrorMessage = "Field 'Name' is required")]
+        [CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
         public string Email
         {
             get => _email;
@@ -89,6 +91,7 @@ namespace MyHotel
         }
 
         [Required(ErrorMessage = "Field 'Confirm password' is required")]
+        [Compare(nameof(Password), ErrorMessage = "'Confirm password' should be same as 'Password'")]
         public string ConfirmPassword
         {
             get => _confirmPassword;
@@ -124,6 +127,8 @@ namespace MyHotel
         {
             RegistrationCommand = new DelegateCommand(RegistrationCommandDelegate, CanRegistartionCommandDelegate);
             BackCommand = new DelegateCommand(BackCommandDelegate);
+            ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
+            ShowConfirmPasswordCommand = new DelegateCommand(ShowConfirmPasswordCommandDelegate);
 
             Birthday = DateTime.Today;
         }
@@ -158,6 +163,16 @@ namespace MyHotel
         private void BackCommandDelegate(object o)
         {
             SetClose();
+        }
+
+        private void ShowPasswordCommandDelegate(object o)
+        {
+            IsPasswordShown = !IsPasswordShown;
+        }
+
+        private void ShowConfirmPasswordCommandDelegate(object o)
+        {
+            IsConfirmPasswordShown = !IsConfirmPasswordShown;
         }
     }
 }

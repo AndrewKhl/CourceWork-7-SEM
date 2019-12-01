@@ -23,7 +23,7 @@ namespace MyHotel
 
         public ICommand ShowPasswordCommand { get; set; }
 
-        [Required(ErrorMessage = "Field 'Login' is required")]
+        [CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
         public string Login
         {
             get => _login;
@@ -76,6 +76,15 @@ namespace MyHotel
             ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
         }
 
+        public override void SetClose()
+        {
+            LoginCommand = null;
+            RegistrationCommand = null;
+            ShowPasswordCommand = null;
+
+            base.SetClose();
+        }
+
         private bool CanLoginCommandDelegate(object o)
         {
             return !IsError;
@@ -110,8 +119,10 @@ namespace MyHotel
 
             registrationDialog.ShowDialog();
 
-            if (CurrentUser != null)
-                SetClose();
+            if (string.IsNullOrEmpty(CurrentUser.Email))
+                return;
+
+            SetClose();
         }
     }
 }

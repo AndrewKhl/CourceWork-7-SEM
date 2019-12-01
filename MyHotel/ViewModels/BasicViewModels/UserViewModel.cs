@@ -10,6 +10,7 @@ namespace MyHotel
     {
         private Person _model;
         private string _name;
+        private string _email;
         private bool _isAdmin;
 
         public string Name
@@ -19,6 +20,16 @@ namespace MyHotel
             {
                 _name = value;
                 NotifyPropertyChanged(() => Name);
+            }
+        }
+
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                NotifyPropertyChanged(() => Email);
             }
         }
 
@@ -43,6 +54,7 @@ namespace MyHotel
         {
             _model = user;
             Name = user.Name;
+            Email = user.Email;
             IsAdmin = user.IsAdmin;
 
             RefreshModel();
@@ -51,6 +63,7 @@ namespace MyHotel
         public void RefreshModel()
         {
             NotifyPropertyChanged(() => Name);
+            NotifyPropertyChanged(() => Email);
             NotifyPropertyChanged(() => IsAdmin);
             NotifyPropertyChanged(() => UserAuth);
         }
