@@ -10,29 +10,34 @@ using System.Windows.Input;
 
 namespace MyHotel
 {
-    public class MainWindowViewModel : ObservableModel, IDisposable
+    public class MainWindowViewModel : ObservableModel, IShellViewModel
     {
         private readonly Window _mainWindow = Application.Current.MainWindow;
-        private readonly CoreManager _coreManager;
 
-        public ICommand LoginCommand { get; set; }
+
+        public CoreManager CoreManager { get; set; }
 
         public UserViewModel CurrentUser { get; set; } = new UserViewModel();
 
         public ObservableCollection<LivingRoomViewModel> LivingRooms { get; set; }
 
-        public RoomsViewModel RoomsControlViewModel { get; set; }
 
-        public GuestMainControlViewModel GuestControlViewModel { get; set; }
+        public RoomsControlViewModel RoomsControlViewModel { get; set; }
+
+        public GuestMainControlViewModel GuestControlViewModel { get; private set; }
+
+
+        public ICommand LoginCommand { get; set; }
+
 
         public MainWindowViewModel()
         {
-            _coreManager = new CoreManager();
+            CoreManager = new CoreManager();
 
-            var livingRooms = _coreManager.RoomManager.LivingRooms.ToList();
-            LivingRooms = new ObservableCollection<LivingRoomViewModel>(livingRooms.Select(r => new LivingRoomViewModel(r)));
+            LivingRooms = new ObservableCollection<LivingRoomViewModel>(CoreManager.RoomManager.LivingRooms.AsEnumerable()
+                .Select(r => new LivingRoomViewModel(r)).ToList());
 
-            GuestControlViewModel = new GuestMainControlViewModel(_coreManager, CurrentUser);
+            GuestControlViewModel = new GuestMainControlViewModel(this);
 
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
 
@@ -41,7 +46,7 @@ namespace MyHotel
 
         public void Dispose()
         {
-            _coreManager.Dispose();
+            CoreManager.Dispose();
         }
 
         private void CloseWindow(object sender, EventArgs e)
@@ -51,7 +56,7 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(_coreManager, CurrentUser);
+            var loginViewModel = new LoginViewModel(this);
             var loginDialog = new LoginDialog()
             {
                 DataContext = loginViewModel,
@@ -59,14 +64,15 @@ namespace MyHotel
             };
 
             loginDialog.ShowDialog();
-
-            if (CurrentUser != null)// && !User.IsAdmin)
-                ShowGuestMainControl();
         }
+    }
 
-        private void ShowGuestMainControl()
-        {
-            NotifyPropertyChanged(() => GuestControlViewModel);
-        }
+    public interface IShellViewModel : IDisposable
+    {
+        UserViewModel CurrentUser { get; set; }
+
+        CoreManager CoreManager { get; set; }
+
+        ObservableCollection<LivingRoomViewModel> LivingRooms { get; set; }
     }
 }

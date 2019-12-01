@@ -9,8 +9,7 @@ namespace MyHotel
 {
     public class GuestMainControlViewModel : BaseViewModel
     {
-        public GuestMainControlViewModel(CoreManager coremanager, UserViewModel currentUser) 
-            : base(coremanager, currentUser)
+        public GuestMainControlViewModel(IShellViewModel shell) : base(shell)
         {
         }
 

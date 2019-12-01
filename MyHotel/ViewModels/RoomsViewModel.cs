@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyHotel
 {
-    public class RoomsViewModel : BaseViewModel
+    public class RoomsControlViewModel : BaseViewModel
     {
-        public RoomsViewModel(CoreManager coreManager) : base(coreManager, null)
+        public RoomsControlViewModel(IShellViewModel shell) : base(shell)
         {
 
         }

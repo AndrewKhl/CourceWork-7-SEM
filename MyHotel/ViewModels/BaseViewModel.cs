@@ -10,13 +10,23 @@ namespace MyHotel
 {
     public class BaseViewModel : ValidationObservableModel
     {
+        private readonly IShellViewModel _shell;
+
         private bool _isDialogClose;
 
+
+        public BaseViewModel(IShellViewModel shell)
+        {
+            _shell = shell;
+        }
+
+
+        public UserViewModel CurrentUser => _shell.CurrentUser;
+
+        public CoreManager CoreManager => _shell.CoreManager;
+
+
         public virtual DisplayMessageDelegate MessagePresenter { get; set; }
-
-        protected string ViewModelName = nameof(BaseViewModel);
-
-        protected CoreManager CoreManager;
 
         public virtual bool IsDialogClose
         {
@@ -26,15 +36,7 @@ namespace MyHotel
                 _isDialogClose = value;
                 NotifyPropertyChanged(() => IsDialogClose);
             }
-        }
-
-        public UserViewModel CurrentUser { get; set; }
-
-        public BaseViewModel(CoreManager coreManager, UserViewModel currentUser)
-        {
-            CoreManager = coreManager;
-            CurrentUser = currentUser;
-        }
+        }   
 
         public virtual void SetClose()
         {

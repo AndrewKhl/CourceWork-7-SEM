@@ -66,8 +66,7 @@ namespace MyHotel
             }
         }
 
-        public LoginViewModel(CoreManager coreManager, UserViewModel user) 
-            : base(coreManager, user)
+        public LoginViewModel(IShellViewModel shell) : base(shell)
         {
             LoginCommand = new DelegateCommand(LoginCommandDelegate, CanLoginCommandDelegate);
             ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
