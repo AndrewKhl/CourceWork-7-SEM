@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyHotel"
+        xmlns:l="clr-namespace:MyHotel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        local:CloseDialog.DialogResult="{Binding Path=IsDialogClose}"
+        l:CloseDialog.DialogResult="{l:BindingProp Path=IsDialogClose}"
         Title="Registration" Height="350" Width="340">
     <Grid Margin="10">
+
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -27,23 +28,23 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+                 Text="{l:BindingProp Path=Name, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Last Name:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+                 Text="{l:BindingProp Path=LastName, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Birthday:" Style="{StaticResource CommonTextBlockStyle}"/>
         <DatePicker Grid.Row="2" Grid.Column="1" SelectedDateFormat="Short" Style="{StaticResource CommonDatePickerStyle}"
-                    SelectedDate="{Binding Path=Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+                    SelectedDate="{l:BindingProp Path=Birthday, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+                 Text="{l:BindingProp Path=Email, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Password:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="4" Height="24"
-                 Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}">
+                 Text="{l:BindingProp Password, Mode=TwoWay}">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
                     <Setter Property="Template">
@@ -62,12 +63,12 @@
                                             <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
                                                 <Setter Property="Margin" Value="0"/>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                    <DataTrigger Binding="{l:BindingProp Path=IsPasswordShown, Mode=TwoWay}" Value="True">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontFamily" Value="Segoe UI"/>
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                    <DataTrigger Binding="{l:BindingProp Path=IsPasswordShown, Mode=TwoWay}" Value="False">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontSize" Value="14"/>
                                                             <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#password"/>
@@ -78,17 +79,17 @@
                                         </TextBox.Style>
                                     </TextBox>
                                     <Button Grid.Column="1" BorderThickness="0,1,1,1" x:Name="showPasswordButton" VerticalAlignment="Stretch"
-                                            Background="Transparent" Command="{Binding Path=ShowPasswordCommand}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                                            Background="Transparent" Command="{l:BindingProp Path=ShowPasswordCommand}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
                                         <Image Width="18">
                                             <Image.Style>
                                                 <Style TargetType="Image">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                        <DataTrigger Binding="{l:BindingProp Path=IsPasswordShown, Mode=TwoWay}" Value="True">
                                                             <DataTrigger.Setters>
                                                                 <Setter Property="Source" Value="/Resources/Icons/eye_black.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding Path=IsPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                        <DataTrigger Binding="{l:BindingProp Path=IsPasswordShown, Mode=TwoWay}" Value="False">
                                                             <DataTrigger.Setters>
                                                                 <Setter Property="Source" Value="/Resources/Icons/eye_gray.png"/>
                                                             </DataTrigger.Setters>
@@ -108,7 +109,7 @@
 
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Confirm Password:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="5" Grid.Column="1" Margin="4" Height="24"
-                 Text="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}">
+                 Text="{l:BindingProp ConfirmPassword, Mode=TwoWay}">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
                     <Setter Property="Template">
@@ -127,12 +128,12 @@
                                             <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
                                                 <Setter Property="Margin" Value="0"/>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                    <DataTrigger Binding="{l:BindingProp Path=IsConfirmPasswordShown, Mode=TwoWay}" Value="True">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontFamily" Value="Segoe UI"/>
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                    <DataTrigger Binding="{l:BindingProp Path=IsConfirmPasswordShown, Mode=TwoWay}" Value="False">
                                                         <DataTrigger.Setters>
                                                             <Setter Property="FontSize" Value="14"/>
                                                             <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#password"/>
@@ -143,17 +144,17 @@
                                         </TextBox.Style>
                                     </TextBox>
                                     <Button Grid.Column="1" BorderThickness="0,1,1,1" VerticalAlignment="Stretch"
-                                            Background="Transparent" Command="{Binding Path=ShowPasswordCommand}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                                            Background="Transparent" Command="{l:BindingProp Path=ShowPasswordCommand}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
                                         <Image Width="18">
                                             <Image.Style>
                                                 <Style TargetType="Image">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                        <DataTrigger Binding="{l:BindingProp Path=IsConfirmPasswordShown, Mode=TwoWay}" Value="True">
                                                             <DataTrigger.Setters>
                                                                 <Setter Property="Source" Value="/Resources/Icons/eye_black.png"/>
                                                             </DataTrigger.Setters>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding Path=IsConfirmPasswordShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                        <DataTrigger Binding="{l:BindingProp Path=IsConfirmPasswordShown, Mode=TwoWay}" Value="False">
                                                             <DataTrigger.Setters>
                                                                 <Setter Property="Source" Value="/Resources/Icons/eye_gray.png"/>
                                                             </DataTrigger.Setters>
@@ -172,12 +173,12 @@
         </TextBox>
 
         <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="Red"
-                 HorizontalAlignment="Center" Text="{Binding Path=ErrorText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 HorizontalAlignment="Center" Text="{l:BindingProp Path=ErrorText, Mode=TwoWay}"/>
 
-        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Sign up" Command="{Binding Path=RegistrationCommand}"
+        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Sign up" Command="{l:BindingProp Path=RegistrationCommand}"
                 Style="{StaticResource CommonButtonStyle}"/>
 
         <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Back?" Background="Transparent" BorderThickness="0"
-                Style="{StaticResource CommonButtonStyle}" Command="{Binding Path=BackCommand}"/>
+                Style="{StaticResource CommonButtonStyle}" Command="{l:BindingProp Path=BackCommand}"/>
     </Grid>
 </Window>
