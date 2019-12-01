@@ -83,19 +83,19 @@
     <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
     <Compile Include="Core\Models\Rooms\Room.cs" />
     <Compile Include="Core\Models\Service.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="ViewModels\Converters\ValidationConverter.cs" />
-    <Compile Include="ViewModels\GuestMainControlViewModel.cs" />
-    <Compile Include="ViewModels\Infrastructure\CloseDialog.cs" />
-    <Compile Include="ViewModels\Infrastructure\ErrorManager.cs" />
-    <Compile Include="ViewModels\Infrastructure\ObservableModel.cs" />
-    <Compile Include="ViewModels\Infrastructure\ViewCommands.cs" />
-    <Compile Include="ViewModels\LivingRoomViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
+    <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />
+    <Compile Include="ViewModels\ContolViewModels\GuestMainControlViewModel.cs" />
+    <Compile Include="Infrastructure\CloseDialog.cs" />
+    <Compile Include="Infrastructure\ErrorManager.cs" />
+    <Compile Include="Infrastructure\ObservableModel.cs" />
+    <Compile Include="Infrastructure\ViewCommands.cs" />
+    <Compile Include="ViewModels\BasicViewModels\LivingRoomViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\RoomsViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\RoomsViewModel.cs" />
+    <Compile Include="ViewModels\BasicViewModels\UserViewModel.cs" />
     <Compile Include="Views\GuestMainControl.xaml.cs">
       <DependentUpon>GuestMainControl.xaml</DependentUpon>
     </Compile>
@@ -167,9 +167,7 @@
     <Resource Include="Resources\eye_black.png" />
     <Resource Include="Resources\eye_gray.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Attributes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
