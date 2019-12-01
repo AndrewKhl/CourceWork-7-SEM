@@ -30,6 +30,8 @@ namespace MyHotel
 
         public ICommand LoginCommand { get; set; }
 
+        public ICommand RegistrationCommand { get; set; }
+
 
         public MainWindowViewModel()
         {
@@ -48,6 +50,7 @@ namespace MyHotel
             };
 
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
+            RegistrationCommand = new DelegateCommand(RegistartionCommandDelegate);
 
             _mainWindow.Closed += CloseWindow;
         }
@@ -72,6 +75,18 @@ namespace MyHotel
             };
 
             loginDialog.ShowDialog();
+        }
+
+        private void RegistartionCommandDelegate(object o)
+        {
+            var registrationViewModel = new RegistrationViewModel(this);
+            var registrationDialog = new RegistrationDialog()
+            {
+                DataContext = registrationViewModel,
+                Owner = _mainWindow,
+            };
+
+            registrationDialog.ShowDialog();
         }
     }
 

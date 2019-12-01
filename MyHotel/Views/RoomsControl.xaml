@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MyHotel.Views.RoomsControl"
+﻿<UserControl x:Class="MyHotel.RoomsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -64,8 +64,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" Content="Reservation"/>
-                    <Button Grid.Row="1" Content="Edit" Command="{Binding EditModeOn}"/>
+                    <Button Grid.Row="0" Content="Reservation" Style="{StaticResource CommonButtonStyle}"/>
+                    <Button Grid.Row="1" Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}"/>
                 </Grid>
             </Grid>
 

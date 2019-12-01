@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MyHotel"
-        xmlns:v="clr-namespace:MyHotel.Views"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -16,14 +15,16 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border Style="{StaticResource BorderToolBarStyle}">
-                <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}"
-                        HorizontalAlignment="Right"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}"/>
+                    <Button Content="Sign up" Command="{Binding Path=RegistrationCommand}" Style="{StaticResource TransparentButton}"/>
+                </StackPanel>
             </Border>
 
-            <v:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}"/>
+            <l:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}"/>
         </Grid>
 
-        <!--<l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+        <l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         
         
     </Grid>

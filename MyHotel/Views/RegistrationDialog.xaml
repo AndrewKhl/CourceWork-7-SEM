@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MyHotel"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         l:CloseDialog.DialogResult="{l:BindingProp Path=IsDialogClose}"
         Title="Registration" Height="350" Width="340">
@@ -179,7 +179,7 @@
         <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Sign up" Command="{l:BindingProp Path=RegistrationCommand}"
                 Style="{StaticResource CommonButtonStyle}"/>
 
-        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Back?" Background="Transparent" BorderThickness="0"
-                Style="{StaticResource CommonButtonStyle}" Command="{l:BindingProp Path=BackCommand}"/>
+        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Back?" 
+                Style="{StaticResource ReferenceButton}" Command="{l:BindingProp Path=BackCommand}"/>
     </Grid>
 </Window>

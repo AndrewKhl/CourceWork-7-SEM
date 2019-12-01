@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyHotel.Views
+namespace MyHotel
 {
     /// <summary>
     /// Interaction logic for RoomsControl.xaml

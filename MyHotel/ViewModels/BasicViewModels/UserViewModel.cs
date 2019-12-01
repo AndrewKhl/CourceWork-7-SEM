@@ -53,9 +53,9 @@ namespace MyHotel
         public void AttachModel(Person user)
         {
             _model = user;
-            Name = user.Name;
-            Email = user.Email;
-            IsAdmin = user.IsAdmin;
+            Name = user?.Name;
+            Email = user?.Email;
+            IsAdmin = user?.IsAdmin ?? false;
 
             RefreshModel();
         }

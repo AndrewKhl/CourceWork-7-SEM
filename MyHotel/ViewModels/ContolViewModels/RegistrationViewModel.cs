@@ -133,6 +133,16 @@ namespace MyHotel
             Birthday = DateTime.Today;
         }
 
+        public override void SetClose()
+        {
+            RegistrationCommand = null;
+            BackCommand = null;
+            ShowPasswordCommand = null;
+            ShowConfirmPasswordCommand = null;
+
+            base.SetClose();
+        }
+
         private bool CanRegistartionCommandDelegate(object o)
         {
             return !IsError;

@@ -96,7 +96,7 @@
         <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Login" Command="{Binding Path=LoginCommand}"
                 Style="{StaticResource CommonButtonStyle}"/>
 
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Sign up?" Background="Transparent" BorderThickness="0"
-                Style="{StaticResource CommonButtonStyle}" Command="{Binding Path=RegistrationCommand}"/>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Sign up?"
+                Style="{StaticResource ReferenceButton}" Command="{Binding Path=RegistrationCommand}"/>
     </Grid>
 </Window>
