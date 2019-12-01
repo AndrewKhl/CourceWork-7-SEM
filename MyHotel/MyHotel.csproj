@@ -91,8 +91,10 @@
     <Compile Include="ViewModels\Infrastructure\ErrorManager.cs" />
     <Compile Include="ViewModels\Infrastructure\ObservableModel.cs" />
     <Compile Include="ViewModels\Infrastructure\ViewCommands.cs" />
+    <Compile Include="ViewModels\LivingRoomViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\RoomsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\GuestMainControl.xaml.cs">
       <DependentUpon>GuestMainControl.xaml</DependentUpon>

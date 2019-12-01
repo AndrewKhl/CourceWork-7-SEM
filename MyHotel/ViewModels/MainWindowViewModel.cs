@@ -1,6 +1,7 @@
 ﻿using MyHotel.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,18 @@ namespace MyHotel
 
         public UserViewModel CurrentUser { get; set; } = new UserViewModel();
 
+        public ObservableCollection<LivingRoomViewModel> LivingRooms { get; set; }
+
+        public RoomsViewModel RoomsControlViewModel { get; set; }
 
         public GuestMainControlViewModel GuestControlViewModel { get; set; }
 
         public MainWindowViewModel()
         {
             _coreManager = new CoreManager();
+
+            var livingRooms = _coreManager.RoomManager.LivingRooms.ToList();
+            LivingRooms = new ObservableCollection<LivingRoomViewModel>(livingRooms.Select(r => new LivingRoomViewModel(r)));
 
             GuestControlViewModel = new GuestMainControlViewModel(_coreManager, CurrentUser);
 
