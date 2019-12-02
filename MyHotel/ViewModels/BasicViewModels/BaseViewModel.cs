@@ -26,7 +26,6 @@ namespace MyHotel
 
         public CoreManager CoreManager => _shell.CoreManager;
 
-
         public virtual DisplayMessageDelegate MessagePresenter { get; set; }
 
         public virtual bool IsDialogClose

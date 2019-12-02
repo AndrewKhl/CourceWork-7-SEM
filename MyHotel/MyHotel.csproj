@@ -88,12 +88,14 @@
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />
+    <Compile Include="ViewModels\BasicViewModels\GuestViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\GuestMainControlViewModel.cs" />
     <Compile Include="Infrastructure\CloseDialog.cs" />
     <Compile Include="Infrastructure\ErrorManager.cs" />
     <Compile Include="Infrastructure\ObservableModel.cs" />
     <Compile Include="Infrastructure\ViewCommands.cs" />
     <Compile Include="ViewModels\BasicViewModels\LivingRoomViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\GuestProfileViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\PayViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
@@ -102,6 +104,9 @@
     <Compile Include="ViewModels\BasicViewModels\UserViewModel.cs" />
     <Compile Include="Views\GuestMainControl.xaml.cs">
       <DependentUpon>GuestMainControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuestProfileControl.xaml.cs">
+      <DependentUpon>GuestProfileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Interfaces\IMessagePresenter.cs" />
     <Compile Include="Views\LoginDialog.xaml.cs">
@@ -136,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GuestMainControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GuestProfileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

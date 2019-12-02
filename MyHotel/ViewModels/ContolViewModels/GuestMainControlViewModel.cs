@@ -12,9 +12,22 @@ namespace MyHotel
     {
         private DateTime _checkIn;
         private DateTime _checkOut;
+        private GuestProfileViewModel _profileViewModel;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand SearchFreeRooms { get; set; }
+        public ICommand ShowProfileCommand { get; set; }
+
+        public GuestProfileViewModel ProfileViewModel
+        {
+            get => _profileViewModel;
+            set
+            {
+                _profileViewModel = value;
+                NotifyPropertyChanged(() => ProfileViewModel);
+                NotifyPropertyChanged(() => IsProfileViewModelVisible);
+            }
+        }
 
         public DateTime CheckIn
         {
@@ -36,10 +49,13 @@ namespace MyHotel
             }
         }
 
+        public bool IsProfileViewModelVisible => ProfileViewModel != null;
+
         public GuestMainControlViewModel(IShellViewModel shell) : base(shell)
         {
             LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
             SearchFreeRooms = new DelegateCommand(SearchFreeRoomsDelegate, CanSearchFreeRoomsDelegate);
+            ShowProfileCommand = new DelegateCommand(ShowProfileCommandDelegate);
 
             CheckIn = DateTime.Today;
             CheckOut = DateTime.Today.AddDays(1);
@@ -69,6 +85,13 @@ namespace MyHotel
         private void SearchFreeRoomsDelegate(object o)
         {
 
+        }
+
+        private void ShowProfileCommandDelegate(object o)
+        {
+            var currentGuest = CoreManager.UserManager.TryFindGuests(CurrentUser.Email);
+
+            ProfileViewModel = new GuestProfileViewModel(_shell, currentGuest);
         }
     }
 }

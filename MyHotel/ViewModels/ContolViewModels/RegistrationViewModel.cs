@@ -10,11 +10,8 @@ namespace MyHotel
 {
     public class RegistrationViewModel : BaseViewModel
     {
-        private string _name;
-        private string _lastName;
-        private DateTime _birthday;
-        private string _email;
         private string _password;
+        private string _email;
         private bool _isPasswordShown;
         private string _confirmPassword;
         private bool _isConfirmPAsswordShown;
@@ -25,36 +22,7 @@ namespace MyHotel
         public ICommand ShowPasswordCommand { get; set; }
         public ICommand ShowConfirmPasswordCommand { get; set; }
 
-        [Required(ErrorMessage = "Field 'Name' is required")]
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                NotifyPropertyChanged(() => Name);
-            }
-        }
-
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                _lastName = value;
-                NotifyPropertyChanged(() => LastName);
-            }
-        }
-
-        public DateTime Birthday
-        {
-            get => _birthday;
-            set
-            {
-                _birthday = value;
-                NotifyPropertyChanged(() => Birthday);
-            }
-        }
+        public GuestViewModel Guest { get; set; }
 
         [CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
         public string Email
@@ -130,7 +98,10 @@ namespace MyHotel
             ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
             ShowConfirmPasswordCommand = new DelegateCommand(ShowConfirmPasswordCommandDelegate);
 
-            Birthday = DateTime.Today;
+            Guest = new GuestViewModel()
+            {
+                Birthday = DateTime.Today,
+            };
         }
 
         public override void SetClose()
@@ -145,16 +116,16 @@ namespace MyHotel
 
         private bool CanRegistartionCommandDelegate(object o)
         {
-            return !IsError;
+            return !IsError && !Guest.IsError;
         }
 
         private void RegistrationCommandDelegate(object o)
         {
             var newGuest = new Core.Guest()
             {
-                Name = Name,
-                BirthDay = Birthday.ToString(),
-                SecondName = LastName,
+                Name = Guest.Name,
+                BirthDay = Guest.Birthday.ToString(),
+                SecondName = Guest.LastName,
                 Email = Email,
                 Password = Password,
             };

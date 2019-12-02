@@ -9,7 +9,6 @@
         l:CloseDialog.DialogResult="{l:BindingProp Path=IsDialogClose}"
         Title="Registration" Height="350" Width="340">
     <Grid Margin="10">
-
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -28,15 +27,15 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{l:BindingProp Path=Name, Mode=TwoWay}"/>
+                 Text="{l:BindingProp Path=Guest.Name, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Last Name:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{l:BindingProp Path=LastName, Mode=TwoWay}"/>
+                 Text="{l:BindingProp Path=Guest.LastName, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Birthday:" Style="{StaticResource CommonTextBlockStyle}"/>
         <DatePicker Grid.Row="2" Grid.Column="1" SelectedDateFormat="Short" Style="{StaticResource CommonDatePickerStyle}"
-                    SelectedDate="{l:BindingProp Path=Birthday, Mode=TwoWay}"/>
+                    SelectedDate="{l:BindingProp Path=Guest.Birthday, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"

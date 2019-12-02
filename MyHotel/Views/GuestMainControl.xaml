@@ -62,8 +62,7 @@
                                 <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="6"/>
                             </StackPanel>
                         </MenuItem.Header>
-                        <MenuItem Header="Your profile"/>
-                        <MenuItem Header="Your orders"/>
+                        <MenuItem Header="Your profile" Command="{Binding Path=ShowProfileCommand}"/>
                         <MenuItem Header="Your services"/>
                         <Separator/>
                         <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
@@ -71,5 +70,8 @@
                 </Menu>
             </Grid>
         </Border>
+
+        <local:GuestProfileControl Grid.Row="1" DataContext="{Binding Path=ProfileViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsProfileViewModelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>

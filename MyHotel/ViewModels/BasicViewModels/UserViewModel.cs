@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,12 @@ namespace MyHotel
         private Person _model;
         private string _name;
         private string _email;
+        private string _secondName;
+        private DateTime _birthday;
+        private string _password;
         private bool _isAdmin;
 
+        [Required(ErrorMessage = "Field 'Name' is required")]
         public string Name
         {
             get => _name;
@@ -30,6 +35,36 @@ namespace MyHotel
             {
                 _email = value;
                 NotifyPropertyChanged(() => Email);
+            }
+        }
+
+        public string LastName 
+        { 
+            get => _secondName; 
+            set
+            {
+                _secondName = value;
+                NotifyPropertyChanged(() => LastName);
+            }
+        }
+
+        public DateTime Birthday
+        {
+            get => _birthday;
+            set
+            {
+                _birthday = value;
+                NotifyPropertyChanged(() => Birthday);
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                NotifyPropertyChanged(() => Password);
             }
         }
 
@@ -54,13 +89,17 @@ namespace MyHotel
         {
             _model = user;
             Name = user?.Name;
+            LastName = user?.SecondName;
             Email = user?.Email;
+            Password = user?.Password;
+            if (DateTime.TryParse(user?.BirthDay, out var birthday))
+                Birthday = birthday;
             IsAdmin = user?.IsAdmin ?? false;
 
             RefreshModel();
         }
 
-        public void RefreshModel()
+        public virtual void RefreshModel()
         {
             NotifyPropertyChanged(() => Name);
             NotifyPropertyChanged(() => Email);
