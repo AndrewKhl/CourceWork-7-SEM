@@ -78,7 +78,9 @@ namespace MyHotel
             }
         }
 
-        public bool UserAuth => _model != null;
+        public bool UserAuth => _model != null && !IsAdmin;
+
+        public bool AdminAuth => _model != null && IsAdmin;
 
         public UserViewModel()
         {
@@ -103,8 +105,11 @@ namespace MyHotel
         {
             NotifyPropertyChanged(() => Name);
             NotifyPropertyChanged(() => Email);
+            NotifyPropertyChanged(() => LastName);
+            NotifyPropertyChanged(() => Birthday);
             NotifyPropertyChanged(() => IsAdmin);
             NotifyPropertyChanged(() => UserAuth);
+            NotifyPropertyChanged(() => AdminAuth);
         }
     }
 }

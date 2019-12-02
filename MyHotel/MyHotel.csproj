@@ -112,6 +112,10 @@
     <Compile Include="Views\LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ContolViewModels\MainAdminControlViewModel.cs" />
+    <Compile Include="Views\MainAdminControl.xaml.cs">
+      <DependentUpon>MainAdminControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PayDialog.xaml.cs">
       <DependentUpon>PayDialog.xaml</DependentUpon>
     </Compile>
@@ -149,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -36,6 +36,13 @@ namespace MyHotel
             EditProfileCommand = new DelegateCommand(EditProfileCommandDelegate, CanEditProfileCommandDelegate);
         }
 
+        public override void SetClose()
+        {
+            EditProfileCommand = null;
+
+            base.SetClose();
+        }
+
         private bool IsEqual()
         {
             var equal = true;

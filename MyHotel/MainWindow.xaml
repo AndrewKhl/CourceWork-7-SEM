@@ -25,7 +25,7 @@
         </Grid>
 
         <l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        
-        
+
+        <l:MainAdminControl DataContext="{Binding AdminControlViewModel}" Visibility="{l:BindingProp CurrentUser.AdminAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

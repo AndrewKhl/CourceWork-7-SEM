@@ -61,9 +61,13 @@ namespace MyHotel
             CheckOut = DateTime.Today.AddDays(1);
         }
 
-        public void RefreshModel()
+        public override void SetClose()
         {
-           
+            LogoutCommand = null;
+            SearchFreeRooms = null;
+            ShowProfileCommand = null;
+
+            base.SetClose();
         }
 
         private void LogoutCommandDelegate(object o)

@@ -27,6 +27,8 @@ namespace MyHotel
 
         public GuestMainControlViewModel GuestControlViewModel { get; private set; }
 
+        public MainAdminControlViewModel AdminControlViewModel { get; private set; }
+
 
         public ICommand LoginCommand { get; set; }
 
@@ -42,11 +44,13 @@ namespace MyHotel
 
             GuestControlViewModel = new GuestMainControlViewModel(this);
             RoomsControlViewModel = new RoomsControlViewModel(this);
+            AdminControlViewModel = new MainAdminControlViewModel(this);
 
             _controlViewModels = new List<BaseViewModel>()
             {
                 GuestControlViewModel,
                 RoomsControlViewModel,
+                AdminControlViewModel,
             };
 
             LoginCommand = new DelegateCommand(LoginCommandDelegate);
@@ -67,11 +71,11 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(this);
-            //{
-            //    Login = "123@123",
-            //    Password="123456",
-            //};
+            var loginViewModel = new LoginViewModel(this)
+            {
+                Login = "123@123",
+                Password="123",
+            };
             var loginDialog = new LoginDialog()
             {
                 DataContext = loginViewModel,
