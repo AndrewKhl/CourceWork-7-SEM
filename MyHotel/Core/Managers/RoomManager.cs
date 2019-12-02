@@ -44,6 +44,20 @@ namespace MyHotel.Core
             SaveChangesAsync();
         }
 
+        public bool AddPhoto(LivingRoom room, string path)
+        {
+            bool ok = room.AddPhoto(path);
+            SaveChangesAsync();
+            return ok;
+        }
+
+        public bool RemovePhoto(LivingRoom room, string path)
+        {
+            bool ok = room.RemovePhoto(path);
+            SaveChangesAsync();
+            return ok;
+        }
+
         public void CloseConnection()
         {
             Dispose();

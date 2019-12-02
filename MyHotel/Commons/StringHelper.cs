@@ -12,5 +12,8 @@ namespace MyHotel
 
         public static string AddIdItem(string basic, int id) => basic + (string.IsNullOrEmpty(basic) ? $"{id}" : $",{id}");
 
+        public static string AddIdItem(string basic, string id) => basic + (string.IsNullOrEmpty(basic) ? $"{id}" : $",{id}");
+
+        public static string JoinString(List<string> list) => string.Join("," , list);
     }
 }

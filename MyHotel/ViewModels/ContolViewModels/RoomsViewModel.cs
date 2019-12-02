@@ -15,13 +15,7 @@ namespace MyHotel
         public RoomsControlViewModel(IShellViewModel shell) : base(shell)
         {
             SelectRoom = LivingRooms.First();
-
-            EditModeOn = new DelegateCommand(EditModeOnDelegate);
         }
-
-        public bool IsEditMode { get; set; }
-
-        public DelegateCommand EditModeOn { get; set; }
 
         public ObservableCollection<LivingRoomViewModel> LivingRooms => _shell.LivingRooms;
 
@@ -34,13 +28,6 @@ namespace MyHotel
 
                 NotifyPropertyChanged(() => SelectRoom);
             }
-        }
-
-        private void EditModeOnDelegate(object o)
-        {
-            IsEditMode = true;
-
-            NotifyPropertyChanged(() => IsEditMode);
         }
     }
 }

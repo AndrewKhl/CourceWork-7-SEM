@@ -40,7 +40,7 @@ namespace MyHotel
             CoreManager = new CoreManager();
 
             LivingRooms = new ObservableCollection<LivingRoomViewModel>(CoreManager.RoomManager.LivingRooms.AsEnumerable()
-                .Select(r => new LivingRoomViewModel(r)).ToList());
+                .Select(r => new LivingRoomViewModel(r, this)).ToList());
 
             GuestControlViewModel = new GuestMainControlViewModel(this);
             RoomsControlViewModel = new RoomsControlViewModel(this);

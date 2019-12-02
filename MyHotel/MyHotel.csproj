@@ -102,6 +102,9 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RoomsViewModel.cs" />
     <Compile Include="ViewModels\BasicViewModels\UserViewModel.cs" />
+    <Compile Include="Views\EditRoomControl.xaml.cs">
+      <DependentUpon>EditRoomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GuestMainControl.xaml.cs">
       <DependentUpon>GuestMainControl.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,9 @@
     <Compile Include="Views\RoomsControl.xaml.cs">
       <DependentUpon>RoomsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectedRoomControl.xaml.cs">
+      <DependentUpon>SelectedRoomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
     </Compile>
@@ -141,6 +147,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\Styles\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditRoomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoomsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectedRoomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +225,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\credit_cart.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Photo\Photo1-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Photo\Photo1-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Photo\Anna.png" />
+    <Resource Include="Photo\GrafinuaDeMonsro.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
