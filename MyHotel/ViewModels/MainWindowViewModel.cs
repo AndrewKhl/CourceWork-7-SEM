@@ -67,7 +67,11 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(this);
+            var loginViewModel = new LoginViewModel(this)
+            {
+                Login = "123@123",
+                Password="123456",
+            };
             var loginDialog = new LoginDialog()
             {
                 DataContext = loginViewModel,

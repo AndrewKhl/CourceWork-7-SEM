@@ -14,21 +14,62 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Style="{StaticResource BorderToolBarStyle}">
-            <Menu Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                <MenuItem>
-                    <MenuItem.Header>
-                        <StackPanel Orientation="Horizontal" MaxHeight="30">
-                            <fa:ImageAwesome Icon="UserOutline" Foreground="White" Margin="2"/>
-                            <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="7"/>
-                        </StackPanel>
-                    </MenuItem.Header>
-                    <MenuItem Header="Your profile"/>
-                    <MenuItem Header="Your orders"/>
-                    <MenuItem Header="Your services"/>
-                    <Separator/>
-                    <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
-                </MenuItem>
-            </Menu>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Hotel" Style="{StaticResource TransparentButton}" FontSize="16" FontWeight="Bold" Margin="10,0,30,0"/>
+
+                <TextBlock Grid.Column="1" Style="{StaticResource CommonTextBlockStyle}" Foreground="White" Text="In:" Margin="7,0,4,0"/>
+                <DatePicker Grid.Column="2" Style="{StaticResource CommonDatePickerStyle}" BorderThickness="0"
+                            Text="{local:BindingProp Path=CheckIn}"/>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource CommonTextBlockStyle}" Foreground="White" Text="Out:" Margin="7,0,4,0"/>
+                <DatePicker Grid.Column="4" Style="{StaticResource CommonDatePickerStyle}" BorderThickness="0"
+                            Text="{local:BindingProp Path=CheckOut}"/>
+
+                <Button Grid.Column="5" Command="{Binding Path=SearchFreeRooms}" Style="{StaticResource TransparentButton}">
+                    <Button.Content>
+                        <fa:ImageAwesome Icon="Search" Margin="2" MaxHeight="15">
+                            <fa:ImageAwesome.Style>
+                                <Style TargetType="fa:ImageAwesome">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
+                                            <Setter Property="Foreground" Value="CornflowerBlue"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="False">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa:ImageAwesome.Style>
+                        </fa:ImageAwesome>
+                    </Button.Content>                    
+                </Button>
+                
+                <Menu Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal" MaxHeight="30">
+                                <fa:ImageAwesome Icon="UserOutline" Foreground="White" Margin="2"/>
+                                <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="6"/>
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="Your profile"/>
+                        <MenuItem Header="Your orders"/>
+                        <MenuItem Header="Your services"/>
+                        <Separator/>
+                        <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

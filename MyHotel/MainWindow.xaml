@@ -15,9 +15,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border Style="{StaticResource BorderToolBarStyle}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}"/>
-                    <Button Content="Sign up" Command="{Binding Path=RegistrationCommand}" Style="{StaticResource TransparentButton}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" MinHeight="34">
+                    <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
+                    <Button Content="Sign up" Command="{Binding Path=RegistrationCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
                 </StackPanel>
             </Border>
 
