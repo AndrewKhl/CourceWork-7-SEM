@@ -104,6 +104,8 @@ namespace MyHotel
 
         CoreManager CoreManager { get; set; }
 
+        RoomsControlViewModel RoomsControlViewModel { get; set; }
+
         ObservableCollection<LivingRoomViewModel> LivingRooms { get; set; }
     }
 }

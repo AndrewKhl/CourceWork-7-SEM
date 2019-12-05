@@ -14,6 +14,8 @@ namespace MyHotel.Core
 
         public string RoomStaffStr { get; set; }
 
+        public string Descriptions { get; set; }
+
         List<string> RoomStaff { get; set; }
     }
 }

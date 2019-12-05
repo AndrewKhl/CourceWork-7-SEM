@@ -17,8 +17,6 @@ namespace MyHotel
             SelectRoom = LivingRooms.First();
         }
 
-        public ObservableCollection<LivingRoomViewModel> LivingRooms => _shell.LivingRooms;
-
         public LivingRoomViewModel SelectRoom
         {
             get => _selectRoom;

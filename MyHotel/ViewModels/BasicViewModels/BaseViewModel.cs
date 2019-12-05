@@ -22,6 +22,10 @@ namespace MyHotel
         }
 
 
+        public RoomsControlViewModel RoomsControlViewModel => _shell.RoomsControlViewModel;
+
+        public ObservableCollection<LivingRoomViewModel> LivingRooms => _shell.LivingRooms;
+
         public UserViewModel CurrentUser => _shell.CurrentUser;
 
         public CoreManager CoreManager => _shell.CoreManager;

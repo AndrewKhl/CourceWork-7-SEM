@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
 
             <Button Grid.Row="0" Content="Reservation" Style="{StaticResource CommonButtonStyle}"/>
-            <Button Grid.Row="1" Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}"/>
+            <Button Grid.Row="1" Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}" Visibility="{l:BindingProp CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </UserControl>

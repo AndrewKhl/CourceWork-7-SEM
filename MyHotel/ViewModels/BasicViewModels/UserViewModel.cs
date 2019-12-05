@@ -78,6 +78,8 @@ namespace MyHotel
             }
         }
 
+        public bool UnknownUser => _model == null;
+
         public bool UserAuth => _model != null && !IsAdmin;
 
         public bool AdminAuth => _model != null && IsAdmin;
@@ -110,6 +112,7 @@ namespace MyHotel
             NotifyPropertyChanged(() => IsAdmin);
             NotifyPropertyChanged(() => UserAuth);
             NotifyPropertyChanged(() => AdminAuth);
+            NotifyPropertyChanged(() => UnknownUser);
         }
     }
 }

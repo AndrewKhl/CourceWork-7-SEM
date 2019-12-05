@@ -88,7 +88,7 @@ namespace MyHotel.Core
                 IsAdmin = true,
             });
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void CloseConnection()

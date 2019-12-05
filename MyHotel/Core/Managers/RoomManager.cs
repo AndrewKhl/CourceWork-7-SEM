@@ -41,6 +41,15 @@ namespace MyHotel.Core
                 Floor = 2,
             });
 
+            SaveChanges();
+        }
+
+        public void UpdateModel(LivingRoom room, int cost, string description, bool state)
+        {
+            room.Cost = cost;
+            room.Descriptions = description;
+            room.Status = state;
+
             SaveChangesAsync();
         }
 

@@ -41,13 +41,14 @@
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Cost:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{l:BindingProp Path=Cost, Mode=TwoWay}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{l:BindingProp Cost, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="State:"/>
-        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{l:BindingProp Path=State, Mode=TwoWay}" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{l:BindingProp State, Mode=TwoWay}" VerticalAlignment="Center"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Services:" VerticalAlignment="Top" Margin="0 25 0 0"/>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Descriptions:" VerticalAlignment="Top" Margin="0 25 0 0"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="200" TextWrapping="Wrap" Text="{l:BindingProp Description}"/>
+        <!--<StackPanel Grid.Row="2" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -66,7 +67,7 @@
 
                 <ListBox Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{l:BindingProp Services}"/>
             </Grid>
-        </StackPanel>
+        </StackPanel>-->
 
         <StackPanel Grid.RowSpan="3"  Grid.Column="2">
             <Grid>

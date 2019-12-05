@@ -7,7 +7,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="700" Width="1200">
+        Title="Hotel" Height="700" Width="1200">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
                 </StackPanel>
             </Border>
 
-            <l:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}"/>
+            <l:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}" Visibility="{l:BindingProp CurrentUser.UnknownUser, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
 
         <l:GuestMainControl DataContext="{Binding GuestControlViewModel}" Visibility="{l:BindingProp CurrentUser.UserAuth, Converter={StaticResource BooleanToVisibilityConverter}}"/>

@@ -1,20 +1,20 @@
 ﻿using Microsoft.Win32;
 using MyHotel.Core;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyHotel
 {
     public class LivingRoomViewModel : ValidationObservableModel
     {
+        private const string DefaultFolder = @"Photo\Rooms";
+
         private readonly IShellViewModel _shell;
 
         private LivingRoom _model;
+        private string _description;
         private int _floor;
         private int _cost;
         private bool _isEditMode;
@@ -47,7 +47,7 @@ namespace MyHotel
         public DelegateCommand OpenPhoto { get; set; }
 
 
-        public LivingRoomViewModel(IShellViewModel shell) 
+        public LivingRoomViewModel(IShellViewModel shell)
         {
             _shell = shell;
 
@@ -69,6 +69,8 @@ namespace MyHotel
             _model = room;
             Floor = room.Floor;
             Cost = room.Cost;
+            Description = room.Descriptions;
+            State = room.Status;
 
             room.UpdateCollections();
 
@@ -119,6 +121,16 @@ namespace MyHotel
             }
         }
 
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                NotifyPropertyChanged(() => Description);
+            }
+        }
+
         public int Cost
         {
             get => _cost;
@@ -150,6 +162,8 @@ namespace MyHotel
             }
         }
 
+        public UserViewModel CurrentUser => _shell.CurrentUser;
+
         private void EditModeOnDelegate(object o)
         {
             IsEditMode = true;
@@ -158,6 +172,8 @@ namespace MyHotel
         private void ViewModeOnDelegate(object o)
         {
             IsEditMode = false;
+
+            _shell.CoreManager.RoomManager.UpdateModel(_model, Cost, Description, State);
         }
 
         private void AddServiceDelegate(object o)
@@ -206,6 +222,6 @@ namespace MyHotel
             NotifyPropertyChanged(() => Photos);
         }
 
-        private string Convert(string path) => Path.Combine(Environment.CurrentDirectory, path);
+        private string Convert(string path) => Path.Combine(Environment.CurrentDirectory, DefaultFolder, path);
     }
 }

@@ -17,6 +17,10 @@ namespace MyHotel
         public ICommand LogoutCommand { get; set; }
         public ICommand SearchFreeRooms { get; set; }
         public ICommand ShowProfileCommand { get; set; }
+        public ICommand ShowRoomsCommand { get; set; }
+
+        public bool IsProfileVisible { get; set;}
+        public bool IsRoomVisible { get; set; }
 
         public GuestProfileViewModel ProfileViewModel
         {
@@ -25,7 +29,6 @@ namespace MyHotel
             {
                 _profileViewModel = value;
                 NotifyPropertyChanged(() => ProfileViewModel);
-                NotifyPropertyChanged(() => IsProfileViewModelVisible);
             }
         }
 
@@ -49,16 +52,17 @@ namespace MyHotel
             }
         }
 
-        public bool IsProfileViewModelVisible => ProfileViewModel != null;
-
         public GuestMainControlViewModel(IShellViewModel shell) : base(shell)
         {
             LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
             SearchFreeRooms = new DelegateCommand(SearchFreeRoomsDelegate, CanSearchFreeRoomsDelegate);
             ShowProfileCommand = new DelegateCommand(ShowProfileCommandDelegate);
+            ShowRoomsCommand = new DelegateCommand(ShowRoomsCommandDelegate);
 
             CheckIn = DateTime.Today;
             CheckOut = DateTime.Today.AddDays(1);
+
+            VisualViewModel(false, true);
         }
 
         public override void SetClose()
@@ -80,10 +84,7 @@ namespace MyHotel
             if (CheckIn.Date < DateTime.Today)
                 return false;
 
-            if (CheckIn > CheckOut)
-                return false;
-
-            return true;
+            return CheckIn <= CheckOut;
         }
 
         private void SearchFreeRoomsDelegate(object o)
@@ -96,6 +97,22 @@ namespace MyHotel
             var currentGuest = CoreManager.UserManager.TryFindGuests(CurrentUser.Email);
 
             ProfileViewModel = new GuestProfileViewModel(_shell, currentGuest);
+
+            VisualViewModel(true, false);
+        }
+
+        private void ShowRoomsCommandDelegate(object o)
+        {
+            VisualViewModel(false, true);
+        }
+
+        private void VisualViewModel(bool isProfile, bool isRooms)
+        {
+            IsProfileVisible = isProfile;
+            IsRoomVisible = isRooms;
+
+            NotifyPropertyChanged(() => IsRoomVisible);
+            NotifyPropertyChanged(() => IsProfileVisible);
         }
     }
 }
