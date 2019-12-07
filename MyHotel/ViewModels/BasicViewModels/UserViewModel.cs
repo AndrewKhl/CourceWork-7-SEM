@@ -16,6 +16,13 @@ namespace MyHotel
         private DateTime _birthday;
         private string _password;
         private bool _isAdmin;
+        private Roles _role;
+
+        public enum Roles
+        {
+            Guests,
+            Staff,
+        };
 
         [Required(ErrorMessage = "Field 'Name' is required")]
         public string Name
@@ -28,6 +35,7 @@ namespace MyHotel
             }
         }
 
+        [CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
         public string Email
         {
             get => _email;
@@ -78,18 +86,25 @@ namespace MyHotel
             }
         }
 
+        public Roles Role
+        {
+            get => _role;
+            set
+            {
+                _role = value;
+                NotifyPropertyChanged(() => Role);
+            }
+        }
+
         public bool UnknownUser => _model == null;
 
         public bool UserAuth => _model != null && !IsAdmin;
 
         public bool AdminAuth => _model != null && IsAdmin;
 
-        public UserViewModel()
-        {
+        public UserViewModel() { }
 
-        }
-
-        public void AttachModel(Person user)
+        public void AttachModel(Person user, Roles role = Roles.Guests)
         {
             _model = user;
             Name = user?.Name;
@@ -99,6 +114,7 @@ namespace MyHotel
             if (DateTime.TryParse(user?.BirthDay, out var birthday))
                 Birthday = birthday;
             IsAdmin = user?.IsAdmin ?? false;
+            Role = role;
 
             RefreshModel();
         }
@@ -109,10 +125,38 @@ namespace MyHotel
             NotifyPropertyChanged(() => Email);
             NotifyPropertyChanged(() => LastName);
             NotifyPropertyChanged(() => Birthday);
+            NotifyPropertyChanged(() => Role);
             NotifyPropertyChanged(() => IsAdmin);
             NotifyPropertyChanged(() => UserAuth);
             NotifyPropertyChanged(() => AdminAuth);
             NotifyPropertyChanged(() => UnknownUser);
+        }
+
+        public UserViewModel Copy()
+        {
+            return new UserViewModel()
+            {
+                Name = Name,
+                LastName = LastName, 
+                Birthday = Birthday,
+                Email = Email,
+                Password = Password,
+                Role = Role,
+                IsAdmin = IsAdmin,
+            };
+        }
+
+        public Person ToPerson()
+        {
+            return new Person()
+            {
+                Name = Name,
+                SecondName = LastName,
+                BirthDay = Birthday.ToString(),
+                IsAdmin = IsAdmin,
+                Email = Email,
+                Password = Password,
+            };
         }
     }
 }

@@ -114,4 +114,17 @@
             <Setter Property="Margin" Value="4,0"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="CommonComboBoxStyle" TargetType="ComboBox">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="4,0"/>
+        </Style.Setters>
+    </Style>
+    
 </ResourceDictionary>

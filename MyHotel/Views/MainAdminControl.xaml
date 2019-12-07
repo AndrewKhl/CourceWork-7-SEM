@@ -23,12 +23,15 @@
                         </StackPanel>
                     </MenuItem.Header>
                     <MenuItem Header="All Rooms"/>
-                    <MenuItem Header="Staff"/>
-                    <MenuItem Header="All Guests"/>
+                    <MenuItem Header="Orders"/>
+                    <MenuItem Header="All Users" Command="{Binding Path=AllUsersCommand}"/>
                     <Separator/>
                     <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
                 </MenuItem>
             </Menu>
         </Border>
+
+        <local:UsersAndStaffControl Grid.Row="1" DataContext="{local:BindingProp UsersAndStaffViewModel}"
+             Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsUsersAndStaffVisibility, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>

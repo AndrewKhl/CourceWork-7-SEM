@@ -73,8 +73,8 @@ namespace MyHotel
         {
             var loginViewModel = new LoginViewModel(this)
             {
-                Login = "123@123",
-                Password="123",
+                Login = "admin@gmail.com",
+                Password="123456",
             };
             var loginDialog = new LoginDialog()
             {
