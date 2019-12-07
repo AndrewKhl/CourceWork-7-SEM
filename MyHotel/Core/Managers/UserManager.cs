@@ -1,4 +1,5 @@
 ﻿using MyHotel.Commons;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -37,7 +38,20 @@ namespace MyHotel.Core
             if (old == null)
                 return;
 
+            newStaff.Password = old.Password;
             old = newStaff;
+
+            SaveChangesAsync();
+        }
+
+        public void RemoveStaff(string email)
+        {
+            var staff = (Staff)TryFindStaff(email);
+
+            if (staff == null)
+                return;
+
+            Staffs.Remove(staff);
 
             SaveChangesAsync();
         }
@@ -66,6 +80,31 @@ namespace MyHotel.Core
             SaveChangesAsync();
 
             return newGuest;
+        }
+
+        public void ModifyGuest(Guest newGuest)
+        {
+            var old = Guests.Where(u => u.Email == newGuest.Email).FirstOrDefault();
+
+            if (old == null)
+                return;
+
+            newGuest.Password = old.Password;
+            old = newGuest;
+
+            SaveChangesAsync();
+        }
+
+        public void RemoveGuest(string email)
+        {
+            var guest = (Guest)TryFindGuests(email);
+
+            if (guest == null)
+                return;
+
+            Guests.Remove(guest);
+
+            SaveChangesAsync();
         }
 
         public Guest TryFindGuests(string email, string password) => Guests.AsEnumerable().Where(u => u.Email == email && _md5.VerifyString(password, u.Password)).FirstOrDefault();
