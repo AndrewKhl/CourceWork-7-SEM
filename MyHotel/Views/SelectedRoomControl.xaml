@@ -6,27 +6,58 @@
              xmlns:l="clr-namespace:MyHotel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" Text="{l:BindingProp NumberStr}" HorizontalAlignment="Center" />
-        <Grid Grid.Row="1" Grid.Column="1">
+        <TextBlock Grid.ColumnSpan="2" Text="{l:BindingProp NumberStr}" Style="{StaticResource CommonTextBlockStyle}" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Content="Reservation" Style="{StaticResource CommonButtonStyle}"/>
-            <Button Grid.Row="1" Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}" Visibility="{l:BindingProp CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Grid.Column="0" Grid.RowSpan="3" Style="{StaticResource TransparentButton}" Height="450"
+                    HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                <Image Source="{l:BindingProp Path=SelectedPhoto}" HorizontalAlignment="Left" Grid.Column="0" Grid.RowSpan="3"/>
+            </Button>
+
+            <ListBox Grid.Row="3" Grid.Column="0" ItemsSource="{l:BindingProp Path=Photos}" BorderThickness="0"
+                     SelectedItem="{l:BindingProp SelectedPhoto}" Background="AliceBlue">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Height="120"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
         </Grid>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" >
+            <Button Content="Reservation" Style="{StaticResource CommonButtonStyle}"/>
+            <Button Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}" 
+                        Visibility="{l:BindingProp CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            
+            <TextBlock Text="{Binding Path=FloorStr}" Style="{StaticResource CommonTextBlockStyle}" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Description:" Style="{StaticResource CommonTextBlockStyle}"/>
+            <TextBlock Text="{Binding Path=Description}" Style="{StaticResource CommonTextBlockStyle}" TextWrapping="Wrap"/>
+
+            <TextBlock Text="{Binding Path=CostStr}" Style="{StaticResource CommonTextBlockStyle}" Margin="4,30"/>
+        </StackPanel>
     </Grid>
 </UserControl>

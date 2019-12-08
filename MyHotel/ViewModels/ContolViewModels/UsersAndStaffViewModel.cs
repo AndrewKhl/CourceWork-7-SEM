@@ -117,7 +117,10 @@ namespace MyHotel
 
         private void EditCommandDelegate(object o)
         {
-
+            if (EditablePerson.Role == UserViewModel.Roles.Guests)
+                CoreManager.UserManager.ModifyGuest((Guest)EditablePerson.ToPerson());
+            else if (EditablePerson.Role == UserViewModel.Roles.Staff)
+                CoreManager.UserManager.ModifyStaff((Staff)EditablePerson.ToPerson());
         }
 
         private bool CanDeleteCommandDelegate(object o)
@@ -127,7 +130,10 @@ namespace MyHotel
 
         private void DeleteCommandDelegate(object o)
         {
-
+            if (EditablePerson.Role == UserViewModel.Roles.Guests)
+                CoreManager.UserManager.RemoveGuest(EditablePerson.Email);
+            else if (EditablePerson.Role == UserViewModel.Roles.Staff)
+                CoreManager.UserManager.RemoveStaff(EditablePerson.Email);
         }
     }
 }

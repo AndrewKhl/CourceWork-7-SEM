@@ -15,10 +15,19 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border Style="{StaticResource BorderToolBarStyle}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" MinHeight="34">
-                    <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
-                    <Button Content="Sign up" Command="{Binding Path=RegistrationCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Content="Hotel" Style="{StaticResource TransparentButton}" FontSize="16" FontWeight="Bold" Margin="10,0,30,0" Command="{Binding ShowRoomsCommand}"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" MinHeight="34" Grid.Column="1">
+                        <Button Content="Login" Command="{Binding Path=LoginCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
+                        <Button Content="Sign up" Command="{Binding Path=RegistrationCommand}" Style="{StaticResource TransparentButton}" FontSize="16"/>
+                    </StackPanel>
+                </Grid>
             </Border>
 
             <l:RoomsControl Grid.Row="1" DataContext="{l:BindingProp RoomsControlViewModel}" Visibility="{l:BindingProp CurrentUser.UnknownUser, Converter={StaticResource BooleanToVisibilityConverter}}"/>

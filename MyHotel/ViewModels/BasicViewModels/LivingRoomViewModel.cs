@@ -21,10 +21,13 @@ namespace MyHotel
         private bool _state;
         private string _newServiceStr;
         private string _selectPhotoPath;
+        private string _selectedPhoto;
 
         public string NumberStr => $"Room №{_model.Id}";
 
         public string CostStr => $"Cost: {Cost}$";
+
+        public string FloorStr => $"Floor: {Floor}";
 
 
         public ObservableCollection<string> Photos { get; set; }
@@ -62,6 +65,8 @@ namespace MyHotel
         public LivingRoomViewModel(LivingRoom room, IShellViewModel shell) : this(shell)
         {
             AttachModel(room);
+
+            SelectedPhoto = Photos?.FirstOrDefault();
         }
 
         public void AttachModel(LivingRoom room)
@@ -159,6 +164,16 @@ namespace MyHotel
             {
                 _selectPhotoPath = Path.GetFileName(value);
                 NotifyPropertyChanged(() => SelectPhotoPath);
+            }
+        }
+
+        public string SelectedPhoto
+        {
+            get => _selectedPhoto;
+            set
+            {
+                _selectedPhoto = value;
+                NotifyPropertyChanged(() => SelectedPhoto);
             }
         }
 

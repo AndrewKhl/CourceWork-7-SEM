@@ -34,6 +34,8 @@ namespace MyHotel
 
         public ICommand RegistrationCommand { get; set; }
 
+        public ICommand ShowRoomsCommand { get; set; }
+
 
         public MainWindowViewModel()
         {
@@ -73,11 +75,7 @@ namespace MyHotel
         {
             var loginViewModel = new LoginViewModel(this)
             {
-<<<<<<< HEAD
                 Login = "admin@gmail.com",
-=======
-                Login = "a@mail.ru",
->>>>>>> s
                 Password="123456",
             };
 

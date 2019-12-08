@@ -13,23 +13,33 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Style="{StaticResource BorderToolBarStyle}">
-            <Menu Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6">
-                <MenuItem>
-                    <MenuItem.Header>
-                        <StackPanel Orientation="Horizontal" MaxHeight="30">
-                            <fa:ImageAwesome Icon="UserOutline" Foreground="White" Margin="2"/>
-                            <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="6"/>
-                        </StackPanel>
-                    </MenuItem.Header>
-                    <MenuItem Header="All Rooms"/>
-                    <MenuItem Header="Orders"/>
-                    <MenuItem Header="All Users" Command="{Binding Path=AllUsersCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
-                </MenuItem>
-            </Menu>
+        <Border Grid.Row="0" Style="{StaticResource BorderToolBarStyle}" Padding="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Hotel" Style="{StaticResource TransparentButton}" FontSize="16" FontWeight="Bold" Margin="10,0,30,0" Command="{Binding ShowRoomsCommand}"/>
+                <Menu Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal" MaxHeight="30">
+                                <fa:ImageAwesome Icon="UserOutline" Foreground="White" Margin="2"/>
+                                <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="6"/>
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="All Rooms" Command="{Binding ShowRoomsCommand}"/>
+                        <MenuItem Header="Orders"/>
+                        <MenuItem Header="All Users" Command="{Binding Path=AllUsersCommand}"/>
+                        <Separator/>
+                        <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
         </Border>
+
+        <local:RoomsControl Grid.Row="1" DataContext="{local:BindingProp RoomsControlViewModel}"
+                            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsRoomVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <local:UsersAndStaffControl Grid.Row="1" DataContext="{local:BindingProp UsersAndStaffViewModel}"
              Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsUsersAndStaffVisibility, Converter={StaticResource BooleanToVisibilityConverter}}"/>

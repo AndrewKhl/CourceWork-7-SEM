@@ -24,18 +24,18 @@ namespace MyHotel
 
         public GuestViewModel Guest { get; set; }
 
-        [CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                NotifyPropertyChanged(() => Email);
+        //[CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
+        //public string Email
+        //{
+        //    get => _email;
+        //    set
+        //    {
+        //        _email = value;
+        //        NotifyPropertyChanged(() => Email);
 
-                ErrorText = null;
-            }
-        }
+        //        ErrorText = null;
+        //    }
+        //}
 
         [Required(ErrorMessage = "Field 'Password' is required")]
         public string Password
@@ -126,7 +126,7 @@ namespace MyHotel
                 Name = Guest.Name,
                 BirthDay = Guest.Birthday.ToString(),
                 SecondName = Guest.LastName,
-                Email = Email,
+                Email = Guest.Email,
                 Password = Password,
             };
 
@@ -138,7 +138,7 @@ namespace MyHotel
                 return;
             }
 
-            ErrorText = $"User with email '{Email}' is exists";
+            ErrorText = $"User with email '{Guest.Email}' is exists";
         }
 
         private void BackCommandDelegate(object o)

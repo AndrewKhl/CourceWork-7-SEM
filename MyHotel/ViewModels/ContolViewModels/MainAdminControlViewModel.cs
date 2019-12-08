@@ -9,11 +9,11 @@ namespace MyHotel
 {
     public class MainAdminControlViewModel : BaseViewModel
     {
-        private bool _isUsersAndStaffVisibility;
         private UsersAndStaffViewModel _usersAndStaffViewModel;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand AllUsersCommand { get; set; }
+        public ICommand ShowRoomsCommand { get; set; }
 
         public UsersAndStaffViewModel UsersAndStaffViewModel
         {
@@ -25,20 +25,17 @@ namespace MyHotel
             }
         }
         
-        public bool IsUsersAndStaffVisibility 
-        {
-            get => _isUsersAndStaffVisibility;
-            set
-            {
-                _isUsersAndStaffVisibility = value;
-                NotifyPropertyChanged(() => IsUsersAndStaffVisibility);
-            }
-        }
+        public bool IsUsersAndStaffVisibility { get; set; }
+
+        public bool IsRoomVisible { get; set; }
 
         public MainAdminControlViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
         {
             LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
             AllUsersCommand = new DelegateCommand(AllUsersCommandDelegate);
+            ShowRoomsCommand = new DelegateCommand(AllRoomsCommandDelegate);
+
+            VisualViewModel(false, true);
         }
 
         public override void SetClose()
@@ -53,23 +50,32 @@ namespace MyHotel
 
         private void LogoutCommandDelegate(object o)
         {
-            IsUsersAndStaffVisibility = false;
+            VisualViewModel(false, true);
 
             CurrentUser.AttachModel(null);
             SetClose();
         }
 
-        private void AllUsersCommandDelegate(object o)
+        private void AllRoomsCommandDelegate(object o)
         {
-            VisualViewModel(true);
+            UsersAndStaffViewModel = null;
+
+            VisualViewModel(false, true);
         }
 
-        private void VisualViewModel(bool isUsers)
+        private void AllUsersCommandDelegate(object o)
         {
             UsersAndStaffViewModel = new UsersAndStaffViewModel(_shell);
+            VisualViewModel(true, false);
+        }
+
+        private void VisualViewModel(bool isUsers, bool isRooms)
+        {
             IsUsersAndStaffVisibility = isUsers;
+            IsRoomVisible = isRooms;
 
             NotifyPropertyChanged(() => IsUsersAndStaffVisibility);
+            NotifyPropertyChanged(() => IsRoomVisible);
         }
     }
 }

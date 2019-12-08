@@ -39,7 +39,7 @@
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource CommonTextBoxStyle}"
-                 Text="{l:BindingProp Path=Email, Mode=TwoWay}"/>
+                 Text="{l:BindingProp Path=Guest.Email, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Password:" Style="{StaticResource CommonTextBlockStyle}"/>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="4" Height="24"
