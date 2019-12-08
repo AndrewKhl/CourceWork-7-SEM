@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:MyHotel">
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" FalseValue="Collapsed" TrueValue="Visible"/>
+    <local:BoolToVisibilityConverter x:Key="BoolToCollapsedConverter" FalseValue="Visible" TrueValue="Collapsed"/>
     <local:ValidationConverter x:Key="validationConverter"/>
 
     <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">

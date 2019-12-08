@@ -11,7 +11,6 @@ namespace MyHotel
     public class RegistrationViewModel : BaseViewModel
     {
         private string _password;
-        private string _email;
         private bool _isPasswordShown;
         private string _confirmPassword;
         private bool _isConfirmPAsswordShown;
@@ -23,19 +22,6 @@ namespace MyHotel
         public ICommand ShowConfirmPasswordCommand { get; set; }
 
         public GuestViewModel Guest { get; set; }
-
-        //[CustomEmailAddress(ErrorMessage = "Incorrect Email address")]
-        //public string Email
-        //{
-        //    get => _email;
-        //    set
-        //    {
-        //        _email = value;
-        //        NotifyPropertyChanged(() => Email);
-
-        //        ErrorText = null;
-        //    }
-        //}
 
         [Required(ErrorMessage = "Field 'Password' is required")]
         public string Password

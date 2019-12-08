@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\ContolViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\PayViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\ReservationDialogViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\UsersAndStaffViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RoomsViewModel.cs" />
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="Views\RegistrationDialog.xaml.cs">
       <DependentUpon>RegistrationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReservationDialog.xaml.cs">
+      <DependentUpon>ReservationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomsControl.xaml.cs">
       <DependentUpon>RoomsControl.xaml</DependentUpon>
@@ -179,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegistrationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReservationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

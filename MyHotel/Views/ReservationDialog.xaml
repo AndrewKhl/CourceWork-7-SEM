@@ -1,0 +1,63 @@
+﻿<Window x:Class="MyHotel.ReservationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:MyHotel"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        l:CloseDialog.DialogResult="{l:BindingProp Path=IsDialogClose}"
+        Title="Reservation" Height="420" Width="350">
+    <Grid Margin="10,0">
+        <Grid.Resources>
+            <Style BasedOn="{StaticResource CommonTextBlockStyle}" TargetType="TextBlock"/>
+            <Style BasedOn="{StaticResource CommonTextBoxStyle}" TargetType="TextBox"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{l:BindingProp NumberStr}" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Check In:"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonDatePickerStyle}"
+                    SelectedDate="{l:BindingProp Path=CheckIn, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Check Out:"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Style="{StaticResource CommonDatePickerStyle}"
+                    SelectedDate="{l:BindingProp Path=CheckOut, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Contact information:"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Name:"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{l:BindingProp Path=Name}" IsReadOnly="{l:BindingProp Path=IsContactInfoReadOnly}"/>
+        
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Email:"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{l:BindingProp Path=Email}" IsReadOnly="{l:BindingProp Path=IsContactInfoReadOnly}"/>
+
+        <TextBlock Grid.Row="8" Grid.ColumnSpan="2" Text="{l:BindingProp CostInfo}"/>
+        
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="Payment:"/>
+        <ComboBox Grid.Row="9" Grid.Column="1" SelectedItem="{Binding Path=SelectedPayment}"
+                  ItemsSource="{l:BindingProp Path=PaymentTypes}" Style="{StaticResource CommonComboBoxStyle}"/>
+
+        <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="Red"
+                 HorizontalAlignment="Center" Text="{l:BindingProp Path=ErrorText, Mode=TwoWay}"/>
+        <Button Content="Reserve" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource CommonButtonStyle}"
+                Command="{Binding Path=ReserveCommand}"/>
+    </Grid>
+</Window>

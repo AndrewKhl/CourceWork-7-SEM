@@ -29,11 +29,11 @@
 
                 <TextBlock Grid.Column="1" Style="{StaticResource CommonTextBlockStyle}" Foreground="White" Text="In:" Margin="7,0,4,0"/>
                 <DatePicker Grid.Column="2" Style="{StaticResource CommonDatePickerStyle}" BorderThickness="0"
-                            Text="{local:BindingProp Path=CheckIn}"/>
+                            SelectedDate="{local:BindingProp Path=CheckIn}"/>
 
                 <TextBlock Grid.Column="3" Style="{StaticResource CommonTextBlockStyle}" Foreground="White" Text="Out:" Margin="7,0,4,0"/>
                 <DatePicker Grid.Column="4" Style="{StaticResource CommonDatePickerStyle}" BorderThickness="0"
-                            Text="{local:BindingProp Path=CheckOut}"/>
+                            SelectedDate="{local:BindingProp Path=CheckOut}"/>
 
                 <Button Grid.Column="5" Command="{Binding Path=SearchFreeRooms}" Style="{StaticResource TransparentButton}">
                     <Button.Content>

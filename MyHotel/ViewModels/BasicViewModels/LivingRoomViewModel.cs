@@ -4,6 +4,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MyHotel
 {
@@ -49,6 +51,8 @@ namespace MyHotel
 
         public DelegateCommand OpenPhoto { get; set; }
 
+        public ICommand ReserveCommand { get; set; }
+
 
         public LivingRoomViewModel(IShellViewModel shell)
         {
@@ -60,6 +64,8 @@ namespace MyHotel
             OpenPhoto = new DelegateCommand(OpenPhotoDialog);
             PhotoAdd = new DelegateCommand(AddPhotoDelegate);
             PhotoRemove = new DelegateCommand(RemovePhotoDelegate);
+
+            ReserveCommand = new DelegateCommand(ReserveCommandDelegate);
         }
 
         public LivingRoomViewModel(LivingRoom room, IShellViewModel shell) : this(shell)
@@ -238,5 +244,17 @@ namespace MyHotel
         }
 
         private string Convert(string path) => Path.Combine(Environment.CurrentDirectory, DefaultFolder, path);
+
+        private void ReserveCommandDelegate(object o)
+        {
+            var viewModel = new ReservationDialogViewModel(_shell);
+
+            var dialog = new ReservationDialog()
+            {
+                DataContext = viewModel,
+                Owner = Application.Current.MainWindow
+            };
+            dialog.Show();
+        }
     }
 }

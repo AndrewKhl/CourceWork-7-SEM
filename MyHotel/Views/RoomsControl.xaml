@@ -33,8 +33,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
-
+            
             <ListBox Grid.Column="0" Grid.RowSpan="3" ItemsSource="{l:BindingProp LivingRooms}" SelectedItem="{l:BindingProp SelectRoom}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

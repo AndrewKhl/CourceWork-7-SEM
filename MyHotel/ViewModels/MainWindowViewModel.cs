@@ -37,6 +37,11 @@ namespace MyHotel
         public ICommand ShowRoomsCommand { get; set; }
 
 
+        public DateTime CheckIn { get; set; }
+
+        public DateTime CheckOut { get; set; }
+
+
         public MainWindowViewModel()
         {
             CoreManager = new CoreManager();
@@ -59,6 +64,9 @@ namespace MyHotel
             RegistrationCommand = new DelegateCommand(RegistartionCommandDelegate);
 
             _mainWindow.Closed += CloseWindow;
+
+            CheckIn = DateTime.Today;
+            CheckOut = CheckIn.AddDays(1);
         }
 
         public void Dispose()
@@ -110,5 +118,9 @@ namespace MyHotel
         RoomsControlViewModel RoomsControlViewModel { get; set; }
 
         ObservableCollection<LivingRoomViewModel> LivingRooms { get; set; }
+
+        DateTime CheckIn { get; set; }
+
+        DateTime CheckOut { get; set; }
     }
 }

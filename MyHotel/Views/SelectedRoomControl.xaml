@@ -48,7 +48,8 @@
         </Grid>
 
         <StackPanel Grid.Column="1" Grid.Row="1" >
-            <Button Content="Reservation" Style="{StaticResource CommonButtonStyle}"/>
+            <Button Content="Reservation" Style="{StaticResource CommonButtonStyle}" Command="{Binding Path=ReserveCommand}"
+                     Visibility="{l:BindingProp CurrentUser.IsAdmin, Converter={StaticResource BoolToCollapsedConverter}}"/>
             <Button Content="Edit" Command="{Binding EditModeOn}" Style="{StaticResource CommonButtonStyle}" 
                         Visibility="{l:BindingProp CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             

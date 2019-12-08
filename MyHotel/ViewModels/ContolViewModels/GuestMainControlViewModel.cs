@@ -39,6 +39,8 @@ namespace MyHotel
             {
                 _checkIn = value;
                 NotifyPropertyChanged(() => CheckIn);
+
+                _shell.CheckIn = value;
             }
         }
 
@@ -49,6 +51,8 @@ namespace MyHotel
             {
                 _checkOut = value;
                 NotifyPropertyChanged(() => CheckOut);
+
+                _shell.CheckOut = value;
             }
         }
 
