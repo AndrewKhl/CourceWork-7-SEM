@@ -70,6 +70,7 @@
     </ApplicationDefinition>
     <Compile Include="Commons\MD5Helper.cs" />
     <Compile Include="Commons\StringHelper.cs" />
+    <Compile Include="Commons\Time.cs" />
     <Compile Include="Core\Managers\CoreManager.cs" />
     <Compile Include="Core\Managers\OrderManager.cs" />
     <Compile Include="Core\Managers\RoomManager.cs" />

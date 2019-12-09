@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHotel.Commons;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MyHotel.Core
     {
         public OrderManager() : base("DbConnection")
         {
+            UpdatePayments();
         }
 
         #region Housing orders
@@ -42,6 +44,19 @@ namespace MyHotel.Core
 
         public HousingOrder TryFindHouseOrder(int id) => HousingOrders.Where(u => u.Id == id).FirstOrDefault();
         
+        public List<int> GetFreeRoomsId(DateTime tin, DateTime tout)
+        {
+            var ans = Enumerable.Range(1, 3).ToList();
+
+            foreach (var h in HousingOrders)
+            {
+                if (Time.ToTime(h.InTime) <= tout && Time.ToTime(h.OutTime) >= tin)
+                    ans.Remove(h.RoomId);
+            }
+
+            return ans;
+        }
+
         #endregion
 
 
@@ -98,9 +113,17 @@ namespace MyHotel.Core
         private void UpdatePayments()
         {
             foreach (var h in HousingOrders)
-                if (!h.IsPaid)
+                if (!h.IsPaid && Time.ToTime(h.OutTime) < DateTime.Now) //"10.12.2019 1:50:41"
                 {
-
+                    h.IsPaid = true;
+                    AddPayments(h);
+                }
+            
+            foreach (var s in ServiceOrders)
+                if (!s.IsPaid && Time.ToTime(s.StartTime) < DateTime.Now)
+                {
+                    s.IsPaid = true;
+                    AddPayments(s);
                 }
         }
 

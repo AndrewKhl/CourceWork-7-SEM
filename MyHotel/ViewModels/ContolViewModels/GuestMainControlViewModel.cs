@@ -13,6 +13,7 @@ namespace MyHotel
         private DateTime _checkIn;
         private DateTime _checkOut;
         private GuestProfileViewModel _profileViewModel;
+        private RoomsControlViewModel _roomsViewModel;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand SearchFreeRooms { get; set; }
@@ -56,8 +57,10 @@ namespace MyHotel
             }
         }
 
-        public GuestMainControlViewModel(IShellViewModel shell) : base(shell)
+        public GuestMainControlViewModel(IShellViewModel shell, RoomsControlViewModel rvm) : base(shell)
         {
+            _roomsViewModel = rvm;
+
             LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
             SearchFreeRooms = new DelegateCommand(SearchFreeRoomsDelegate, CanSearchFreeRoomsDelegate);
             ShowProfileCommand = new DelegateCommand(ShowProfileCommandDelegate);
@@ -93,7 +96,7 @@ namespace MyHotel
 
         private void SearchFreeRoomsDelegate(object o)
         {
-
+            _roomsViewModel.SetFreeRooms(_shell.CoreManager.OrderManager.GetFreeRoomsId(CheckIn, CheckOut));
         }
 
         private void ShowProfileCommandDelegate(object o)

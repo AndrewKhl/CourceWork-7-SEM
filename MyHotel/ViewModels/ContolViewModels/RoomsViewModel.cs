@@ -1,12 +1,6 @@
-﻿using MyHotel.Core;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace MyHotel
 {
@@ -17,6 +11,8 @@ namespace MyHotel
         public RoomsControlViewModel(IShellViewModel shell) : base(shell)
         {
             SelectRoom = LivingRooms.First();
+
+            FreeRooms = new ObservableCollection<LivingRoomViewModel>(LivingRooms);
         }
 
         public LivingRoomViewModel SelectRoom
@@ -30,6 +26,15 @@ namespace MyHotel
             }
         }
 
-        public ObservableCollection<string> MainPhotos { get; set; }
+        public ObservableCollection<LivingRoomViewModel> FreeRooms { get; set; }
+
+        public void SetFreeRooms(List<int> id)
+        {
+            FreeRooms = new ObservableCollection<LivingRoomViewModel>(LivingRooms.Where(u => id.Contains(u.Id)));
+
+            SelectRoom = FreeRooms.Count > 0 ? FreeRooms.First() : LivingRooms.First();
+
+            NotifyPropertyChanged(() => FreeRooms);
+        }
     }
 }
