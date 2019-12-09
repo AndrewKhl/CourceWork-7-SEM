@@ -72,6 +72,7 @@
     <Compile Include="Commons\StringHelper.cs" />
     <Compile Include="Commons\Time.cs" />
     <Compile Include="Core\Managers\CoreManager.cs" />
+    <Compile Include="Core\Managers\MailManager.cs" />
     <Compile Include="Core\Managers\OrderManager.cs" />
     <Compile Include="Core\Managers\RoomManager.cs" />
     <Compile Include="Core\Managers\UserManager.cs" />

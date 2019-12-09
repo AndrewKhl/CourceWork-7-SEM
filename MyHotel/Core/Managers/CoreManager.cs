@@ -16,6 +16,7 @@ namespace MyHotel.Core
             RoomManager = new RoomManager();
             OrderManager = new OrderManager();
 
+            MailManager = new MailManager();
 
             _managers = new List<IModelManager>()
             {
@@ -33,6 +34,7 @@ namespace MyHotel.Core
 
         public OrderManager OrderManager { get; }
 
+        public MailManager MailManager { get; }
 
         private void InitialDataBase()
         {
