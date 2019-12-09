@@ -5,6 +5,8 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <local:BoolToVisibilityConverter x:Key="BoolToCollapsedConverter" FalseValue="Visible" TrueValue="Collapsed"/>
     <local:ValidationConverter x:Key="validationConverter"/>
+    <local:CardNumberConverter x:Key="cardNumberConverter"/>
+    <local:CardholderNameConverter x:Key="cardholderNameConverter"/>
 
     <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
         <Style.Setters>

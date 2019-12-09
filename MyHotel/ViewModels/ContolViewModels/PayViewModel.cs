@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,14 @@ namespace MyHotel
 {
     public class PayViewModel : BaseViewModel
     {
-        private long _cardNumber;
+        private string _cardNumber;
         private int _dateExpiration;
         private int _monthExpiration;
         private string _cardholderName;
         private int _cvs;
 
-        public long CardNumber
+        [Required(ErrorMessage = "Card Number is required")]
+        public string CardNumber
         {
             get => _cardNumber;
             set
@@ -24,6 +26,7 @@ namespace MyHotel
             }
         }
 
+        [Range(1, 31, ErrorMessage = "Date should be in range [1, 31]")]
         public int DateExpiration
         {
             get => _dateExpiration;
@@ -34,6 +37,7 @@ namespace MyHotel
             }
         }
 
+        [Range(1, 12, ErrorMessage = "Month should be in range [1, 12]")]
         public int MonthExpiration
         {
             get => _monthExpiration;
@@ -44,6 +48,7 @@ namespace MyHotel
             }
         }
 
+        [Required(ErrorMessage = "Cardholder Name is required")]
         public string CardholderName
         {
             get => _cardholderName;
@@ -54,6 +59,7 @@ namespace MyHotel
             }
         }
 
+        [Required(ErrorMessage = "Cvs is required")]
         public int Cvs
         {
             get => _cvs;

@@ -85,6 +85,8 @@
     <Compile Include="Core\Models\Service.cs" />
     <Compile Include="Infrastructure\Attributes\CustomEmailAddressAttribute.cs" />
     <Compile Include="Infrastructure\Bindings\BindingProp.cs" />
+    <Compile Include="Infrastructure\Converters\CardholderNameConverter.cs" />
+    <Compile Include="Infrastructure\Converters\CardNumberConverter.cs" />
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />

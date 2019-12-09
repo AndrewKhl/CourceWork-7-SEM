@@ -164,23 +164,23 @@ namespace MyHotel
                 dialog.ShowDialog();
             }
 
-            if (string.IsNullOrEmpty(CurrentUser.Email))
-            {
-                var newGuest = new Core.Guest()
-                {
-                    Name = Name,
-                    Email = Email,
-                };
+            //if (string.IsNullOrEmpty(CurrentUser.Email))
+            //{
+            //    var newGuest = new Core.Guest()
+            //    {
+            //        Name = Name,
+            //        Email = Email,
+            //    };
 
-                var guest = CoreManager.UserManager.AddGuest(newGuest);
-                if (guest == null)
-                {
-                    ErrorText = $"User with email '{Email}' is exists";
-                    return;
-                }
+            //    var guest = CoreManager.UserManager.AddGuest(newGuest);
+            //    if (guest == null)
+            //    {
+            //        ErrorText = $"User with email '{Email}' is exists";
+            //        return;
+            //    }
 
-                CurrentUser.AttachModel(guest);
-            }
+            //    CurrentUser.AttachModel(guest);
+            //}
 
             SetClose();
         }

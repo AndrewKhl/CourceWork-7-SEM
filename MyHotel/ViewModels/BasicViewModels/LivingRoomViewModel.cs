@@ -82,6 +82,7 @@ namespace MyHotel
             Cost = room.Cost;
             Description = room.Descriptions;
             State = room.Status;
+            Id = room.Id;
 
             room.UpdateCollections();
 
@@ -93,6 +94,8 @@ namespace MyHotel
         {
             NotifyPropertyChanged(() => Floor);
             NotifyPropertyChanged(() => Cost);
+            NotifyPropertyChanged(() => Description);
+            NotifyPropertyChanged(() => State);
 
             IsEditMode = false;
         }
@@ -111,6 +114,8 @@ namespace MyHotel
                 NotifyPropertyChanged(() => IsViewMode);
             }
         }
+
+        public int Id { get; set; }
 
         public int Floor
         {

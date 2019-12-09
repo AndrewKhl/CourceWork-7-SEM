@@ -7,10 +7,24 @@
         mc:Ignorable="d" Background="{StaticResource CreditCardBrush}"
         Title="Pay" Height="300" Width="520">
     <Canvas>
-        <TextBox Text="{local:BindingProp Path=CardNumber}" Style="{StaticResource CommonTextBoxStyle}" Canvas.Left="39" Margin="0" Canvas.Top="49"/>
-        <TextBox Text="{local:BindingProp Path=DateExpiration}" Style="{StaticResource CommonTextBoxStyle}" Canvas.Left="39" Margin="0" Canvas.Top="117"/>
-        <TextBox Text="{local:BindingProp Path=MonthExpiration}" Style="{StaticResource CommonTextBoxStyle}" Canvas.Left="39" Margin="0" Canvas.Top="186"/>
-        <TextBox Text="{local:BindingProp Path=CardholderName}" Style="{StaticResource CommonTextBoxStyle}" Canvas.Left="158" Margin="0" Canvas.Top="117"/>
-        <TextBox Text="{local:BindingProp Path=Cvs}" Style="{StaticResource CommonTextBoxStyle}" Canvas.Left="413" Margin="0" Canvas.Top="150" Width="52"/>
+        <Canvas.Resources>
+            <Style TargetType="TextBox">
+                <Style.Setters>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="18"/>
+                </Style.Setters>
+            </Style>
+        </Canvas.Resources>
+        <TextBox Text="{local:BindingProp Path=CardNumber, Converter={StaticResource cardNumberConverter}}" MaxLength="19"
+                 Canvas.Left="28" Margin="0" Canvas.Top="40" Height="36" Width="236"/>
+        
+        <TextBox Text="{local:BindingProp Path=DateExpiration}" Canvas.Left="28" Margin="0" Canvas.Top="109" Width="109" Height="37"/>
+        <TextBox Text="{local:BindingProp Path=MonthExpiration}" Canvas.Left="150" Margin="0" Canvas.Top="109" Height="37" Width="109"/>
+        
+        <TextBox Text="{local:BindingProp Path=CardholderName, Converter={StaticResource cardholderNameConverter}}" 
+                 Canvas.Left="28" Margin="0" Canvas.Top="175" Height="38" Width="340"/>
+        
+        <TextBox Text="{local:BindingProp Path=Cvs}" Canvas.Left="406" Margin="0" Canvas.Top="142" Width="74" Height="37"/>
     </Canvas>
 </Window>
