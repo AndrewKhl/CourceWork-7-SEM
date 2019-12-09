@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHotel.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace MyHotel
         private string _email;
         private string _name;
         private bool _isContactInfoReadOnly;
-        private long _cost;
+        private int _cost;
         private PaymentTypesEnum _selectedPayment;
         private string _errorText;
+        private int _roomId;
 
         public ICommand ReserveCommand { get; set; }
 
@@ -112,8 +114,9 @@ namespace MyHotel
         public string CostInfo => 
             $"Finish cost: {((CheckOut - CheckIn).TotalDays < 0 ? 0 : (CheckOut - CheckIn).TotalDays * _cost)}$";
 
-        public ReservationDialogViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
+        public ReservationDialogViewModel(IShellViewModel shellViewModel, int roomId) : base(shellViewModel)
         {
+            _roomId = roomId;
             ReserveCommand = new DelegateCommand(ReserveCommandDelegate, CanReserveCommandDelegate);
 
             LoadData();
@@ -155,6 +158,15 @@ namespace MyHotel
 
         private void ReserveCommandDelegate(object o)
         {
+            var order = new HousingOrder()
+            {
+                RoomId = _roomId,
+                CreateTime = DateTime.Now.ToString(),
+                InTime = CheckIn.ToString(),
+                OutTime = CheckOut.ToString(),
+                Cost = _cost,
+            };
+
             if (SelectedPayment == PaymentTypesEnum.Card)
             {
                 var viewModel = new PayViewModel(_shell);
@@ -165,27 +177,33 @@ namespace MyHotel
                     Owner = Application.Current.MainWindow,
                 };
                 dialog.ShowDialog();
+
+                order.IsPaid = viewModel.IsPaid;
             }
 
-            //if (string.IsNullOrEmpty(CurrentUser.Email))
-            //{
-            //    var newGuest = new Core.Guest()
-            //    {
-            //        Name = Name,
-            //        Email = Email,
-            //    };
+            int userId = CurrentUser.Id;
 
-            //    var guest = CoreManager.UserManager.AddGuest(newGuest);
-            //    if (guest == null)
-            //    {
-            //        ErrorText = $"User with email '{Email}' is exists";
-            //        return;
-            //    }
+            if (userId == -1)
+            {
+                var newGuest = new Core.Guest()
+                {
+                    Name = Name,
+                    Email = Email,
+                };
 
-            //    CurrentUser.AttachModel(guest);
-            //}
+                var guest = CoreManager.UserManager.AddGuest(newGuest);
+                if (guest == null)
+                {
+                    ErrorText = $"User with email '{Email}' is exists";
+                    return;
+                }
 
+                CurrentUser.AttachModel(guest);
+                userId = guest.Id;
+            }
 
+            order.UserId = userId;
+            _shell.CoreManager.OrderManager.AddHouseOrder(order);            
 
             SetClose();
         }

@@ -1,4 +1,5 @@
 ﻿using MyHotel.Commons;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -73,6 +74,12 @@ namespace MyHotel.Core
 
             if (user != null)
                 return null;
+
+            if (newGuest.Password == null)
+            {
+                var rand = new Random(DateTime.Now.Millisecond);
+                newGuest.Password = rand.Next().ToString();
+            }
 
             newGuest.Password = _md5.Shifr(newGuest.Password);
 

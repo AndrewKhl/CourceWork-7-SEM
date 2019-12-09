@@ -87,6 +87,15 @@
     <Compile Include="Infrastructure\Bindings\BindingProp.cs" />
     <Compile Include="Infrastructure\Converters\CardholderNameConverter.cs" />
     <Compile Include="Infrastructure\Converters\CardNumberConverter.cs" />
+    <Compile Include="Migrations\201912092234361_InitialCreate.cs" />
+    <Compile Include="Migrations\201912092234361_InitialCreate.designer.cs">
+      <DependentUpon>201912092234361_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912092244093_New Cost property in Order model.cs" />
+    <Compile Include="Migrations\201912092244093_New Cost property in Order model.designer.cs">
+      <DependentUpon>201912092244093_New Cost property in Order model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />
@@ -223,6 +232,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201912092234361_InitialCreate.resx">
+      <DependentUpon>201912092234361_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912092244093_New Cost property in Order model.resx">
+      <DependentUpon>201912092244093_New Cost property in Order model.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

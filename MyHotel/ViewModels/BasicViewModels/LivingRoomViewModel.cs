@@ -255,14 +255,14 @@ namespace MyHotel
 
         private void ReserveCommandDelegate(object o)
         {
-            var viewModel = new ReservationDialogViewModel(_shell);
+            var viewModel = new ReservationDialogViewModel(_shell, _model.Id);
 
             var dialog = new ReservationDialog()
             {
                 DataContext = viewModel,
                 Owner = Application.Current.MainWindow
             };
-            dialog.Show();
+            dialog.ShowDialog();
         }
     }
 }

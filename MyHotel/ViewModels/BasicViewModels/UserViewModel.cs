@@ -102,6 +102,8 @@ namespace MyHotel
 
         public bool AdminAuth => _model != null && IsAdmin;
 
+        public int Id => _model?.Id ?? -1;
+
         public UserViewModel() { }
 
         public void AttachModel(Person user, Roles role = Roles.Guests)

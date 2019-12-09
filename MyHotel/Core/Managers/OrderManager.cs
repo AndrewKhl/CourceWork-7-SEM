@@ -10,21 +10,24 @@ namespace MyHotel.Core
     public class OrderManager : DbContext, IModelManager
     {
         public OrderManager() : base("DbConnection")
-        { 
+        {
         }
 
         #region Housing orders
 
         public DbSet<HousingOrder> HousingOrders { get; set; }
 
-        public async Task AddHouseOrder(HousingOrder order)
+        public void AddHouseOrder(HousingOrder order)
         {
             HousingOrders.Add(order);
 
-            await SaveChangesAsync();
+            SaveChanges();
+
+            if (order.IsPaid)
+                AddPayments(order);
         }
 
-        public async Task RemoveHouseOrder(int id)
+        public void RemoveHouseOrder(int id)
         {
             var order = TryFindHouseOrder(id);
 
@@ -33,7 +36,7 @@ namespace MyHotel.Core
 
             HousingOrders.Remove(order);
 
-            await SaveChangesAsync();
+            SaveChangesAsync();
         }
 
 
@@ -46,14 +49,17 @@ namespace MyHotel.Core
 
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
 
-        public async Task AddServiceOrder(ServiceOrder order)
+        public void AddServiceOrder(ServiceOrder order)
         {
             ServiceOrders.Add(order);
 
-            await SaveChangesAsync();
+            if (order.IsPaid)
+                AddPayments(order);
+
+            SaveChangesAsync();
         }
 
-        public async Task RemoveServiceOrder(int id)
+        public void RemoveServiceOrder(int id)
         {
             var order = TryFindServiceOrder(id);
 
@@ -62,13 +68,41 @@ namespace MyHotel.Core
 
             ServiceOrders.Remove(order);
 
-            await SaveChangesAsync();
+            SaveChangesAsync();
         }
 
 
         public ServiceOrder TryFindServiceOrder(int id) => ServiceOrders.Where(u => u.Id == id).FirstOrDefault();
 
         #endregion
+
+        #region Payments
+        public DbSet<Payment> Payments { get; set; }
+
+        public void AddPayments(Order order)
+        {
+            var payment = new Payment()
+            {
+                IsHousingOrder = order is HousingOrder,
+                OrderId = order.Id,
+                Cost = order.Cost,
+                CreateTime = DateTime.Now.ToString(),
+            };
+
+            Payments.Add(payment);
+            SaveChanges();
+        }
+
+        #endregion
+
+        private void UpdatePayments()
+        {
+            foreach (var h in HousingOrders)
+                if (!h.IsPaid)
+                {
+
+                }
+        }
 
         public void CloseConnection()
         {

@@ -19,5 +19,20 @@ namespace MyHotel.Core
         public string CreateTime { get; set; }
 
         public bool IsPaid { get; set; }
+
+        public int Cost { get; set; }
+    }
+
+    public class Payment
+    {
+        public int Id { get; set; }
+
+        public bool IsHousingOrder { get; set; }
+
+        public int OrderId { get; set; }
+
+        public int Cost { get; set; }
+
+        public string CreateTime { get; set; }
     }
 }

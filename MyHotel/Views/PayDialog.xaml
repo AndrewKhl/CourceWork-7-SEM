@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:MyHotel"
         local:CloseDialog.DialogResult="{local:BindingProp Path=IsDialogClose}"
         mc:Ignorable="d" Background="{StaticResource CreditCardBrush}"
-        Title="Pay" Height="300" Width="520">
+        Title="Pay" Height="300" Width="520"
+        WindowStartupLocation="CenterOwner">
     <Canvas>
         <Canvas.Resources>
             <Style TargetType="TextBox">
