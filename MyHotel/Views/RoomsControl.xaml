@@ -24,7 +24,7 @@
 
         <Grid Visibility="{l:BindingProp SelectRoom.IsViewMode, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -41,6 +41,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -49,6 +50,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Text="{l:BindingProp NumberStr}" Style="{StaticResource CommonTextBlockStyle}"/>
                             <TextBlock Grid.Row="1" Grid.Column="2" Text="{l:BindingProp CostStr}" Style="{StaticResource CommonTextBlockStyle}" HorizontalAlignment="Right"/>
+                            <Image Grid.Row="2" Grid.ColumnSpan="3" Source="{l:BindingProp MainPhoto}" Height="120" HorizontalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

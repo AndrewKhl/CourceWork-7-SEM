@@ -188,6 +188,8 @@ namespace MyHotel
             }
         }
 
+        public string MainPhoto => Photos.Count > 0 ? Convert(Photos.First()) : null;
+
         public UserViewModel CurrentUser => _shell.CurrentUser;
 
         private void EditModeOnDelegate(object o)
@@ -246,6 +248,7 @@ namespace MyHotel
             Photos = new ObservableCollection<string>(_model.Photo.Select(Convert));
 
             NotifyPropertyChanged(() => Photos);
+            NotifyPropertyChanged(() => MainPhoto);
         }
 
         private string Convert(string path) => Path.Combine(Environment.CurrentDirectory, DefaultFolder, path);

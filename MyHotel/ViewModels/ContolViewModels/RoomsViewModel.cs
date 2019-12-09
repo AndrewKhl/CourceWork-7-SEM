@@ -29,5 +29,7 @@ namespace MyHotel
                 NotifyPropertyChanged(() => SelectRoom);
             }
         }
+
+        public ObservableCollection<string> MainPhotos { get; set; }
     }
 }

@@ -185,6 +185,8 @@ namespace MyHotel
             //    CurrentUser.AttachModel(guest);
             //}
 
+
+
             SetClose();
         }
     }
