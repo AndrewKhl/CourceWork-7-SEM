@@ -38,6 +38,7 @@ namespace MyHotel
             {
                 _checkIn = value;
                 NotifyPropertyChanged(() => CheckIn);
+                NotifyPropertyChanged(() => CostInfo);
             }
         }
 
@@ -48,6 +49,7 @@ namespace MyHotel
             {
                 _checkOut = value;
                 NotifyPropertyChanged(() => CheckOut);
+                NotifyPropertyChanged(() => CostInfo);
             }
         }
 
@@ -107,7 +109,8 @@ namespace MyHotel
 
         public string NumberStr { get; set; }
 
-        public string CostInfo => $"Finish cost: {(CheckOut - CheckIn).TotalDays * _cost}$";
+        public string CostInfo => 
+            $"Finish cost: {((CheckOut - CheckIn).TotalDays < 0 ? 0 : (CheckOut - CheckIn).TotalDays * _cost)}$";
 
         public ReservationDialogViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
         {

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MyHotel
 {
@@ -14,6 +15,9 @@ namespace MyHotel
         private int _monthExpiration;
         private string _cardholderName;
         private int _cvs;
+
+        public ICommand BackCommand { get; set; }
+        public ICommand OkCommand { get; set; }
 
         [Required(ErrorMessage = "Card Number is required")]
         public string CardNumber
@@ -72,7 +76,23 @@ namespace MyHotel
 
         public PayViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
         {
+            OkCommand = new DelegateCommand(OkCommandDelegate, CanOkCommandDelegate);
+            BackCommand = new DelegateCommand(BackCommandDelegate);
+        }
 
+        private bool CanOkCommandDelegate(object o)
+        {
+            return !IsError;
+        }
+
+        private void OkCommandDelegate(object o)
+        {
+
+        }
+
+        private void BackCommandDelegate(object o)
+        {
+            SetClose();
         }
     }
 }
