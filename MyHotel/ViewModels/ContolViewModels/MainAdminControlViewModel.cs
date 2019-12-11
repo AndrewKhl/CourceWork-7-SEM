@@ -10,10 +10,30 @@ namespace MyHotel
     public class MainAdminControlViewModel : BaseViewModel
     {
         private UsersAndStaffViewModel _usersAndStaffViewModel;
+        private StatisticControlViewModel _statisticViewModel;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand AllUsersCommand { get; set; }
         public ICommand ShowRoomsCommand { get; set; }
+        public ICommand ShowStatisticCommand { get; set; }
+
+
+        public bool IsUsersAndStaffVisibility { get; set; }
+
+        public bool IsRoomVisible { get; set; }
+
+        public bool IsStatisticVisible { get; set; }
+
+
+        public MainAdminControlViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
+        {
+            LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
+            AllUsersCommand = new DelegateCommand(AllUsersCommandDelegate);
+            ShowRoomsCommand = new DelegateCommand(AllRoomsCommandDelegate);
+            ShowStatisticCommand = new DelegateCommand(StatisticCommandDelegate);
+
+            VisualViewModel(false, true, false);
+        }
 
         public UsersAndStaffViewModel UsersAndStaffViewModel
         {
@@ -24,19 +44,17 @@ namespace MyHotel
                 NotifyPropertyChanged(() => UsersAndStaffViewModel);
             }
         }
-        
-        public bool IsUsersAndStaffVisibility { get; set; }
 
-        public bool IsRoomVisible { get; set; }
-
-        public MainAdminControlViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
+        public StatisticControlViewModel StatisticViewModel
         {
-            LogoutCommand = new DelegateCommand(LogoutCommandDelegate);
-            AllUsersCommand = new DelegateCommand(AllUsersCommandDelegate);
-            ShowRoomsCommand = new DelegateCommand(AllRoomsCommandDelegate);
-
-            VisualViewModel(false, true);
+            get => _statisticViewModel;
+            set
+            {
+                _statisticViewModel = value;
+                NotifyPropertyChanged(() => StatisticViewModel);
+            }
         }
+
 
         public override void SetClose()
         {
@@ -50,7 +68,7 @@ namespace MyHotel
 
         private void LogoutCommandDelegate(object o)
         {
-            VisualViewModel(false, true);
+            VisualViewModel(false, true, false);
 
             CurrentUser.AttachModel(null);
             SetClose();
@@ -60,22 +78,30 @@ namespace MyHotel
         {
             UsersAndStaffViewModel = null;
 
-            VisualViewModel(false, true);
+            VisualViewModel(false, true, false);
         }
 
         private void AllUsersCommandDelegate(object o)
         {
             UsersAndStaffViewModel = new UsersAndStaffViewModel(_shell);
-            VisualViewModel(true, false);
+            VisualViewModel(true, false, false);
         }
 
-        private void VisualViewModel(bool isUsers, bool isRooms)
+        private void StatisticCommandDelegate(object o)
+        {
+            StatisticViewModel = new StatisticControlViewModel(_shell);
+            VisualViewModel(false, false, true);
+        }
+
+        private void VisualViewModel(bool isUsers, bool isRooms, bool isStatistic)
         {
             IsUsersAndStaffVisibility = isUsers;
             IsRoomVisible = isRooms;
+            IsStatisticVisible = isStatistic;
 
             NotifyPropertyChanged(() => IsUsersAndStaffVisibility);
             NotifyPropertyChanged(() => IsRoomVisible);
+            NotifyPropertyChanged(() => IsStatisticVisible);
         }
     }
 }

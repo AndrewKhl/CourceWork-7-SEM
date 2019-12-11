@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:MyHotel"
+             xmlns:v="clr-namespace:MyHotel.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -29,23 +30,26 @@
                             </StackPanel>
                         </MenuItem.Header>
                         <MenuItem Header="Rooms" Command="{Binding ShowRoomsCommand}"/>
-                        <MenuItem Header="Users" Command="{Binding Path=AllUsersCommand}"/>
+                        <MenuItem Header="Users" Command="{Binding AllUsersCommand}"/>
                         <Separator/>
                         <MenuItem Header="Orders"/>
                         <MenuItem Header="Servises"/>
                         <Separator/>
-                        <MenuItem Header="Statistic"/>
+                        <MenuItem Header="Statistic" Command="{Binding ShowStatisticCommand}"/>
                         <Separator/>
-                        <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
+                        <MenuItem Header="Log out" Command="{Binding LogoutCommand}"/>
                     </MenuItem>
                 </Menu>
             </Grid>
         </Border>
 
         <local:RoomsControl Grid.Row="1" DataContext="{local:BindingProp RoomsControlViewModel}"
-                            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsRoomVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsRoomVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <local:UsersAndStaffControl Grid.Row="1" DataContext="{local:BindingProp UsersAndStaffViewModel}"
-             Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsUsersAndStaffVisibility, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsUsersAndStaffVisibility, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <v:StatisticControl Grid.Row="1" DataContext="{local:BindingProp StatisticViewModel}"
+            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsStatisticVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>

@@ -122,6 +122,7 @@
     <Compile Include="ViewModels\ContolViewModels\PayViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\ReservationDialogViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\StatisticControlViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\UsersAndStaffViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RoomsViewModel.cs" />
@@ -160,6 +161,9 @@
     </Compile>
     <Compile Include="Views\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatisticControl.xaml.cs">
+      <DependentUpon>StatisticControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsersAndStaffControl.xaml.cs">
       <DependentUpon>UsersAndStaffControl.xaml</DependentUpon>
@@ -221,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
