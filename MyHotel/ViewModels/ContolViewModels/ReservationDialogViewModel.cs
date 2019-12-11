@@ -16,6 +16,7 @@ namespace MyHotel
         private DateTime _checkOut;
         private string _email;
         private string _name;
+        private string _reservationComment;
         private bool _isContactInfoReadOnly;
         private int _cost;
         private PaymentTypesEnum _selectedPayment;
@@ -79,6 +80,16 @@ namespace MyHotel
             }
         }
 
+        public string ReservationComment
+        {
+            get => _reservationComment;
+            set
+            {
+                _reservationComment = value;
+                NotifyPropertyChanged(() => ReservationComment);
+            }
+        }
+
         public bool IsContactInfoReadOnly
         {
             get => _isContactInfoReadOnly;
@@ -111,8 +122,9 @@ namespace MyHotel
 
         public string NumberStr { get; set; }
 
-        public string CostInfo => 
-            $"Finish cost: {((CheckOut - CheckIn).TotalDays < 0 ? 0 : (CheckOut - CheckIn).TotalDays * _cost)}$";
+        public double FinishCost => (CheckOut - CheckIn).TotalDays < 0 ? 0 : (CheckOut - CheckIn).TotalDays * _cost;
+
+        public string CostInfo => $"Finish cost: {FinishCost}$";
 
         public ReservationDialogViewModel(IShellViewModel shellViewModel, int roomId) : base(shellViewModel)
         {
@@ -164,7 +176,8 @@ namespace MyHotel
                 CreateTime = DateTime.Now.ToString(),
                 InTime = CheckIn.ToString(),
                 OutTime = CheckOut.ToString(),
-                Cost = _cost,
+                Cost = (int)FinishCost,
+                Comment = ReservationComment,
             };
 
             if (SelectedPayment == PaymentTypesEnum.Card)
@@ -179,6 +192,8 @@ namespace MyHotel
                 dialog.ShowDialog();
 
                 order.IsPaid = viewModel.IsPaid;
+                if (!order.IsPaid)
+                    return;
             }
 
             int userId = CurrentUser.Id;

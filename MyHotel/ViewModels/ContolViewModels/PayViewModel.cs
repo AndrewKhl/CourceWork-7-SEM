@@ -12,19 +12,21 @@ namespace MyHotel
     public class PayViewModel : BaseViewModel
     {
         private const double ProbabilityError = 0.3;
+        private const int CurrentYear = 19;
+        private const int MaxYear = 99;
 
         private string _cardNumber = "5536080010643892";
-        private int _dateExpiration;
+        private int _yearExpiration;
         private int _monthExpiration;
         private string _cardholderName;
-        private int _cvs;
+        private string _cvs;
 
         public bool IsPaid = false;
 
         public ICommand BackCommand { get; set; }
         public ICommand OkCommand { get; set; }
 
-        [Required(ErrorMessage = "Card Number is required")]
+        [DigitsLength(MinLength = 16, MaxLength = 16, ErrorMessage = "Card Number should have length = 16")]
         public string CardNumber
         {
             get => _cardNumber;
@@ -35,14 +37,14 @@ namespace MyHotel
             }
         }
 
-        [Range(1, 31, ErrorMessage = "Date should be in range [1, 31]")]
-        public int DateExpiration
+        [Range(CurrentYear, MaxYear, ErrorMessage = "Date should be more then 18.")]
+        public int YearExpiration
         {
-            get => _dateExpiration;
+            get => _yearExpiration;
             set
             {
-                _dateExpiration = value;
-                NotifyPropertyChanged(() => DateExpiration);
+                _yearExpiration = value;
+                NotifyPropertyChanged(() => YearExpiration);
             }
         }
 
@@ -57,7 +59,7 @@ namespace MyHotel
             }
         }
 
-        [Required(ErrorMessage = "Cardholder Name is required")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Cardholder name should be in format 'Name Lastname'")]
         public string CardholderName
         {
             get => _cardholderName;
@@ -68,8 +70,8 @@ namespace MyHotel
             }
         }
 
-        [Required(ErrorMessage = "Cvs is required")]
-        public int Cvs
+        [DigitsLength(MinLength = 3, MaxLength = 4, ErrorMessage = "Csv should have 3 or 4 digits.")]
+        public string Cvs
         {
             get => _cvs;
             set

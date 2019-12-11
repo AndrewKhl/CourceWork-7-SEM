@@ -6,7 +6,7 @@
         xmlns:l="clr-namespace:MyHotel"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         l:CloseDialog.DialogResult="{l:BindingProp Path=IsDialogClose}"
-        Title="Reservation" Height="420" Width="350">
+        Title="Reservation" Height="450" Width="350">
     <Grid Margin="10,0">
         <Grid.Resources>
             <Style BasedOn="{StaticResource CommonTextBlockStyle}" TargetType="TextBlock"/>
@@ -16,13 +16,14 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="30"/>
             <RowDefinition/>
             <RowDefinition Height="20"/>
@@ -55,9 +56,13 @@
         <ComboBox Grid.Row="9" Grid.Column="1" SelectedItem="{Binding Path=SelectedPayment}"
                   ItemsSource="{l:BindingProp Path=PaymentTypes}" Style="{StaticResource CommonComboBoxStyle}"/>
 
-        <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="Red"
+        <TextBlock Grid.Row="10" Grid.Column="0" Text="Comment:" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="10" Grid.Column="1" Text="{l:BindingProp Path=ReservationComment}" TextWrapping="Wrap"
+                 Height="52" VerticalAlignment="Top" VerticalContentAlignment="Top"/>
+
+        <TextBlock Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource CommonTextBlockStyle}" Foreground="Red"
                  HorizontalAlignment="Center" Text="{l:BindingProp Path=ErrorText, Mode=TwoWay}"/>
-        <Button Content="Reserve" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource CommonButtonStyle}"
+        <Button Content="Reserve" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource CommonButtonStyle}"
                 Command="{Binding Path=ReserveCommand}"/>
     </Grid>
 </Window>

@@ -10,19 +10,15 @@
         WindowStartupLocation="CenterOwner">
     <Canvas>
         <Canvas.Resources>
-            <Style TargetType="TextBox">
-                <Style.Setters>
-                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="FontSize" Value="18"/>
-                </Style.Setters>
+            <Style TargetType="TextBox" BasedOn="{StaticResource CommonTextBoxStyle}">
+                <Setter Property="FontSize" Value="18"/>
             </Style>
         </Canvas.Resources>
         <TextBox Text="{local:BindingProp Path=CardNumber, Converter={StaticResource cardNumberConverter}}" MaxLength="19"
                  Canvas.Left="28" Margin="0" Canvas.Top="40" Height="36" Width="236"/>
 
-        <TextBox Text="{local:BindingProp Path=DateExpiration}" Canvas.Left="28" Margin="0" Canvas.Top="109" Width="109" Height="37"/>
-        <TextBox Text="{local:BindingProp Path=MonthExpiration}" Canvas.Left="150" Margin="0" Canvas.Top="109" Height="37" Width="109"/>
+        <TextBox Text="{local:BindingProp Path=MonthExpiration}" Canvas.Left="28" Margin="0" Canvas.Top="109" Width="109" Height="37"/>
+        <TextBox Text="{local:BindingProp Path=YearExpiration}" Canvas.Left="150" Margin="0" Canvas.Top="109" Height="37" Width="109"/>
 
         <TextBox Text="{local:BindingProp Path=CardholderName, Converter={StaticResource cardholderNameConverter}}" 
                  Canvas.Left="28" Margin="0" Canvas.Top="175" Height="38" Width="340"/>
