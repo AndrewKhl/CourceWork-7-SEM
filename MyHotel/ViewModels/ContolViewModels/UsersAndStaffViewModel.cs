@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace MyHotel
         public ICommand AddPersonCommand { get; set; }
         public ICommand EditPersonCommand { get; set; }
         public ICommand DeletePersonCommand { get; set; }
+        public ICommand AddSalaryCommand { get; set; }
 
         public ObservableCollection<UserViewModel> People { get; set; }
 
@@ -31,7 +33,7 @@ namespace MyHotel
                 _selectedPerson = value;
                 NotifyPropertyChanged(() => SelectedPerson);
 
-                EditablePerson = SelectedPerson.Copy();
+                EditablePerson = SelectedPerson?.Copy();
             }
         }
 
@@ -50,6 +52,7 @@ namespace MyHotel
             AddPersonCommand = new DelegateCommand(AddCommandDelegate, CanAddCommandDelegate);
             EditPersonCommand = new DelegateCommand(EditCommandDelegate, CanEditCommandDelegate);
             DeletePersonCommand = new DelegateCommand(DeleteCommandDelegate, CanDeleteCommandDelegate);
+            AddSalaryCommand = new DelegateCommand(AddSalaryCommandDelegate, CanAddSalaryCommandDelegate);
 
             LoadData();
         }
@@ -70,8 +73,8 @@ namespace MyHotel
 
             foreach (var st in staff)
             {
-                var person = new UserViewModel();
-                person.AttachModel(st);
+                var person = new UserViewModel(st, UserViewModel.Roles.Staff, 
+                    st.Salary, st.EmploymentDate.ToString());
                 people.Add(person);
             }
 
@@ -92,6 +95,35 @@ namespace MyHotel
             return equal;
         }
 
+        private Staff GetCurrentStaffModel()
+        {
+            return new Staff()
+            {
+                Id = EditablePerson.Id,
+                Name = EditablePerson.Name,
+                SecondName = EditablePerson.LastName,
+                BirthDay = EditablePerson.Birthday.ToString(),
+                Email = EditablePerson.Email,
+                IsAdmin = EditablePerson.IsAdmin,
+                Salary = EditablePerson.Salary,
+                EmploymentDate = EditablePerson.EmploymentDate.ToString(),
+            };
+        }
+
+        private Guest GetCurrentGuestModel()
+        {
+            return new Guest()
+            {
+                Id = EditablePerson.Id,
+                Name = EditablePerson.Name,
+                SecondName = EditablePerson.LastName,
+                BirthDay = EditablePerson.Birthday.ToString(),
+                Email = EditablePerson.Email,
+                Password = EditablePerson.Password,
+                IsAdmin = EditablePerson.IsAdmin,
+            };
+        }
+
         private bool CanAddCommandDelegate(object o)
         {
             return EditablePerson != null
@@ -101,10 +133,14 @@ namespace MyHotel
 
         private void AddCommandDelegate(object o)
         {
+            var person = new Person();
+
             if (EditablePerson.Role == UserViewModel.Roles.Guests)
-                CoreManager.UserManager.AddGuest((Guest)EditablePerson.ToPerson());
+                person = CoreManager.UserManager.AddGuest(GetCurrentGuestModel());
             else if (EditablePerson.Role == UserViewModel.Roles.Staff)
-                CoreManager.UserManager.AddStaff((Staff)EditablePerson.ToPerson());
+                person = CoreManager.UserManager.AddStaff(GetCurrentStaffModel());
+
+            People.Add(EditablePerson.Copy(person.Id));
         }
 
         private bool CanEditCommandDelegate(object o)
@@ -118,9 +154,13 @@ namespace MyHotel
         private void EditCommandDelegate(object o)
         {
             if (EditablePerson.Role == UserViewModel.Roles.Guests)
-                CoreManager.UserManager.ModifyGuest((Guest)EditablePerson.ToPerson());
+                CoreManager.UserManager.ModifyGuest(GetCurrentGuestModel());
             else if (EditablePerson.Role == UserViewModel.Roles.Staff)
-                CoreManager.UserManager.ModifyStaff((Staff)EditablePerson.ToPerson());
+                CoreManager.UserManager.ModifyStaff(GetCurrentStaffModel());
+
+            var index = People.ToList().FindIndex(p => p.Email == EditablePerson.Email);
+            People.Insert(index + 1, EditablePerson.Copy(EditablePerson.Id));
+            People.RemoveAt(index);
         }
 
         private bool CanDeleteCommandDelegate(object o)
@@ -134,6 +174,20 @@ namespace MyHotel
                 CoreManager.UserManager.RemoveGuest(EditablePerson.Email);
             else if (EditablePerson.Role == UserViewModel.Roles.Staff)
                 CoreManager.UserManager.RemoveStaff(EditablePerson.Email);
+
+            People.Remove(SelectedPerson);
+        }
+
+        private bool CanAddSalaryCommandDelegate(object o)
+        {
+            return EditablePerson != null && !IsError 
+                && !EditablePerson.IsError && SelectedPerson?.Email == EditablePerson.Email
+                && SelectedPerson?.Role == EditablePerson.Role;
+        }
+
+        private void AddSalaryCommandDelegate(object o)
+        {
+
         }
     }
 }

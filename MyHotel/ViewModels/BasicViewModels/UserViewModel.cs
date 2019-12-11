@@ -17,6 +17,8 @@ namespace MyHotel
         private string _password;
         private bool _isAdmin;
         private Roles _role;
+        private int _salary;
+        private DateTime _employmentDate;
 
         public enum Roles
         {
@@ -93,8 +95,31 @@ namespace MyHotel
             {
                 _role = value;
                 NotifyPropertyChanged(() => Role);
+                NotifyPropertyChanged(() => IsStaff);
             }
         }
+
+        public int Salary
+        {
+            get => _salary;
+            set
+            {
+                _salary = value;
+                NotifyPropertyChanged(() => Salary);
+            }
+        }
+
+        public DateTime EmploymentDate
+        {
+            get => _employmentDate;
+            set
+            {
+                _employmentDate = value;
+                NotifyPropertyChanged(() => EmploymentDate);
+            }
+        }
+
+        public bool IsStaff => Role == Roles.Staff;
 
         public bool UnknownUser => _model == null;
 
@@ -105,6 +130,15 @@ namespace MyHotel
         public int Id => _model?.Id ?? -1;
 
         public UserViewModel() { }
+
+        public UserViewModel(Person user, Roles role = Roles.Guests, int salary = 0, string employmentDate = null)
+        {
+            AttachModel(user, role);
+
+            Salary = salary;
+            if (!string.IsNullOrEmpty(employmentDate))
+                EmploymentDate = DateTime.Parse(employmentDate);
+        }
 
         public void AttachModel(Person user, Roles role = Roles.Guests)
         {
@@ -128,13 +162,15 @@ namespace MyHotel
             NotifyPropertyChanged(() => LastName);
             NotifyPropertyChanged(() => Birthday);
             NotifyPropertyChanged(() => Role);
+            NotifyPropertyChanged(() => Salary);
+            NotifyPropertyChanged(() => EmploymentDate);
             NotifyPropertyChanged(() => IsAdmin);
             NotifyPropertyChanged(() => UserAuth);
             NotifyPropertyChanged(() => AdminAuth);
             NotifyPropertyChanged(() => UnknownUser);
         }
 
-        public UserViewModel Copy()
+        public UserViewModel Copy(int id = -1)
         {
             return new UserViewModel()
             {
@@ -145,6 +181,8 @@ namespace MyHotel
                 Password = Password,
                 Role = Role,
                 IsAdmin = IsAdmin,
+                Salary = Salary,
+                EmploymentDate = EmploymentDate,
             };
         }
 
@@ -152,6 +190,7 @@ namespace MyHotel
         {
             return new Person()
             {
+                Id = Id,
                 Name = Name,
                 SecondName = LastName,
                 BirthDay = Birthday.ToString(),

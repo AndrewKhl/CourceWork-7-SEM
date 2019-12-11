@@ -17,19 +17,19 @@ namespace MyHotel.Core
 
         public DbSet<Staff> Staffs { get; set; }
 
-        public bool AddStaff(Staff newStaff)
+        public Staff AddStaff(Staff newStaff)
         {
             var user = TryGetUser(newStaff.Email);
 
             if (user != null)
-                return false;
+                return null;
 
             newStaff.Password = _md5.Shifr(newStaff.Password);
 
             Staffs.Add(newStaff);
             SaveChangesAsync();
 
-            return true;
+            return newStaff;
         }
 
         public void ModifyStaff(Staff newStaff)

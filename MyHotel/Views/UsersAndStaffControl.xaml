@@ -60,6 +60,17 @@
                       ItemsSource="{Binding Path=RolesList}"
                  SelectedItem="{l:BindingProp Path=EditablePerson.Role, Mode=TwoWay}"/>
 
+            <TextBlock Text="Salary:" Style="{StaticResource CommonTextBlockStyle}"
+                       Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBox Text="{l:BindingProp Path=Salary}" Style="{StaticResource CommonTextBoxStyle}"
+                     Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <TextBlock Text="Employment Date:" Style="{StaticResource CommonTextBlockStyle}"
+                       Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDateFormat="Short" Style="{StaticResource CommonDatePickerStyle}"
+                    SelectedDate="{l:BindingProp Path=EmploymentDate, Mode=TwoWay}"
+                        Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
             <Button Style="{StaticResource CommonButtonStyle}" Content="Add" Margin="20,20,20,5"
                     Command="{Binding Path=AddPersonCommand}"/>
             
@@ -68,6 +79,10 @@
             
             <Button Style="{StaticResource CommonButtonStyle}" Content="Delete"
                     Command="{Binding Path=DeletePersonCommand}"/>
+
+            <Button Style="{StaticResource CommonButtonStyle}" Content="Add Salary"
+                    Command="{Binding Path=AddSalaryCommand}"
+                    Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
     </Grid>
 </UserControl>
