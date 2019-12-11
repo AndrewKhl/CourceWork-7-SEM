@@ -28,9 +28,13 @@
                                 <fa:ImageAwesome Icon="SortDown" Foreground="White" MaxHeight="6"/>
                             </StackPanel>
                         </MenuItem.Header>
-                        <MenuItem Header="All Rooms" Command="{Binding ShowRoomsCommand}"/>
+                        <MenuItem Header="Rooms" Command="{Binding ShowRoomsCommand}"/>
+                        <MenuItem Header="Users" Command="{Binding Path=AllUsersCommand}"/>
+                        <Separator/>
                         <MenuItem Header="Orders"/>
-                        <MenuItem Header="All Users" Command="{Binding Path=AllUsersCommand}"/>
+                        <MenuItem Header="Servises"/>
+                        <Separator/>
+                        <MenuItem Header="Statistic"/>
                         <Separator/>
                         <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
                     </MenuItem>
