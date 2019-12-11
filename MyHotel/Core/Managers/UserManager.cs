@@ -11,7 +11,9 @@ namespace MyHotel.Core
         private static readonly MD5Helper _md5 = new MD5Helper();
 
         public UserManager() : base("DbConnection")
-        {}
+        {
+            AddSalary(1000, 1);
+        }
 
         #region Staff
 
@@ -120,6 +122,27 @@ namespace MyHotel.Core
 
         #endregion
 
+
+        #region Salary
+
+        public DbSet<Salary> Salarys { get; set; }
+
+        public void AddSalary(int count, int staffId)
+        {
+            var salary = new Salary()
+            {
+                StaffId = staffId,
+                Count = count,
+                PaymentDate = DateTime.Now.ToString(),
+            };
+
+            Salarys.Add(salary);
+
+            SaveChangesAsync();
+        }
+
+        #endregion
+
         public Person TryGetUser(string email, string password) => TryFindStaff(email, password) ?? TryFindGuests(email, password);
 
         public Person TryGetUser(string email) => TryFindStaff(email) ?? TryFindGuests(email);
@@ -132,6 +155,7 @@ namespace MyHotel.Core
                 Email = "admin@gmail.com",
                 Password = _md5.Shifr("123456"),
                 IsAdmin = true,
+                EmploymentDate = DateTime.Now.ToString()
             });
 
             SaveChanges();

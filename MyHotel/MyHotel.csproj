@@ -92,19 +92,20 @@
     <Compile Include="Core\Models\Persons\Staff.cs" />
     <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
     <Compile Include="Core\Models\Rooms\Room.cs" />
+    <Compile Include="Core\Models\Salary.cs" />
     <Compile Include="Core\Models\Service.cs" />
     <Compile Include="Infrastructure\Attributes\CustomEmailAddressAttribute.cs" />
     <Compile Include="Infrastructure\Attributes\DigitsLengthAttribute.cs" />
     <Compile Include="Infrastructure\Bindings\BindingProp.cs" />
     <Compile Include="Infrastructure\Converters\CardholderNameConverter.cs" />
     <Compile Include="Infrastructure\Converters\CardNumberConverter.cs" />
-    <Compile Include="Migrations\201912092234361_InitialCreate.cs" />
-    <Compile Include="Migrations\201912092234361_InitialCreate.designer.cs">
-      <DependentUpon>201912092234361_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201912092234092_InitialCreate.cs" />
+    <Compile Include="Migrations\201912092234092_InitialCreate.designer.cs">
+      <DependentUpon>201912092234092_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912092244093_New Cost property in Order model.cs" />
-    <Compile Include="Migrations\201912092244093_New Cost property in Order model.designer.cs">
-      <DependentUpon>201912092244093_New Cost property in Order model.cs</DependentUpon>
+    <Compile Include="Migrations\201912112046203_Initial Mgration.cs" />
+    <Compile Include="Migrations\201912112046203_Initial Mgration.designer.cs">
+      <DependentUpon>201912112046203_Initial Mgration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
@@ -251,11 +252,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201912092234361_InitialCreate.resx">
-      <DependentUpon>201912092234361_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912092234092_InitialCreate.resx">
+      <DependentUpon>201912092234092_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912092244093_New Cost property in Order model.resx">
-      <DependentUpon>201912092244093_New Cost property in Order model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912112046203_Initial Mgration.resx">
+      <DependentUpon>201912112046203_Initial Mgration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

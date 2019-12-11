@@ -7,13 +7,13 @@ namespace MyHotel.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.3.0")]
-    public sealed partial class NewCostpropertyinOrdermodel : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewCostpropertyinOrdermodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912092244093_New Cost property in Order model"; }
+            get { return "201912092234092_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
