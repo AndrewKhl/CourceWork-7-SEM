@@ -27,7 +27,7 @@ namespace MyHotel.Core
             // адрес smtp-сервера и порт, с которого будем отправлять письмо
             SmtpClient smtp = new SmtpClient("smtp.mail.ru", 2525);
             // логин и пароль
-            smtp.Credentials = new NetworkCredential("RedLeonFire@mail.ru", пароль);
+            //smtp.Credentials = new NetworkCredential("RedLeonFire@mail.ru", пароль);
             smtp.EnableSsl = true;
             smtp.Send(m);
         }

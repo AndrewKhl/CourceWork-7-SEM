@@ -16,7 +16,7 @@ namespace MyHotel.Core
             RoomManager = new RoomManager();
             OrderManager = new OrderManager();
 
-            MailManager = new MailManager();
+            //MailManager = new MailManager();
 
             _managers = new List<IModelManager>()
             {
