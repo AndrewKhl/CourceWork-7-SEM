@@ -25,7 +25,7 @@ namespace MyHotel.Core
                 OrderManager
             };
 
-            InitialDataBase();
+            //InitialDataBase();
         }
 
         public UserManager UserManager { get; }

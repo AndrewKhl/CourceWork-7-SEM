@@ -12,7 +12,6 @@ namespace MyHotel.Core
 
         public UserManager() : base("DbConnection")
         {
-            AddSalary(1000, 1);
         }
 
         #region Staff
