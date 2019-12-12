@@ -133,14 +133,24 @@ namespace MyHotel
 
         private void AddCommandDelegate(object o)
         {
-            var person = new Person();
+            var user = new UserViewModel();
 
             if (EditablePerson.Role == UserViewModel.Roles.Guests)
-                person = CoreManager.UserManager.AddGuest(GetCurrentGuestModel());
+            {
+                var person = CoreManager.UserManager.AddGuest(GetCurrentGuestModel());
+                user.AttachModel(person);
+            }
             else if (EditablePerson.Role == UserViewModel.Roles.Staff)
-                person = CoreManager.UserManager.AddStaff(GetCurrentStaffModel());
+            {
+                var staff = CoreManager.UserManager.AddStaff(GetCurrentStaffModel());
+                user.AttachModel(staff, UserViewModel.Roles.Staff);
+                user.Salary = staff.Salary;
+                user.EmploymentDate = DateTime.Parse(staff.EmploymentDate);
+            }
 
-            People.Add(EditablePerson.Copy(person.Id));
+            People.Add(user);
+            SelectedPerson = People.LastOrDefault();
+            SelectedPerson.RefreshModel();
         }
 
         private bool CanEditCommandDelegate(object o)
@@ -159,8 +169,11 @@ namespace MyHotel
                 CoreManager.UserManager.ModifyStaff(GetCurrentStaffModel());
 
             var index = People.ToList().FindIndex(p => p.Email == EditablePerson.Email);
-            People.Insert(index + 1, EditablePerson.Copy(EditablePerson.Id));
+            People.Insert(index + 1, EditablePerson.Copy(EditablePerson.ToPerson()));
             People.RemoveAt(index);
+
+            SelectedPerson = People[index];
+            SelectedPerson.RefreshModel();
         }
 
         private bool CanDeleteCommandDelegate(object o)
@@ -176,6 +189,8 @@ namespace MyHotel
                 CoreManager.UserManager.RemoveStaff(EditablePerson.Email);
 
             People.Remove(SelectedPerson);
+            SelectedPerson = null;
+            SelectedPerson.RefreshModel();
         }
 
         private bool CanAddSalaryCommandDelegate(object o)
@@ -187,7 +202,7 @@ namespace MyHotel
 
         private void AddSalaryCommandDelegate(object o)
         {
-
+            CoreManager.UserManager.AddSalary(EditablePerson.Salary, EditablePerson.Id);
         }
     }
 }

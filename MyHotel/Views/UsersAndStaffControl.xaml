@@ -62,13 +62,13 @@
 
             <TextBlock Text="Salary:" Style="{StaticResource CommonTextBlockStyle}"
                        Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBox Text="{l:BindingProp Path=Salary}" Style="{StaticResource CommonTextBoxStyle}"
+            <TextBox Text="{l:BindingProp Path=EditablePerson.Salary}" Style="{StaticResource CommonTextBoxStyle}"
                      Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <TextBlock Text="Employment Date:" Style="{StaticResource CommonTextBlockStyle}"
                        Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <DatePicker Grid.Row="2" Grid.Column="1" SelectedDateFormat="Short" Style="{StaticResource CommonDatePickerStyle}"
-                    SelectedDate="{l:BindingProp Path=EmploymentDate, Mode=TwoWay}"
+                    SelectedDate="{l:BindingProp Path=EditablePerson.EmploymentDate, Mode=TwoWay}"
                         Visibility="{l:BindingProp Path=EditablePerson.IsStaff, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <Button Style="{StaticResource CommonButtonStyle}" Content="Add" Margin="20,20,20,5"

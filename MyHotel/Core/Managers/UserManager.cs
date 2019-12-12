@@ -25,10 +25,15 @@ namespace MyHotel.Core
             if (user != null)
                 return null;
 
+            if (newStaff.Password == null)
+            {
+                var rand = new Random(DateTime.Now.Millisecond);
+                newStaff.Password = rand.Next().ToString();
+            }
             newStaff.Password = _md5.Shifr(newStaff.Password);
 
             Staffs.Add(newStaff);
-            SaveChangesAsync();
+            SaveChanges();
 
             return newStaff;
         }
@@ -85,7 +90,7 @@ namespace MyHotel.Core
             newGuest.Password = _md5.Shifr(newGuest.Password);
 
             Guests.Add(newGuest);
-            SaveChangesAsync();
+            SaveChanges();
 
             return newGuest;
         }

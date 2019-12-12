@@ -151,6 +151,7 @@ namespace MyHotel
                 Birthday = birthday;
             IsAdmin = user?.IsAdmin ?? false;
             Role = role;
+            EmploymentDate = DateTime.Today;
 
             RefreshModel();
         }
@@ -170,9 +171,12 @@ namespace MyHotel
             NotifyPropertyChanged(() => UnknownUser);
         }
 
-        public UserViewModel Copy(int id = -1)
+        public UserViewModel Copy(Person model = null)
         {
-            return new UserViewModel()
+            if (model != null)
+                _model = model;
+
+            return new UserViewModel(_model)
             {
                 Name = Name,
                 LastName = LastName, 
