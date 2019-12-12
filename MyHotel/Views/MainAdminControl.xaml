@@ -33,7 +33,7 @@
                         <MenuItem Header="Users" Command="{Binding AllUsersCommand}"/>
                         <Separator/>
                         <MenuItem Header="Orders"/>
-                        <MenuItem Header="Servises"/>
+                        <MenuItem Header="Services" Command="{Binding ShowServicesCommand}"/>
                         <Separator/>
                         <MenuItem Header="Statistic" Command="{Binding ShowStatisticCommand}"/>
                         <Separator/>
@@ -51,5 +51,8 @@
 
         <v:StatisticControl Grid.Row="1" DataContext="{local:BindingProp StatisticViewModel}"
             Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsStatisticVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <local:ServicesControl Grid.Row="1" DataContext="{local:BindingProp ServicesViewModel}"
+            Visibility="{local:BindingProp RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.IsServicesVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>
