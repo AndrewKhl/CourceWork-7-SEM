@@ -68,13 +68,13 @@ namespace MyHotel.Core
         private void SetPhotoCollection()
         {
             if (Photo == null)
-                Photo = StringHelper.GetIdList(PhotoStr) ?? new List<string>();
+                Photo = StringHelper.GetStrList(PhotoStr) ?? new List<string>();
         }
 
         private void SetServiceCollection()
         {
             if (Services == null)
-                Services = StringHelper.GetIdList(ServicesStr) ?? new List<string>();
+                Services = StringHelper.GetStrList(ServicesStr) ?? new List<string>();
         }
     }
 }
