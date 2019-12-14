@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Letter_H.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
@@ -80,6 +83,7 @@
     <Compile Include="Commons\StringHelper.cs" />
     <Compile Include="Commons\Time.cs" />
     <Compile Include="Core\Models\Finanсe\Maintenance.cs" />
+    <Compile Include="Core\Models\MailReport.cs" />
     <Compile Include="Core\Models\Managers\CoreManager.cs" />
     <Compile Include="Core\Models\Managers\MailManager.cs" />
     <Compile Include="Core\Models\Managers\OrderManager.cs" />
@@ -273,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\credit_cart.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Letter_H.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

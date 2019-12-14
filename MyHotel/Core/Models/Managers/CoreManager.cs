@@ -12,12 +12,12 @@ namespace MyHotel.Core
 
         public CoreManager()
         {
-            UserManager = new UserManager();
+            MailManager = new MailManager();
+
+            UserManager = new UserManager(MailManager);
             RoomManager = new RoomManager();
             OrderManager = new OrderManager();
-
-            //MailManager = new MailManager();
-
+            
             _managers = new List<IModelManager>()
             {
                 UserManager,
@@ -26,6 +26,7 @@ namespace MyHotel.Core
             };
 
             //InitialDataBase();
+            OrderManager.UpdatePayments();
         }
 
         public UserManager UserManager { get; }

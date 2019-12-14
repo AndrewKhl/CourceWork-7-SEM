@@ -9,9 +9,11 @@ namespace MyHotel.Core
     public class UserManager : DbContext, IModelManager
     {
         private static readonly MD5Helper _md5 = new MD5Helper();
+        private readonly MailManager _mail;
 
-        public UserManager() : base("DbConnection")
+        public UserManager(MailManager mail) : base("DbConnection")
         {
+            _mail = mail;
         }
 
         #region Staff
@@ -89,6 +91,8 @@ namespace MyHotel.Core
                 var rand = new Random(DateTime.Now.Millisecond);
                 newGuest.Password = rand.Next().ToString();
             }
+
+            _mail.SendRegistrarion(newGuest);
 
             newGuest.Password = _md5.Shifr(newGuest.Password);
 

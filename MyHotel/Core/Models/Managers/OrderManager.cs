@@ -12,7 +12,6 @@ namespace MyHotel.Core
     {
         public OrderManager() : base("DbConnection")
         {
-            UpdatePayments();
         }
 
         #region Housing orders
@@ -108,10 +107,10 @@ namespace MyHotel.Core
             };
 
             Payments.Add(payment);
-            SaveChanges();
+            SaveChangesAsync();
         }
 
-        private void UpdatePayments()
+        public void UpdatePayments()
         {
             foreach (var h in HousingOrders)
                 if (!h.IsPaid && Time.ToTime(h.OutTime) < DateTime.Now) //"10.12.2019 1:50:41"

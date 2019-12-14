@@ -194,6 +194,7 @@ namespace MyHotel
                 order.IsPaid = viewModel.IsPaid;
                 if (!order.IsPaid)
                     return;
+
             }
 
             int userId = CurrentUser.Id;
@@ -219,6 +220,7 @@ namespace MyHotel
 
             order.UserId = userId;
             CoreManager.AddReservedOrder(order);
+            CoreManager.MailManager.SendReservation(CurrentUser.ToPerson(), order);
             SetClose();
         }
     }
