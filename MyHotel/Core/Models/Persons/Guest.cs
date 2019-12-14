@@ -8,13 +8,13 @@ namespace MyHotel.Core
 {
     public class Guest : Person
     {
-        string ReservationsStr { get; set; }
+        public string ReservationsStr { get; set; }
 
-        string OrdersStr { get; set; }
+        public string OrdersStr { get; set; }
 
-        List<int> Reservations { get; set; }
+        public List<int> Reservations { get; set; }
 
-        List<int> Orders { get; set; }
+        public List<int> Orders { get; set; }
 
         public void AddReservation(int id)
         {

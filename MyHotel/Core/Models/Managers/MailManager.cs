@@ -10,26 +10,33 @@ namespace MyHotel.Core
 {
     public class MailManager
     {
+        private const string AdminEmail = "RedLeonFire@mail.ru";
+        private readonly MailAddress _admin;
+
         public MailManager()
         {
-            // отправитель - устанавливаем адрес и отображаемое в письме имя
-            MailAddress from = new MailAddress("RedLeonFire@mail.ru", "Tom");
-            // кому отправляем
-            MailAddress to = new MailAddress("RedLeonFire@yandex.by");
-            // создаем объект сообщения
-            MailMessage m = new MailMessage(from, to);
-            // тема письма
-            m.Subject = "Тест";
-            // текст письма
-            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
-            // письмо представляет код html
-            m.IsBodyHtml = true;
-            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+            _admin = new MailAddress(AdminEmail, "Hotel");
+        }
+
+        public void SendRegistration(Person person)
+        {
+
+        }
+
+        private void SendMail(string emailTo, string header, string text)
+        {
+            MailAddress to = new MailAddress(emailTo);
+
+            MailMessage mail = new MailMessage(_admin, to);
+
+            mail.Subject = header;
+            mail.Body = $"<h2>{text}</h2>";
+            mail.IsBodyHtml = true;
+
             SmtpClient smtp = new SmtpClient("smtp.mail.ru", 2525);
-            // логин и пароль
-            //smtp.Credentials = new NetworkCredential("RedLeonFire@mail.ru", пароль);
+            smtp.Credentials = new NetworkCredential(AdminEmail, "LxHWwSKL");
             smtp.EnableSsl = true;
-            smtp.Send(m);
+            smtp.Send(mail);
         }
     }
 }
