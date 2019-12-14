@@ -11,6 +11,8 @@ namespace MyHotel
 {
     public class StatisticControlViewModel : BaseViewModel
     {
+        private readonly int? _reservationSum = 0, _salarySum = 0;
+
         public enum Mode { All, Profit };
 
         public Mode SelectMode { get; set; } = Mode.Profit;
@@ -23,6 +25,27 @@ namespace MyHotel
         {
             GraphModel = new PlotModel();
 
+            _reservationSum = _shell.CoreManager.OrderManager.Payments.ToList()?.Sum(u => u.Cost) ?? 0;
+            _salarySum = _shell.CoreManager.UserManager.Salarys.ToList()?.Sum(u => u.Count) ?? 0;
+
+            UpdateGraph();
+        }
+
+        public string TotalProfit => $"{_reservationSum}$";
+
+        public string Salarys => $"{_salarySum}$";
+
+        public string Reservation => $"{_reservationSum}$";
+
+
+        public int CountGuests => _shell.CoreManager.UserManager.Guests.ToList()?.Count() ?? 0;
+
+        public int CountStaffs => _shell.CoreManager.UserManager.Staffs.ToList()?.Count() ?? 0;
+
+        public int CountOrders => _shell.CoreManager.OrderManager.HousingOrders.ToList()?.Count() ?? 0 + _shell.CoreManager.OrderManager.ServiceOrders.ToList()?.Count() ?? 0;
+
+        private void UpdateGraph()
+        {
             //AxisPosition.Bottom, "Date", "dd/MM/yy HH:mm"
 
             //var dateAxis = new DateTimeAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, IntervalLength = 80 };

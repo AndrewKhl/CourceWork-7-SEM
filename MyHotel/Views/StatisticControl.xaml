@@ -10,8 +10,10 @@
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource CommonTextBlockStyle}">
-                <Setter Property="Margin" Value="10 0 5 0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
             </Style>
         </Grid.Resources>
         
@@ -31,7 +33,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Mode: "/>
+            <TextBlock Text="Mode: " Margin="10 0 5 0"/>
             <ComboBox Grid.Column="1" Style="{StaticResource CommonComboBoxStyle}" ItemsSource="{l:BindingProp ModeList}" SelectedValue="{l:BindingProp SelectMode}"/>
             <Button Grid.Column="2" Content="Export to CSV" Style="{StaticResource CommonButtonStyle}" />
 
@@ -41,16 +43,103 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
+                <!--<RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition/>-->
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0" Grid.Row="1" >
+                <GroupBox DockPanel.Dock="Top" Header="Total">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Profit:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalProfit}"/>
+
+                        <TextBlock Grid.Row="1" Text="Loss:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding}"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Total Count" DockPanel.Dock="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Guests:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CountGuests}"/>
+
+                        <TextBlock Grid.Row="1" Text="Staffs:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CountStaffs}"/>
+
+                        <TextBlock Grid.Row="2" Text="Orders:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CountOrders}"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox DockPanel.Dock="Top" Header="Costs">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Rooms:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding}"/>
+
+                        <TextBlock Grid.Row="1" Text="Salarys:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Salarys}"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox DockPanel.Dock="Top" Header="Profits">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Reservation:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Reservation}"/>
+
+                        <TextBlock Grid.Row="1" Text="Services:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding}"/>
+                    </Grid>
+                </GroupBox>
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>

@@ -108,8 +108,6 @@ namespace MyHotel.Core
             SaveChanges();
         }
 
-        #endregion
-
         private void UpdatePayments()
         {
             foreach (var h in HousingOrders)
@@ -126,6 +124,50 @@ namespace MyHotel.Core
                     AddPayments(s);
                 }
         }
+
+        #endregion
+
+
+        #region Services
+
+        public DbSet<Service> Services { get; set; }
+
+        public Service AddService(Service newService)
+        {
+            Services.Add(newService);
+
+            SaveChanges();
+
+            return newService;
+        }
+
+        public void RemoveService(int id)
+        {
+            var service = TryFindServices(id);
+
+            if (service == null)
+                return;
+
+            Services.Remove(service);
+
+            SaveChangesAsync();
+        }
+
+        public void ModifyService(Service newService)
+        {
+            var oldService = Services.Where(u => u.Id == newService.Id).FirstOrDefault();
+
+            if (oldService == null)
+                return;
+
+            oldService = newService;
+
+            SaveChangesAsync();
+        }
+
+        public Service TryFindServices(int id) => Services.Where(u => u.Id == id).FirstOrDefault();
+
+        #endregion
 
         public void CloseConnection()
         {
