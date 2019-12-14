@@ -155,12 +155,14 @@ namespace MyHotel.Core
 
         public void ModifyService(Service newService)
         {
-            var oldService = Services.Where(u => u.Id == newService.Id).FirstOrDefault();
+            var old = Services.Where(u => u.Id == newService.Id).FirstOrDefault();
 
-            if (oldService == null)
+            if (old == null)
                 return;
 
-            oldService = newService;
+            old.Name = newService.Name;
+            old.Cost = newService.Cost;
+            old.Description = newService.Description;
 
             SaveChangesAsync();
         }

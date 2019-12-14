@@ -45,8 +45,11 @@ namespace MyHotel.Core
             if (old == null)
                 return;
 
-            newStaff.Password = old.Password;
-            old = newStaff;
+            old.Name = newStaff.Name;
+            old.SecondName = newStaff.SecondName;
+            old.BirthDay = newStaff.BirthDay;
+            old.Salary = newStaff.Salary;
+            old.EmploymentDate = newStaff.EmploymentDate;
 
             SaveChangesAsync();
         }
@@ -102,8 +105,9 @@ namespace MyHotel.Core
             if (old == null)
                 return;
 
-            newGuest.Password = old.Password;
-            old = newGuest;
+            old.Name = newGuest.Name;
+            old.SecondName = newGuest.SecondName;
+            old.BirthDay = newGuest.BirthDay;
 
             SaveChangesAsync();
         }
