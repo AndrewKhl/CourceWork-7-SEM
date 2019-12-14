@@ -16,6 +16,8 @@ namespace MyHotel.Core
 
         public DbSet<LivingRoom> LivingRooms { get; set; }
 
+        public DbSet<Maintenance> MaintenanceCosts { get; set; }
+
         public LivingRoom TryFindRoom(int id) => LivingRooms.Where(u => u.Id == id).FirstOrDefault();
 
         public void InitialCommit()
@@ -39,6 +41,28 @@ namespace MyHotel.Core
                 Cost = 2000,
                 Status = false,
                 Floor = 2,
+            });
+
+
+            MaintenanceCosts.Add(new Maintenance()
+            {
+                RoomId = 1,
+                Cost = 5000,
+                Comment = "Operating costs",
+            });
+
+            MaintenanceCosts.Add(new Maintenance()
+            {
+                RoomId = 2,
+                Cost = 5500,
+                Comment = "Operating costs",
+            });
+
+            MaintenanceCosts.Add(new Maintenance()
+            {
+                RoomId = 3,
+                Cost = 7000,
+                Comment = "Operating costs",
             });
 
             SaveChanges();
