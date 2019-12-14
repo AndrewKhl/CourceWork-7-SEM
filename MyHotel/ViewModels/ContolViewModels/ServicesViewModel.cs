@@ -27,7 +27,7 @@ namespace MyHotel
                 _selectedService = value;
                 NotifyPropertyChanged(() => SelectedService);
 
-                EditableService = new ServiceItemViewModel(SelectedService.Model);
+                EditableService = new ServiceItemViewModel(SelectedService?.Model);
             }
         }
 
@@ -47,6 +47,9 @@ namespace MyHotel
             EditSeviceCommand = new DelegateCommand(EditServiceCommandDelegate, CanEditServiceCommandDelegate);
             DeleteServiceCommand = new DelegateCommand(DeleteCommandDelegate, CanDeleteCOmmandDelegate);
 
+            var services = CoreManager.OrderManager.Services.AsEnumerable();
+            Services = new ObservableCollection<ServiceItemViewModel>(services.Select(s => new ServiceItemViewModel(s)));
+
             EditableService = new ServiceItemViewModel(null);
         }
 
@@ -64,7 +67,10 @@ namespace MyHotel
 
         private void AddServiceCommandDelegate(object o)
         {
+            var service = CoreManager.OrderManager.AddService(EditableService.ToService());
 
+            Services.Add(new ServiceItemViewModel(service));
+            SelectedService = Services.Last();
         }
 
         private bool CanEditServiceCommandDelegate(object o)
@@ -74,7 +80,14 @@ namespace MyHotel
 
         private void EditServiceCommandDelegate(object o)
         {
+            CoreManager.OrderManager.ModifyService(EditableService.ToService());
 
+            var index = Services.IndexOf(SelectedService);
+            Services.Insert(index + 1, EditableService);
+            Services.RemoveAt(index);
+
+            SelectedService = Services[index];
+            SelectedService.RefreshModel();
         }
 
         private bool CanDeleteCOmmandDelegate(object o)
@@ -84,7 +97,10 @@ namespace MyHotel
 
         private void DeleteCommandDelegate(object o)
         {
+            CoreManager.OrderManager.RemoveService(SelectedService.Id);
 
+            Services.Remove(SelectedService);
+            SelectedService = null;
         }
     }
 }

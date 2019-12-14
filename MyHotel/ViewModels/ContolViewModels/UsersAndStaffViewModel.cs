@@ -190,7 +190,7 @@ namespace MyHotel
 
             People.Remove(SelectedPerson);
             SelectedPerson = null;
-            SelectedPerson.RefreshModel();
+            EditablePerson = null;
         }
 
         private bool CanAddSalaryCommandDelegate(object o)

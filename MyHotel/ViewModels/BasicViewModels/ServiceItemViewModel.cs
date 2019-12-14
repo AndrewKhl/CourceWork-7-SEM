@@ -54,15 +54,31 @@ namespace MyHotel
 
         public ServiceItemViewModel(Service service)
         {
-            if (_model == null)
+            if (service == null)
                 return;
 
             _model = service;
             Cost = service.Cost;
+            ShortDescription = service.Name;
+            Description = service.Description;            
+        }
 
-            var descr = service.Description.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
-            ShortDescription = descr[0];
-            Description = descr[1];            
+        public Service ToService()
+        {
+            return new Service()
+            {
+                Id = Id,
+                Name = ShortDescription,
+                Description = Description,
+                Cost = Cost,
+            };
+        }
+
+        public void RefreshModel()
+        {
+            NotifyPropertyChanged(() => ShortDescription);
+            NotifyPropertyChanged(() => Description);
+            NotifyPropertyChanged(() => Cost);
         }
     }
 }
