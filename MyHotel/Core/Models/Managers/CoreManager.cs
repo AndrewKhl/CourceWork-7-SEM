@@ -36,6 +36,18 @@ namespace MyHotel.Core
 
         public MailManager MailManager { get; }
 
+        public void AddReservedOrder(HousingOrder order)
+        {
+            int id = OrderManager.AddHouseOrder(order);
+            UserManager.AddReservation(order.UserId, id);
+        }
+
+        public void AddServiceOrder(ServiceOrder order)
+        {
+            int id = OrderManager.AddServiceOrder(order);
+            UserManager.AddOrder(order.UserId, id);
+        }
+
         private void InitialDataBase()
         {
             foreach (var m in _managers)

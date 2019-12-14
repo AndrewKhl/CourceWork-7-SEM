@@ -218,8 +218,7 @@ namespace MyHotel
             }
 
             order.UserId = userId;
-            _shell.CoreManager.OrderManager.AddHouseOrder(order);            
-
+            CoreManager.AddReservedOrder(order);
             SetClose();
         }
     }

@@ -19,7 +19,7 @@ namespace MyHotel.Core
 
         public DbSet<HousingOrder> HousingOrders { get; set; }
 
-        public void AddHouseOrder(HousingOrder order)
+        public int AddHouseOrder(HousingOrder order)
         {
             HousingOrders.Add(order);
 
@@ -27,6 +27,8 @@ namespace MyHotel.Core
 
             if (order.IsPaid)
                 AddPayments(order);
+
+            return order.Id;
         }
 
         public void RemoveHouseOrder(int id)
@@ -40,7 +42,6 @@ namespace MyHotel.Core
 
             SaveChangesAsync();
         }
-
 
         public HousingOrder TryFindHouseOrder(int id) => HousingOrders.Where(u => u.Id == id).FirstOrDefault();
         
@@ -64,14 +65,16 @@ namespace MyHotel.Core
 
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
 
-        public void AddServiceOrder(ServiceOrder order)
+        public int AddServiceOrder(ServiceOrder order)
         {
             ServiceOrders.Add(order);
 
             if (order.IsPaid)
                 AddPayments(order);
 
-            SaveChangesAsync();
+            SaveChanges();
+
+            return order.Id;
         }
 
         public void RemoveServiceOrder(int id)

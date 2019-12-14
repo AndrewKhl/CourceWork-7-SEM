@@ -79,11 +79,12 @@
     <Compile Include="Commons\MD5Helper.cs" />
     <Compile Include="Commons\StringHelper.cs" />
     <Compile Include="Commons\Time.cs" />
-    <Compile Include="Core\Managers\CoreManager.cs" />
-    <Compile Include="Core\Managers\MailManager.cs" />
-    <Compile Include="Core\Managers\OrderManager.cs" />
-    <Compile Include="Core\Managers\RoomManager.cs" />
-    <Compile Include="Core\Managers\UserManager.cs" />
+    <Compile Include="Core\Models\Finanсe\Maintenance.cs" />
+    <Compile Include="Core\Models\Managers\CoreManager.cs" />
+    <Compile Include="Core\Models\Managers\MailManager.cs" />
+    <Compile Include="Core\Models\Managers\OrderManager.cs" />
+    <Compile Include="Core\Models\Managers\RoomManager.cs" />
+    <Compile Include="Core\Models\Managers\UserManager.cs" />
     <Compile Include="Core\Models\Orders\HousingOrder.cs" />
     <Compile Include="Core\Models\Orders\Order.cs" />
     <Compile Include="Core\Models\Orders\ServiceOrder.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Core\Models\Persons\Staff.cs" />
     <Compile Include="Core\Models\Rooms\LivingRoom.cs" />
     <Compile Include="Core\Models\Rooms\Room.cs" />
-    <Compile Include="Core\Models\Salary.cs" />
+    <Compile Include="Core\Models\Finanсe\Salary.cs" />
     <Compile Include="Core\Models\Service.cs" />
     <Compile Include="Infrastructure\Attributes\CustomEmailAddressAttribute.cs" />
     <Compile Include="Infrastructure\Attributes\DigitsLengthAttribute.cs" />

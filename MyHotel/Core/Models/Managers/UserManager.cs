@@ -124,6 +124,30 @@ namespace MyHotel.Core
             SaveChangesAsync();
         }
 
+        public void AddReservation(int userId, int orderId)
+        {
+            var guset = Guests.Where(u => u.Id == userId).FirstOrDefault();
+
+            if (guset == null)
+                return;
+
+            guset.AddReservation(orderId);
+
+            SaveChangesAsync();
+        }
+
+        public void AddOrder(int userId, int orderId)
+        {
+            var guset = Guests.Where(u => u.Id == userId).FirstOrDefault();
+
+            if (guset == null)
+                return;
+
+            guset.AddOrders(orderId);
+
+            SaveChangesAsync();
+        }
+
         public Guest TryFindGuests(string email, string password) => Guests.AsEnumerable().Where(u => u.Email == email && _md5.VerifyString(password, u.Password)).FirstOrDefault();
         
         public Guest TryFindGuests(string email) => Guests.AsEnumerable().Where(u => u.Email == email).FirstOrDefault();
