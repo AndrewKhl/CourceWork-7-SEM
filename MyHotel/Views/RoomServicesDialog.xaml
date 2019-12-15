@@ -6,7 +6,7 @@
         xmlns:l="clr-namespace:MyHotel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="Services Manager" Height="433" Width="700">
+        Title="Services Manager" Height="450" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -91,7 +91,7 @@
                           ItemsSource="{Binding Services}" Grid.Row="3" Grid.Column="1" DisplayMemberPath="ShortDescription"/>
 
                 <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding SelectedService.Description}"
-                           FontStyle="Italic" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+                           FontStyle="Italic" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
 
                 <TextBlock Text="Start Time:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="6" Grid.Column="0"/>
                 <DatePicker Style="{StaticResource CommonDatePickerStyle}" SelectedDate="{l:BindingProp NewService.StartTime}" Grid.Row="6" Grid.Column="1"/>

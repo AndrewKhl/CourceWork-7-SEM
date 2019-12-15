@@ -104,15 +104,6 @@
     <Compile Include="Infrastructure\Bindings\BindingProp.cs" />
     <Compile Include="Infrastructure\Converters\CardholderNameConverter.cs" />
     <Compile Include="Infrastructure\Converters\CardNumberConverter.cs" />
-    <Compile Include="Migration\Rooms\201912151536477_Init db.cs" />
-    <Compile Include="Migration\Rooms\201912151536477_Init db.designer.cs">
-      <DependentUpon>201912151536477_Init db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migration\Rooms\201912151538191_Update Main.cs" />
-    <Compile Include="Migration\Rooms\201912151538191_Update Main.designer.cs">
-      <DependentUpon>201912151538191_Update Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migration\Rooms\Rooms.cs" />
     <Compile Include="ViewModels\BasicViewModels\BaseViewModel.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />
@@ -284,12 +275,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migration\Rooms\201912151536477_Init db.resx">
-      <DependentUpon>201912151536477_Init db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migration\Rooms\201912151538191_Update Main.resx">
-      <DependentUpon>201912151538191_Update Main.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

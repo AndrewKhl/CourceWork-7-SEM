@@ -83,6 +83,7 @@ namespace MyHotel
 
         private void LogoutCommandDelegate(object o)
         {
+            RoomsControlViewModel.RefreshAllRooms();
             CurrentUser.AttachModel(null);
         }
 

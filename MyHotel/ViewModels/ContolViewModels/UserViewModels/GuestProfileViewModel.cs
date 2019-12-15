@@ -15,6 +15,7 @@ namespace MyHotel
 
         public ICommand EditProfileCommand { get; set; }
         public ICommand EditServicesCommand { get; set; }
+        public ICommand DeleteOrderCommand { get; set; }
 
         public GuestViewModel Guest { get; set; }
 
@@ -54,11 +55,13 @@ namespace MyHotel
 
             EditProfileCommand = new DelegateCommand(EditProfileCommandDelegate, CanEditProfileCommandDelegate);
             EditServicesCommand = new DelegateCommand(EditServicesCommandDelegate);
+            DeleteOrderCommand = new DelegateCommand(DeleteOrderCommandDelegate);
         }
 
         public override void SetClose()
         {
             EditProfileCommand = null;
+            DeleteOrderCommand = null;
 
             base.SetClose();
         }
@@ -68,7 +71,8 @@ namespace MyHotel
             var equal = true;
             equal &= _currentGuest.Name == Guest.Name;
             equal &= _currentGuest.SecondName == Guest.LastName;
-            equal &= DateTime.Parse(_currentGuest.BirthDay) == Guest.Birthday;
+            if (_currentGuest.BirthDay != null)
+                equal &= DateTime.Parse(_currentGuest.BirthDay) == Guest.Birthday;
 
             return equal;
         }
@@ -116,6 +120,17 @@ namespace MyHotel
             NotifyPropertyChanged(() => order.ServicesStr);
 
             _currentGuest = CoreManager.UserManager.TryFindGuests(Guest.Email);
+        }
+
+        private void DeleteOrderCommandDelegate(object o)
+        {
+            var order = o as OrderViewModel;
+            if (order == null)
+                return;
+
+            CoreManager.RemoveReservedOrder(order.Id, CurrentUser.Id);
+
+            Guest.Orders.Remove(order);
         }
     }
 }

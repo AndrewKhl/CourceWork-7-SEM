@@ -12,7 +12,13 @@ namespace MyHotel
         {
             SelectRoom = LivingRooms.First();
 
+            RefreshAllRooms();
+        }
+
+        public void RefreshAllRooms()
+        {
             FreeRooms = new ObservableCollection<LivingRoomViewModel>(LivingRooms);
+            NotifyPropertyChanged(() => FreeRooms);
         }
 
         public LivingRoomViewModel SelectRoom

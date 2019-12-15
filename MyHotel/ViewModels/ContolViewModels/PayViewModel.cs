@@ -59,6 +59,7 @@ namespace MyHotel
             }
         }
 
+        [Required(ErrorMessage = "Cardholder name should be in format 'Name Lastname'")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Cardholder name should be in format 'Name Lastname'")]
         public string CardholderName
         {

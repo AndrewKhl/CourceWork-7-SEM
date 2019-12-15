@@ -13,7 +13,7 @@
                 <Setter Property="Margin" Value="0"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
             </Style>
         </Grid.Resources>
         
@@ -37,10 +37,10 @@
             <ComboBox Grid.Column="1" Style="{StaticResource CommonComboBoxStyle}" ItemsSource="{l:BindingProp ModeList}" SelectedValue="{l:BindingProp SelectMode}"/>
             <Button Grid.Column="2" Content="Export to CSV" Style="{StaticResource CommonButtonStyle}" Command="{Binding ExportCSVCommand}"/>
 
-            <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="3" Model="{l:BindingProp GraphModel}"/>
+            <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="3" Model="{l:BindingProp GraphModel}" Margin="5"/>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Margin="10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="auto"/>
@@ -49,11 +49,6 @@
                 <RowDefinition/>
                 <RowDefinition/>-->
             </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Column="0" Grid.Row="1" >
                 <GroupBox DockPanel.Dock="Top" Header="Total">

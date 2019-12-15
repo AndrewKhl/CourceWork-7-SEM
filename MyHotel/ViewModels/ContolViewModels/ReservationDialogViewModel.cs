@@ -165,6 +165,10 @@ namespace MyHotel
             if (CheckIn.Date < DateTime.Today)
                 return false;
 
+            var freeRooms = CoreManager.OrderManager.GetFreeRoomsId(CheckIn, CheckOut);
+            if (!freeRooms.Contains(_shell.RoomsControlViewModel.SelectRoom.Id))
+                return false;
+
             return CheckIn <= CheckOut && !IsError;
         }
 

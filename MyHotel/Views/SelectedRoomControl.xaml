@@ -15,11 +15,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.6*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.ColumnSpan="2" Text="{l:BindingProp NumberStr}" Style="{StaticResource CommonTextBlockStyle}" HorizontalAlignment="Center"/>
-        <Grid Grid.Row="1" Grid.Column="0">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -27,8 +27,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.RowSpan="3" Style="{StaticResource TransparentButton}" Height="450"
-                    HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10">
+            <Button Grid.Column="0" Grid.RowSpan="3" Style="{StaticResource TransparentButton}" Height="400" 
+                    HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5,30">
                 <Image Source="{l:BindingProp Path=SelectedPhoto}" HorizontalAlignment="Left" Grid.Column="0" Grid.RowSpan="3"/>
             </Button>
 

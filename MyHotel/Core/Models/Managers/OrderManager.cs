@@ -37,6 +37,9 @@ namespace MyHotel.Core
             if (order == null)
                 return;
 
+            if (order.IsPaid)
+                RemovePayments(order.Id);
+
             HousingOrders.Remove(order);
 
             SaveChanges();
@@ -110,6 +113,18 @@ namespace MyHotel.Core
 
             if (save)
                 SaveChanges();
+        }
+
+        public void RemovePayments(int orderId)
+        {
+            var pay = Payments.Where(u => u.IsHousingOrder && u.OrderId == orderId).FirstOrDefault();
+
+            if (pay == null)
+                return;
+
+            Payments.Remove(pay);
+
+            SaveChanges();
         }
 
         public void UpdatePayments()

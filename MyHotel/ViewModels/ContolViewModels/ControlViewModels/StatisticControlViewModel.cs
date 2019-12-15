@@ -21,7 +21,7 @@ namespace MyHotel
 
         private Mode _selectMode = Mode.Profit;
 
-        public enum Mode { All, Profit, Lose };
+        public enum Mode { All, Profit, Loss };
 
         public Mode SelectMode
         {
@@ -99,7 +99,7 @@ namespace MyHotel
                     SetLosePoints();
                     SetProfitPoints();
                     break;
-                case Mode.Lose:
+                case Mode.Loss:
                     SetLosePoints();
                     break;
                 case Mode.Profit:
@@ -163,7 +163,7 @@ namespace MyHotel
             if (basicRoom != null)
                 basicRoom.ForEach(u => list.Add((DateTime.Parse(u.Date), u.Cost)));
 
-            var line = GetLine(Mode.Lose);
+            var line = GetLine(Mode.Loss);
 
             list.Sort();
 
@@ -233,7 +233,7 @@ namespace MyHotel
                 if (curSum == 0)
                     continue;
 
-                sw.WriteLine($"{id};{sal.LastOrDefault().Date};{curSum}");
+                sw.WriteLine($"{i};{sal.LastOrDefault().Date};{curSum}");
                 sum += curSum;
             }
 
