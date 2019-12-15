@@ -49,6 +49,7 @@ namespace MyHotel.Core
                 RoomId = 1,
                 Cost = 5000,
                 Comment = "Operating costs",
+                Date = DateTime.Now.ToString(),
             });
 
             MaintenanceCosts.Add(new Maintenance()
@@ -56,6 +57,7 @@ namespace MyHotel.Core
                 RoomId = 2,
                 Cost = 5500,
                 Comment = "Operating costs",
+                Date = DateTime.Now.ToString(),
             });
 
             MaintenanceCosts.Add(new Maintenance()
@@ -63,6 +65,7 @@ namespace MyHotel.Core
                 RoomId = 3,
                 Cost = 7000,
                 Comment = "Operating costs",
+                Date = DateTime.Now.ToString(),
             });
 
             SaveChanges();
@@ -74,20 +77,20 @@ namespace MyHotel.Core
             room.Descriptions = description;
             room.Status = state;
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public bool AddPhoto(LivingRoom room, string path)
         {
             bool ok = room.AddPhoto(path);
-            SaveChangesAsync();
+            SaveChanges();
             return ok;
         }
 
         public bool RemovePhoto(LivingRoom room, string path)
         {
             bool ok = room.RemovePhoto(path);
-            SaveChangesAsync();
+            SaveChanges();
             return ok;
         }
 

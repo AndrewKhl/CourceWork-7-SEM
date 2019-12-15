@@ -15,5 +15,7 @@ namespace MyHotel.Core
         public int Cost { get; set; }
 
         public string Comment { get; set; }
+
+        public string Date { get; set; }
     }
 }

@@ -35,7 +35,7 @@
 
             <TextBlock Text="Mode: " Margin="10 0 5 0"/>
             <ComboBox Grid.Column="1" Style="{StaticResource CommonComboBoxStyle}" ItemsSource="{l:BindingProp ModeList}" SelectedValue="{l:BindingProp SelectMode}"/>
-            <Button Grid.Column="2" Content="Export to CSV" Style="{StaticResource CommonButtonStyle}" />
+            <Button Grid.Column="2" Content="Export to CSV" Style="{StaticResource CommonButtonStyle}" Command="{Binding ExportCSVCommand}"/>
 
             <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="3" Model="{l:BindingProp GraphModel}"/>
         </Grid>
@@ -72,7 +72,7 @@
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalProfit}"/>
 
                         <TextBlock Grid.Row="1" Text="Loss:"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalLoss}"/>
                     </Grid>
                 </GroupBox>
 
@@ -113,9 +113,9 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Text="Rooms:"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding RoomsMain}"/>
 
-                        <TextBlock Grid.Row="1" Text="Salarys:"/>
+                        <TextBlock Grid.Row="1" Text="Salaries:"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Salarys}"/>
                     </Grid>
                 </GroupBox>
@@ -136,7 +136,7 @@
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Reservation}"/>
 
                         <TextBlock Grid.Row="1" Text="Services:"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ServiceProfit}"/>
                     </Grid>
                 </GroupBox>
             </DockPanel>

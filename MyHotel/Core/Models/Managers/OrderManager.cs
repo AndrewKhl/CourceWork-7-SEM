@@ -39,7 +39,7 @@ namespace MyHotel.Core
 
             HousingOrders.Remove(order);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public HousingOrder TryFindHouseOrder(int id) => HousingOrders.Where(u => u.Id == id).FirstOrDefault();
@@ -85,7 +85,7 @@ namespace MyHotel.Core
 
             ServiceOrders.Remove(order);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
 
@@ -96,7 +96,7 @@ namespace MyHotel.Core
         #region Payments
         public DbSet<Payment> Payments { get; set; }
 
-        public void AddPayments(Order order)
+        public void AddPayments(Order order, bool save = true)
         {
             var payment = new Payment()
             {
@@ -107,7 +107,9 @@ namespace MyHotel.Core
             };
 
             Payments.Add(payment);
-            SaveChangesAsync();
+
+            if (save)
+                SaveChanges();
         }
 
         public void UpdatePayments()
@@ -116,15 +118,17 @@ namespace MyHotel.Core
                 if (!h.IsPaid && Time.ToTime(h.OutTime) < DateTime.Now) //"10.12.2019 1:50:41"
                 {
                     h.IsPaid = true;
-                    AddPayments(h);
+                    AddPayments(h, false);
                 }
             
             foreach (var s in ServiceOrders)
                 if (!s.IsPaid && Time.ToTime(s.StartTime) < DateTime.Now)
                 {
                     s.IsPaid = true;
-                    AddPayments(s);
+                    AddPayments(s, false);
                 }
+
+            SaveChangesAsync();
         }
 
         #endregion
@@ -152,7 +156,7 @@ namespace MyHotel.Core
 
             Services.Remove(service);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void ModifyService(Service newService)
@@ -166,7 +170,7 @@ namespace MyHotel.Core
             old.Cost = newService.Cost;
             old.Description = newService.Description;
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public Service TryFindServices(int id) => Services.Where(u => u.Id == id).FirstOrDefault();

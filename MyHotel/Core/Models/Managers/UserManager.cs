@@ -11,7 +11,12 @@ namespace MyHotel.Core
         private static readonly MD5Helper _md5 = new MD5Helper();
         private readonly MailManager _mail;
 
-        public UserManager(MailManager mail) : base("DbConnection")
+        public UserManager() : base("DbConnection")
+        {
+
+        }
+
+        public UserManager(MailManager mail) : this()
         {
             _mail = mail;
         }
@@ -53,7 +58,7 @@ namespace MyHotel.Core
             old.Salary = newStaff.Salary;
             old.EmploymentDate = newStaff.EmploymentDate;
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void RemoveStaff(string email)
@@ -65,13 +70,14 @@ namespace MyHotel.Core
 
             Staffs.Remove(staff);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         private Person TryFindStaff(string email, string password) => Staffs.AsEnumerable().Where(u => u.Email == email && _md5.VerifyString(password, u.Password)).FirstOrDefault();
 
         private Person TryFindStaff(string email) => Staffs.Where(u => u.Email == email).FirstOrDefault();
 
+        public Staff TryGetStaff(int id) => Staffs.Where(u => u.Id == id).FirstOrDefault();
         #endregion
 
 
@@ -113,7 +119,7 @@ namespace MyHotel.Core
             old.SecondName = newGuest.SecondName;
             old.BirthDay = newGuest.BirthDay;
 
-            SaveChangesAsync();
+            SaveChanges();
 
             return old;
         }
@@ -127,7 +133,7 @@ namespace MyHotel.Core
 
             Guests.Remove(guest);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void AddReservation(int userId, int orderId)
@@ -139,7 +145,7 @@ namespace MyHotel.Core
 
             guset.AddReservation(orderId);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void RemoveReservation(int userId, int orderId)
@@ -151,7 +157,7 @@ namespace MyHotel.Core
 
             guset.RemoveReservation(orderId);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void AddOrder(int userId, int orderId)
@@ -163,7 +169,7 @@ namespace MyHotel.Core
 
             guset.AddOrders(orderId);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public void RemoveOrder(int userId, int orderId)
@@ -175,12 +181,14 @@ namespace MyHotel.Core
 
             guset.RemoveOrders(orderId);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         public Guest TryFindGuests(string email, string password) => Guests.AsEnumerable().Where(u => u.Email == email && _md5.VerifyString(password, u.Password)).FirstOrDefault();
         
         public Guest TryFindGuests(string email) => Guests.AsEnumerable().Where(u => u.Email == email).FirstOrDefault();
+
+        public Guest TryGetGuests(int id) => Guests.AsEnumerable().Where(u => u.Id == id).FirstOrDefault();
 
         #endregion
 
@@ -200,7 +208,7 @@ namespace MyHotel.Core
 
             Salarys.Add(salary);
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         #endregion

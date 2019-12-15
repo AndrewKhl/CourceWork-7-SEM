@@ -122,7 +122,7 @@ namespace MyHotel
         {
             if (IsServiceSelected)
             {
-                CoreManager.removeServiceOrder(SelectedService.Id, SelectedService.GuestId);
+                CoreManager.RemoveServiceOrder(SelectedService.Id, SelectedService.GuestId);
                 Services.Remove(SelectedService);
                 SelectedService = null;
                 return;

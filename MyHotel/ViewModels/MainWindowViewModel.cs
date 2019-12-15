@@ -81,7 +81,7 @@ namespace MyHotel
 
         private void LoginCommandDelegate(object o)
         {
-            var loginViewModel = new LoginViewModel(this)
+            var loginViewModel = new LoginViewModel(this, GuestControlViewModel)
             {
                 Login = "admin@gmail.com",
                 Password = "123456",

@@ -33,8 +33,7 @@
                     Command="{Binding Path=EditProfileCommand}"/>
         </StackPanel>
 
-        <ListView ItemsSource="{l:BindingProp Guest.Orders}" Grid.Column="1" SelectedItem="{l:BindingProp SelectedOrder}"
-                  HorizontalContentAlignment="Stretch">
+        <ListView ItemsSource="{l:BindingProp Guest.Orders}" Grid.Column="1" SelectedIndex="0" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">

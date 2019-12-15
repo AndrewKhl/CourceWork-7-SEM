@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MyHotel
@@ -203,6 +204,7 @@ namespace MyHotel
         private void AddSalaryCommandDelegate(object o)
         {
             CoreManager.UserManager.AddSalary(EditablePerson.Salary, EditablePerson.Id);
+            MessageBox.Show("Salary was added", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

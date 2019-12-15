@@ -44,7 +44,7 @@ namespace MyHotel.Core
                 Type = isRegistration ? "Registration" : "Reservation"
             });
 
-            SaveChangesAsync();
+            SaveChanges();
         }
 
         private void SendMail(string emailTo, string header, string text)

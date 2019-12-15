@@ -12,6 +12,7 @@ namespace MyHotel
 {
     public class LoginViewModel : BaseViewModel
     {
+        private GuestMainControlViewModel _guestControl;
         private string _login;
         private string _password;
         private bool _isPasswordShown;
@@ -69,8 +70,10 @@ namespace MyHotel
             }
         }
 
-        public LoginViewModel(IShellViewModel shell) : base(shell)
+        public LoginViewModel(IShellViewModel shell, GuestMainControlViewModel guestControl) : base(shell)
         {
+            _guestControl = guestControl;
+
             LoginCommand = new DelegateCommand(LoginCommandDelegate, CanLoginCommandDelegate);
             RegistrationCommand = new DelegateCommand(RegistartionCommandDelegate);
             ShowPasswordCommand = new DelegateCommand(ShowPasswordCommandDelegate);
