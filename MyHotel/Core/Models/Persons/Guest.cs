@@ -16,6 +16,22 @@ namespace MyHotel.Core
 
         public List<int> Orders { get; set; }
 
+        public List<int> GetReservations()
+        {
+            if (string.IsNullOrEmpty(ReservationsStr))
+                return new List<int>();
+
+            return ReservationsStr.Split(',').Select(el => int.Parse(el)).ToList();
+        }
+
+        public List<int> GetServices()
+        {
+            if (string.IsNullOrEmpty(OrdersStr))
+                return new List<int>();
+
+            return OrdersStr.Split(',').Select(el => int.Parse(el)).ToList();
+        }
+
         public void AddReservation(int id)
         {
             SetReservationCollection();

@@ -49,20 +49,24 @@ namespace MyHotel.Core
 
         private void SendMail(string emailTo, string header, string text)
         {
-            MailAddress to = new MailAddress(emailTo);
-
-            MailMessage mail = new MailMessage(_admin, to);
-
-            mail.Subject = header;
-            mail.Body = text;
-            mail.IsBodyHtml = true;
-
-            SmtpClient smtp = new SmtpClient("smtp.mail.ru", 2525)
+            try
             {
-                Credentials = new NetworkCredential(AdminEmail, "LxHWwSKL"),
-                EnableSsl = true
-            };
-            smtp.Send(mail);
+                MailAddress to = new MailAddress(emailTo);
+
+                MailMessage mail = new MailMessage(_admin, to);
+
+                mail.Subject = header;
+                mail.Body = text;
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient("smtp.mail.ru", 2525)
+                {
+                    Credentials = new NetworkCredential(AdminEmail, "LxHWwSKL"),
+                    EnableSsl = true
+                };
+                smtp.Send(mail);
+            }
+            catch { }
         }
     }
 }

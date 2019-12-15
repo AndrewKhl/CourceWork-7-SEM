@@ -43,10 +43,11 @@ namespace MyHotel.Core
             UserManager.AddReservation(order.UserId, id);
         }
 
-        public void AddServiceOrder(ServiceOrder order)
+        public int AddServiceOrder(ServiceOrder order)
         {
             int id = OrderManager.AddServiceOrder(order);
             UserManager.AddOrder(order.UserId, id);
+            return id;
         }
 
         public void RemoveReservedOrder(int orderId, int userId)

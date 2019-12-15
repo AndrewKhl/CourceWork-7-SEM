@@ -12,14 +12,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{l:BindingProp People}" Margin="0,1" SelectedItem="{l:BindingProp SelectedPerson}">
+        <ListView ItemsSource="{l:BindingProp People}" Margin="0,1" SelectedItem="{l:BindingProp SelectedPerson}"
+                  HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>

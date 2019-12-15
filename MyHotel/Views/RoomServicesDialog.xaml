@@ -1,0 +1,115 @@
+﻿<Window x:Class="MyHotel.RoomServicesDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:MyHotel"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="Services Manager" Height="433" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Header="All yours Services" Margin="10,0,10,10" VerticalAlignment="Stretch" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListView ItemsSource="{l:BindingProp Order.Services}" SelectedItem="{l:BindingProp Order.SelectedService}" 
+                          Grid.Column="1" Grid.Row="0" Margin="10" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Service:" Grid.Column="0" Grid.Row="0" Style="{StaticResource CommonTextBlockStyle}"/>
+                                <TextBlock Text="{l:BindingProp Path=ShortDescription}" Grid.Row="0" Grid.Column="1" Style="{StaticResource CommonTextBlockStyle}"/>
+
+                                <TextBlock Text="Start Time:" Grid.Column="0" Grid.Row="1" Style="{StaticResource CommonTextBlockStyle}"/>
+                                <TextBlock Text="{l:BindingProp Path=StartTime}" Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonTextBlockStyle}"/>
+
+                                <TextBlock Text="Cost:" Grid.Column="2" Grid.Row="0" Style="{StaticResource CommonTextBlockStyle}"/>
+                                <TextBlock Text="{l:BindingProp Path=Cost}" Grid.Row="0" Grid.Column="3" Style="{StaticResource CommonTextBlockStyle}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Style="{StaticResource CommonButtonStyle}" Content="Delete" Grid.Row="11" Grid.ColumnSpan="2"
+                        Command="{Binding Path=DeleteServiceCommand}"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Margin="10,0,10,10" Grid.Column="0" Grid.RowSpan="2" Header="New Service">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                           Style="{StaticResource CommonTextBlockStyle}" Text="{Binding Path=Order.Room.NumberStr}"/>
+
+                <TextBlock Text="Your Check In:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding Order.CheckInStr}" Grid.Row="1" Grid.Column="1"/>
+
+                <TextBlock Text="Your Check Out:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="2" Grid.Column="0" Height="30"/>
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding Order.CheckOutStr}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Service:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                <ComboBox Style="{StaticResource CommonComboBoxStyle}" SelectedItem="{Binding SelectedService}"
+                          ItemsSource="{Binding Services}" Grid.Row="3" Grid.Column="1" DisplayMemberPath="ShortDescription"/>
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding SelectedService.Description}"
+                           FontStyle="Italic" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <TextBlock Text="Start Time:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="6" Grid.Column="0"/>
+                <DatePicker Style="{StaticResource CommonDatePickerStyle}" SelectedDate="{l:BindingProp NewService.StartTime}" Grid.Row="6" Grid.Column="1"/>
+
+                <TextBlock Text="Cost:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="5" Grid.Column="0"/>
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding SelectedService.Cost}" Grid.Row="5" Grid.Column="1"/>
+
+                <TextBlock Text="Your Comment:" VerticalAlignment="Top" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="7" Grid.Column="0"/>
+                <TextBox Style="{StaticResource CommonTextBoxStyle}" VerticalContentAlignment="Top" Text="{l:BindingProp NewService.Comment}" Grid.Row="7" Grid.Column="1" Height="100"/>
+
+                <TextBlock Text="Payment:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="8" Grid.Column="0"/>
+                <ComboBox Style="{StaticResource CommonComboBoxStyle}" SelectedItem="{l:BindingProp NewService.SelectedPayment}" 
+                          ItemsSource="{Binding Path=PaymentTypes}" Grid.Row="8" Grid.Column="1"/>
+
+                <Button Style="{StaticResource CommonButtonStyle}" Content="Add" Grid.Row="9" Grid.ColumnSpan="2" Margin="0,20,0,0"
+                        Command="{Binding Path=AddServiceCommand}"/>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

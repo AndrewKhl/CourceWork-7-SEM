@@ -12,7 +12,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{l:BindingProp Services}" Margin="0,1" SelectedItem="{l:BindingProp SelectedService}">
+        <ListView ItemsSource="{l:BindingProp Services}" SelectedItem="{l:BindingProp SelectedService}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">

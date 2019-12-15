@@ -32,5 +32,56 @@
             <Button Style="{StaticResource CommonButtonStyle}" Content="Edit" Margin="20"
                     Command="{Binding Path=EditProfileCommand}"/>
         </StackPanel>
+
+        <ListView ItemsSource="{l:BindingProp Guest.Orders}" Grid.Column="1" SelectedItem="{l:BindingProp SelectedOrder}"
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{l:BindingProp Room.NumberStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Check In:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                        <TextBlock Text="{l:BindingProp CheckInStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Check Out:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                        <TextBlock Text="{l:BindingProp CheckOutStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
+
+                        <TextBlock Text="Services:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                        <TextBlock Text="{l:BindingProp ServicesStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Text="Finish Cost:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="4" Grid.Column="0"/>
+                        <TextBlock Text="{l:BindingProp CostStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="4" Grid.Column="1"/>
+
+                        <TextBlock Text="Paid:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="5" Grid.Column="0"/>
+                        <TextBlock Text="{l:BindingProp IsPaidStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="5" Grid.Column="1"/>
+
+                        <Button Content="Edit Services" Style="{StaticResource CommonButtonStyle}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=DataContext.EditServicesCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=SelectedItem}"/>
+
+                        <Image Grid.Row="0" Grid.RowSpan="7" Grid.Column="2" Source="{Binding Path=Room.MainPhoto}" HorizontalAlignment="Center"/>
+
+                        <Separator Margin="0,5,0,0" Grid.Row="7" Grid.ColumnSpan="3"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

@@ -50,7 +50,7 @@ namespace MyHotel.Core
 
             foreach (var h in HousingOrders)
             {
-                if (Time.ToTime(h.InTime) <= tout && Time.ToTime(h.OutTime) >= tin)
+                if (Time.ToTime(h.InTime) < tout && Time.ToTime(h.OutTime) > tin)
                     ans.Remove(h.RoomId);
             }
 

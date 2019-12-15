@@ -108,7 +108,9 @@
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\ValidationConverter.cs" />
     <Compile Include="ViewModels\BasicViewModels\GuestViewModel.cs" />
+    <Compile Include="ViewModels\BasicViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\BasicViewModels\ServiceItemViewModel.cs" />
+    <Compile Include="ViewModels\BasicViewModels\ServiceOrderViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\GuestMainControlViewModel.cs" />
     <Compile Include="Infrastructure\CloseDialog.cs" />
     <Compile Include="Infrastructure\ErrorManager.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="ViewModels\ContolViewModels\PayViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\ReservationDialogViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\RoomServicesViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\ServicesViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\StatisticControlViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\UsersAndStaffViewModel.cs" />
@@ -154,6 +157,9 @@
     </Compile>
     <Compile Include="Views\RoomsControl.xaml.cs">
       <DependentUpon>RoomsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomServicesDialog.xaml.cs">
+      <DependentUpon>RoomServicesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectedRoomControl.xaml.cs">
       <DependentUpon>SelectedRoomControl.xaml</DependentUpon>
@@ -219,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoomsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomServicesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
