@@ -140,6 +140,18 @@ namespace MyHotel.Core
             SaveChangesAsync();
         }
 
+        public void RemoveReservation(int userId, int orderId)
+        {
+            var guset = Guests.Where(u => u.Id == userId).FirstOrDefault();
+
+            if (guset == null)
+                return;
+
+            guset.RemoveReservation(orderId);
+
+            SaveChangesAsync();
+        }
+
         public void AddOrder(int userId, int orderId)
         {
             var guset = Guests.Where(u => u.Id == userId).FirstOrDefault();
@@ -148,6 +160,18 @@ namespace MyHotel.Core
                 return;
 
             guset.AddOrders(orderId);
+
+            SaveChangesAsync();
+        }
+
+        public void RemoveOrder(int userId, int orderId)
+        {
+            var guset = Guests.Where(u => u.Id == userId).FirstOrDefault();
+
+            if (guset == null)
+                return;
+
+            guset.RemoveOrders(orderId);
 
             SaveChangesAsync();
         }
