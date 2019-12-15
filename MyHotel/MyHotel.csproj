@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\BasicViewModels\LivingRoomViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\GuestProfileViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ContolViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\PayViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ContolViewModels\ReservationDialogViewModel.cs" />
@@ -145,6 +146,9 @@
     <Compile Include="ViewModels\ContolViewModels\MainAdminControlViewModel.cs" />
     <Compile Include="Views\MainAdminControl.xaml.cs">
       <DependentUpon>MainAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersControl.xaml.cs">
+      <DependentUpon>OrdersControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PayDialog.xaml.cs">
       <DependentUpon>PayDialog.xaml</DependentUpon>
@@ -209,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

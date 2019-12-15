@@ -63,7 +63,6 @@
                             </StackPanel>
                         </MenuItem.Header>
                         <MenuItem Header="Your profile" Command="{Binding Path=ShowProfileCommand}"/>
-                        <MenuItem Header="Your services"/>
                         <Separator/>
                         <MenuItem Header="Log out" Command="{Binding Path=LogoutCommand}"/>
                     </MenuItem>
