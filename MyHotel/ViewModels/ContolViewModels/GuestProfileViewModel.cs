@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHotel.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,22 @@ namespace MyHotel
             return equal;
         }
 
+        private Guest GetCurrentGuestModel()
+        {
+            return new Guest()
+            {
+                Id = Guest.Id,
+                Name = Guest.Name,
+                SecondName = Guest.LastName,
+                BirthDay = Guest.Birthday.ToString(),
+                Email = Guest.Email,
+                Password = Guest.Password,
+                IsAdmin = Guest.IsAdmin,
+                ReservationsStr = _currentGuest.ReservationsStr,
+                OrdersStr = _currentGuest.OrdersStr,
+            };
+        }
+
         private bool CanEditProfileCommandDelegate(object o)
         {
             return !Guest.IsError && !IsEqual();
@@ -79,7 +96,7 @@ namespace MyHotel
 
         private void EditProfileCommandDelegate(object o)
         {
-
+            _currentGuest = CoreManager.UserManager.ModifyGuest(GetCurrentGuestModel());
         }
 
         private void EditServicesCommandDelegate(object o)
@@ -97,6 +114,8 @@ namespace MyHotel
             dialog.ShowDialog();
 
             NotifyPropertyChanged(() => order.ServicesStr);
+
+            _currentGuest = CoreManager.UserManager.TryFindGuests(Guest.Email);
         }
     }
 }

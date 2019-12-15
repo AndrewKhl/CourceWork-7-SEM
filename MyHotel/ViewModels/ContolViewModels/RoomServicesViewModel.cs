@@ -75,7 +75,7 @@ namespace MyHotel
                 UserId = CurrentUser.Id,
                 RoomId = Order.Room.Id,
                 Comment = NewService.Comment,
-                Cost = NewService.Cost,
+                Cost = SelectedService.Cost,
                 ServiceId = SelectedService.Id,
             };
 

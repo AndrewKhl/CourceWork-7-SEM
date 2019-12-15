@@ -102,18 +102,20 @@ namespace MyHotel.Core
             return newGuest;
         }
 
-        public void ModifyGuest(Guest newGuest)
+        public Guest ModifyGuest(Guest newGuest)
         {
             var old = Guests.Where(u => u.Email == newGuest.Email).FirstOrDefault();
 
             if (old == null)
-                return;
+                return null;
 
             old.Name = newGuest.Name;
             old.SecondName = newGuest.SecondName;
             old.BirthDay = newGuest.BirthDay;
 
             SaveChangesAsync();
+
+            return old;
         }
 
         public void RemoveGuest(string email)

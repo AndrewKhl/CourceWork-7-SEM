@@ -52,6 +52,8 @@ namespace MyHotel
             }
         }
 
+        public string StartTimeStr => $"{StartTime.Date.ToShortDateString()}";
+
         public ServiceOrderViewModel(ServiceOrder serviceOrder, Service service) : base(service)
         {
             _service = service;

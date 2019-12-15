@@ -12,12 +12,14 @@ namespace MyHotel
         private UsersAndStaffViewModel _usersAndStaffViewModel;
         private StatisticControlViewModel _statisticViewModel;
         private ServicesViewModel _servicesViewModel;
+        private OrdersViewModel _ordersViewModel;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand AllUsersCommand { get; set; }
         public ICommand ShowRoomsCommand { get; set; }
         public ICommand ShowStatisticCommand { get; set; }
         public ICommand ShowServicesCommand { get; set; }
+        public ICommand ShowOrdersCommand { get; set; }
 
 
         public bool IsUsersAndStaffVisibility { get; set; }
@@ -28,6 +30,8 @@ namespace MyHotel
 
         public bool IsServicesVisible { get; set; }
 
+        public bool IsOrdersVisible { get; set; }
+
 
         public MainAdminControlViewModel(IShellViewModel shellViewModel) : base(shellViewModel)
         {
@@ -36,8 +40,9 @@ namespace MyHotel
             ShowRoomsCommand = new DelegateCommand(AllRoomsCommandDelegate);
             ShowStatisticCommand = new DelegateCommand(StatisticCommandDelegate);
             ShowServicesCommand = new DelegateCommand(ShowServicesCommandDelegate);
+            ShowOrdersCommand = new DelegateCommand(ShowOrdersCommandDelegate);
 
-            VisualViewModel(false, true, false, false);
+            VisualViewModel(false, true, false, false, false);
         }
 
         public UsersAndStaffViewModel UsersAndStaffViewModel
@@ -70,6 +75,16 @@ namespace MyHotel
             }
         }
 
+        public OrdersViewModel OrdersViewModel
+        {
+            get => _ordersViewModel;
+            set
+            {
+                _ordersViewModel = value;
+                NotifyPropertyChanged(() => OrdersViewModel);
+            }
+        }
+
 
         public override void SetClose()
         {
@@ -78,13 +93,14 @@ namespace MyHotel
 
             UsersAndStaffViewModel = null;
             ShowServicesCommand = null;
+            ShowOrdersCommand = null;
 
             base.SetClose();
         }
 
         private void LogoutCommandDelegate(object o)
         {
-            VisualViewModel(false, true, false, false);
+            VisualViewModel(false, true, false, false, false);
 
             CurrentUser.AttachModel(null);
             SetClose();
@@ -94,38 +110,46 @@ namespace MyHotel
         {
             UsersAndStaffViewModel = null;
 
-            VisualViewModel(false, true, false, false);
+            VisualViewModel(false, true, false, false, false);
         }
 
         private void AllUsersCommandDelegate(object o)
         {
             UsersAndStaffViewModel = new UsersAndStaffViewModel(_shell);
-            VisualViewModel(true, false, false, false);
+            VisualViewModel(true, false, false, false, false);
         }
 
         private void StatisticCommandDelegate(object o)
         {
             StatisticViewModel = new StatisticControlViewModel(_shell);
-            VisualViewModel(false, false, true, false);
+            VisualViewModel(false, false, true, false, false);
         }
 
         private void ShowServicesCommandDelegate(object o)
         {
             ServicesViewModel = new ServicesViewModel(_shell);
-            VisualViewModel(false, false, false, true);
+            VisualViewModel(false, false, false, true, false);
         }
 
-        private void VisualViewModel(bool isUsers, bool isRooms, bool isStatistic, bool isServices)
+        private void ShowOrdersCommandDelegate(object o)
+        {
+            OrdersViewModel = new OrdersViewModel(_shell);
+            VisualViewModel(false, false, false, false, true);
+        }
+
+        private void VisualViewModel(bool isUsers, bool isRooms, bool isStatistic, bool isServices, bool isOrders)
         {
             IsUsersAndStaffVisibility = isUsers;
             IsRoomVisible = isRooms;
             IsStatisticVisible = isStatistic;
             IsServicesVisible = isServices;
+            IsOrdersVisible = isOrders;
 
             NotifyPropertyChanged(() => IsUsersAndStaffVisibility);
             NotifyPropertyChanged(() => IsRoomVisible);
             NotifyPropertyChanged(() => IsStatisticVisible);
             NotifyPropertyChanged(() => IsServicesVisible);
+            NotifyPropertyChanged(() => IsOrdersVisible);
         }
     }
 }

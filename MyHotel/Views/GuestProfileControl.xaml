@@ -64,7 +64,7 @@
                         <TextBlock Text="{l:BindingProp CheckOutStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
 
                         <TextBlock Text="Services:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
-                        <TextBlock Text="{l:BindingProp ServicesStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+                        <TextBlock Text="{l:BindingProp ServicesStr, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
 
                         <TextBlock Text="Finish Cost:" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="4" Grid.Column="0"/>
                         <TextBlock Text="{l:BindingProp CostStr}" Style="{StaticResource CommonTextBlockStyle}" Grid.Row="4" Grid.Column="1"/>
