@@ -49,6 +49,18 @@ namespace MyHotel.Core
             UserManager.AddOrder(order.UserId, id);
         }
 
+        public void RemoveReservedOrder(int orderId, int userId)
+        {
+            OrderManager.RemoveHouseOrder(orderId);
+            UserManager.RemoveReservation(userId, orderId);
+        }
+
+        public void removeServiceOrder(int orderId, int userId)
+        {
+            OrderManager.RemoveServiceOrder(orderId);
+            UserManager.RemoveOrder(userId, orderId);
+        }
+
         private void InitialDataBase()
         {
             foreach (var m in _managers)
