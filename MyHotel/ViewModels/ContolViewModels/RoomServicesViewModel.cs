@@ -109,7 +109,7 @@ namespace MyHotel
 
         private void DeleteCommandDelegate(object o)
         {
-            CoreManager.removeServiceOrder(Order.SelectedService.ServiceOrderId, CurrentUser.Id);
+            CoreManager.RemoveServiceOrder(Order.SelectedService.ServiceOrderId, CurrentUser.Id);
 
             Order.Services.Remove(Order.SelectedService);
             NotifyPropertyChanged(() => Order.ServicesStr);

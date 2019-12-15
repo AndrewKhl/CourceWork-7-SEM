@@ -56,7 +56,7 @@ namespace MyHotel.Core
             UserManager.RemoveReservation(userId, orderId);
         }
 
-        public void removeServiceOrder(int orderId, int userId)
+        public void RemoveServiceOrder(int orderId, int userId)
         {
             OrderManager.RemoveServiceOrder(orderId);
             UserManager.RemoveOrder(userId, orderId);
